@@ -87,7 +87,7 @@ local function act_gp_cancel(m)
 
     if e.extActionArg == 1 then
         local range = math.random(-15, 15)
-        spawn_non_sync_object(id_bhvCoinSparkles, E_MODEL_RED_FLAME, m.pos.x + range, m.pos.y + range, m.pos.z + range,
+        spawn_sync_object(id_bhvCoinSparkles, E_MODEL_RED_FLAME, m.pos.x + range, m.pos.y + range, m.pos.z + range,
             --- @param o Object
             function(o)
                 obj_scale(o, 2)
@@ -195,3 +195,18 @@ end
 _G.charSelect.character_hook_moveset(CT_FUMBLER, HOOK_MARIO_UPDATE, fumbler_update)
 _G.charSelect.character_hook_moveset(CT_FUMBLER, HOOK_ON_SET_MARIO_ACTION, fumbler_set_action)
 --_G.charSelect.character_hook_moveset(CT_FUMBLER, HOOK_BEFORE_SET_MARIO_ACTION, fumbler_before_set_action)
+
+--local function debug_hud()
+--        local m = gMarioStates[0]
+--        local e = gExtraStates[m.playerIndex]
+--        
+--        djui_hud_set_color(0, 255, 0, 255)
+--        djui_hud_set_resolution(RESOLUTION_DJUI)
+--        djui_hud_set_font(FONT_ALIASED)
+
+
+--        djui_hud_print_text(string.format("e.speedKickTimer:  "..e.speedKickTimer.." ") , 25, 150, 1)
+--        djui_hud_print_text(string.format("m.actionTimer:  "..m.actionTimer.." ") , 25, 175, 1)
+--        djui_hud_print_text(string.format("m.intendedMag:  "..m.intendedMag.." ") , 25, 200, 1)
+--end
+--hook_event(HOOK_ON_HUD_RENDER_BEHIND, debug_hud)

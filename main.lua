@@ -19,12 +19,22 @@ local TEX_FUMBLER = get_texture_info("m_fumbler_icon")
 local PALETTE_FUMBLER =  {
     [PANTS]  = "ffffff",
     [SHIRT]  = "ff0000",
-    [GLOVES] = "fec179",
+    [GLOVES] = "ffffff",
     [SHOES]  = "333333",
     [HAIR]   = "730600",
     [SKIN]   = "fec179",
     [CAP]    = "ffffff",
     [EMBLEM] = "ff0000",
+}
+local PALETTE_CHARITY = {
+    [PANTS]  = { r = 0xb2, g = 0x28, b = 0x18 },
+    [SHIRT]  = { r = 0xff, g = 0xe0, b = 0xe0 },
+    [GLOVES] = { r = 0xff, g = 0xff, b = 0xff },
+    [SHOES]  = { r = 0x72, g = 0x1c, b = 0x0e },
+    [HAIR]   = { r = 0x73, g = 0x06, b = 0x00 },
+    [SKIN]   = { r = 0xfe, g = 0xc1, b = 0x79 },
+    [CAP]    = { r = 0xff, g = 0xe0, b = 0xe0 },
+    [EMBLEM] = { r = 0xff, g = 0x00, b = 0x00 },
 }
 
 local ANIMTABLE_FUMBLER = {
@@ -48,13 +58,14 @@ local HEALTH_METER_MARIO = {
 --}
 
 if _G.charSelectExists then
-    CT_FUMBLER = _G.charSelect.character_add("The Fumbler", { "What a fumble,,, that's embarassing.",
+    CT_FUMBLER = _G.charSelect.character_add("Fumbler", { "What a fumble,,, that's embarassing.",
         ""}, "JerThePear", {r = 255, g = 255, b = 255}, E_MODEL_FUMBLER, CT_MARIO, TEX_FUMBLER)
 end
 
 local CSloaded = false
 local function on_character_select_load()
     _G.charSelect.character_add_palette_preset(E_MODEL_FUMBLER, PALETTE_FUMBLER, "Default")
+    _G.charSelect.character_add_palette_preset(E_MODEL_FUMBLER, PALETTE_CHARITY, "Air Rider")
     _G.charSelect.character_add_animations(E_MODEL_FUMBLER, ANIMTABLE_FUMBLER)
     --_G.charSelect.character_add_caps(E_MODEL_FUMBLER, CAP_FUMBLER)
     _G.charSelect.character_add_health_meter(CT_FUMBLER, HEALTH_METER_MARIO)

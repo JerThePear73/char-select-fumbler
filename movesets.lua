@@ -6,9 +6,11 @@ for i = 0, MAX_PLAYERS - 1 do
     e.prevActionTimer = 0
     e.canGPCancel = true
     e.extActionArg = 0
+    e.particleArg = 0
 end
 
 local stepMax = 4
+local E_MODEL_ICE_SPARKLES = smlua_model_util_get_id('ice_sparkle_geo')
 
 -- CUSTOM ACTIONS --
 
@@ -16,6 +18,7 @@ local ACT_MOVING_GP = allocate_mario_action(ACT_GROUP_AIRBORNE | ACT_FLAG_AIR | 
 local ACT_GP_CANCEL = allocate_mario_action(ACT_GROUP_AIRBORNE | ACT_FLAG_AIR | ACT_FLAG_ALLOW_VERTICAL_WIND_ACTION)
 
 local function act_moving_gp(m)
+    local e = gExtraStates[m.playerIndex]
 
     set_mario_animation(m, MARIO_ANIM_TRIPLE_JUMP_GROUND_POUND)
 
@@ -26,7 +29,7 @@ local function act_moving_gp(m)
     end
 
     local range = math.random(-30, 30)
-    spawn_non_sync_object(id_bhvCoinSparkles, E_MODEL_RED_FLAME, m.pos.x + range, m.pos.y + range, m.pos.z + range,
+    spawn_non_sync_object(id_bhvCoinSparkles, e.particleArg, m.pos.x + range, m.pos.y + range, m.pos.z + range,
             --- @param o Object
             function(o)
                 obj_scale(o, 2)
@@ -87,7 +90,7 @@ local function act_gp_cancel(m)
 
     if e.extActionArg == 1 then
         local range = math.random(-15, 15)
-        spawn_sync_object(id_bhvCoinSparkles, E_MODEL_RED_FLAME, m.pos.x + range, m.pos.y + range, m.pos.z + range,
+        spawn_sync_object(id_bhvCoinSparkles, e.particleArg, m.pos.x + range, m.pos.y + range, m.pos.z + range,
             --- @param o Object
             function(o)
                 obj_scale(o, 2)
@@ -116,6 +119,8 @@ hook_mario_action(ACT_GP_CANCEL, act_gp_cancel)
 local function fumbler_update(m)
     local e = gExtraStates[m.playerIndex]
     
+    e.particleArg = E_MODEL_RED_FLAME
+
     -- dust
         if m.action == ACT_WALKING and m.forwardVel > 20 and m.pos.y > m.waterLevel then
             e.stepTimer = e.stepTimer + 1
@@ -188,13 +193,69 @@ local function fumbler_set_action(m)
         end
 end
 
---local function fumbler_before_set_action(m, act)
+local function jumbler_update(m)
+    local e = gExtraStates[m.playerIndex]
 
---end
+    e.particleArg = E_MODEL_ICE_SPARKLES
+
+    -- dust
+        if m.action == ACT_WALKING and m.forwardVel > 20 and m.pos.y > m.waterLevel then
+            e.stepTimer = e.stepTimer + 1
+
+            if e.stepTimer > stepMax then
+                e.stepTimer = 0
+                m.particleFlags = m.particleFlags | PARTICLE_DUST
+            end
+        end
+    -- sprungflip (moving gp)
+        if m.action == ACT_DIVE_SLIDE and m.input & INPUT_Z_PRESSED ~= 0 then
+            set_mario_action(m, ACT_MOVING_GP, 0)
+        end
+    -- GP cancel
+        if m.action == ACT_GROUND_POUND and m.input & INPUT_B_PRESSED ~= 0 then
+            if e.canGPCancel then
+                e.prevActionTimer = m.actionTimer
+                set_mario_action(m, ACT_GP_CANCEL, 0)
+                e.canGPCancel = false
+            end
+        end
+        if m.pos.y == m.floorHeight then
+            e.canGPCancel = true
+        end
+end
+
+local jumblerJumpTable = {
+    [ACT_JUMP] = true,
+    [ACT_DOUBLE_JUMP] = true,
+    [ACT_TRIPLE_JUMP] = true,
+    [ACT_BACKFLIP] = true,
+    [ACT_SIDE_FLIP] = true
+}
+
+local function jumbler_set_action(m)
+    local e = gExtraStates[m.playerIndex]
+
+    -- slide kick height
+        if m.action == ACT_SLIDE_KICK then
+            m.vel.y = m.forwardVel/2
+        end
+    -- replace metal fall
+        if m.action == ACT_WATER_PLUNGE and m.flags & MARIO_METAL_CAP ~= 0 then
+            m.action = ACT_METAL_WATER_JUMP
+            play_sound(SOUND_OBJ_DIVING_INTO_WATER, m.marioObj.header.gfx.cameraToObject)
+            m.particleFlags = m.particleFlags | PARTICLE_WATER_SPLASH | PARTICLE_PLUNGE_BUBBLE
+        end
+    -- jump height
+        if jumblerJumpTable[m.action] then
+            m.vel.y = m.vel.y + 5
+        end
+end
 
 _G.charSelect.character_hook_moveset(CT_FUMBLER, HOOK_MARIO_UPDATE, fumbler_update)
 _G.charSelect.character_hook_moveset(CT_FUMBLER, HOOK_ON_SET_MARIO_ACTION, fumbler_set_action)
 --_G.charSelect.character_hook_moveset(CT_FUMBLER, HOOK_BEFORE_SET_MARIO_ACTION, fumbler_before_set_action)
+_G.charSelect.character_hook_moveset(CT_JUMBLER, HOOK_MARIO_UPDATE, jumbler_update)
+_G.charSelect.character_hook_moveset(CT_JUMBLER, HOOK_ON_SET_MARIO_ACTION, jumbler_set_action)
 
 --local function debug_hud()
 --        local m = gMarioStates[0]

@@ -86,7 +86,6 @@ extern u8 fumbler_eyes_up_rgba16[];
 extern u8 fumbler_eyes_down_rgba16[];
 extern u8 fumbler_eyes_dead_rgba16[];
 extern u8 fumbler_wing_ia8[];
-extern u8 fumbler_darken_ia8[];
 extern Vtx fumbler_Butt_mesh_layer_1_vtx_0[20];
 extern Gfx fumbler_Butt_mesh_layer_1_tri_0[];
 extern Vtx fumbler_Torso_skinned_mesh_layer_1_vtx_0[14];

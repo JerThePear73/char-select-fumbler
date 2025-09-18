@@ -71,12 +71,12 @@ Lights1 fumbler_Dead_Eyes__SKIN__lights = gdSPDefLights1(
 	0xFE, 0xC1, 0x79, 0x28, 0x28, 0x28);
 
 Lights1 fumbler_Shoes__SHOES__lights = gdSPDefLights1(
-	0x35, 0x8, 0x3,
-	0x72, 0x1C, 0xE, 0x28, 0x28, 0x28);
+	0x14, 0x14, 0x14,
+	0x33, 0x33, 0x33, 0x28, 0x28, 0x28);
 
 Lights1 fumbler_Shoes_Dark__SHOES__lights = gdSPDefLights1(
-	0x35, 0x8, 0x3,
-	0x72, 0x1C, 0xE, 0x28, 0x28, 0x28);
+	0x14, 0x14, 0x14,
+	0x33, 0x33, 0x33, 0x28, 0x28, 0x28);
 
 Gfx fumbler_fumbler_base_rgba16_aligner[] = {gsSPEndDisplayList()};
 u8 fumbler_fumbler_base_rgba16[] = {
@@ -136,11 +136,6 @@ u8 fumbler_eyes_dead_rgba16[] = {
 Gfx fumbler_wing_ia8_aligner[] = {gsSPEndDisplayList()};
 u8 fumbler_wing_ia8[] = {
 	#include "actors/fumbler/wing.ia8.inc.c"
-};
-
-Gfx fumbler_darken_ia8_aligner[] = {gsSPEndDisplayList()};
-u8 fumbler_darken_ia8[] = {
-	#include "actors/fumbler/darken.ia8.inc.c"
 };
 
 Vtx fumbler_Butt_mesh_layer_1_vtx_0[20] = {
@@ -2037,7 +2032,7 @@ Vtx fumbler_Left_Shoe_mesh_layer_1_vtx_0[18] = {
 	{{ {-50, 13, 7}, 0, {-16, -16}, {138, 209, 254, 255} }},
 	{{ {-42, 57, -9}, 0, {-16, -16}, {142, 15, 202, 255} }},
 	{{ {-35, 12, -21}, 0, {-16, -16}, {178, 207, 169, 255} }},
-	{{ {-14, 46, -33}, 0, {-16, -16}, {206, 250, 139, 255} }},
+	{{ {-14, 46, -32}, 0, {-16, -16}, {206, 250, 139, 255} }},
 	{{ {43, -15, -33}, 0, {-16, -16}, {227, 193, 149, 255} }},
 	{{ {74, 14, -41}, 0, {-16, -16}, {8, 213, 137, 255} }},
 	{{ {80, -31, -35}, 0, {-16, -16}, {34, 170, 169, 255} }},
@@ -2068,7 +2063,7 @@ Vtx fumbler_Left_Shoe_mesh_layer_1_vtx_1[24] = {
 	{{ {77, 23, -41}, 0, {-16, -16}, {44, 119, 0, 255} }},
 	{{ {110, 10, 42}, 0, {-16, -16}, {44, 119, 0, 255} }},
 	{{ {110, 10, -28}, 0, {-16, -16}, {44, 119, 0, 255} }},
-	{{ {-14, 46, -33}, 0, {-16, -16}, {211, 20, 139, 255} }},
+	{{ {-14, 46, -32}, 0, {-16, -16}, {211, 20, 139, 255} }},
 	{{ {-42, 57, -9}, 0, {-16, -16}, {152, 44, 198, 255} }},
 	{{ {-38, 66, -8}, 0, {-16, -16}, {152, 44, 198, 255} }},
 	{{ {-40, 66, 25}, 0, {-16, -16}, {148, 45, 50, 255} }},
@@ -2519,13 +2514,9 @@ Gfx mat_fumbler_Shoes__SHOES_[] = {
 Gfx mat_fumbler_Shoes_Dark__SHOES_[] = {
 	gsSPCopyLightsPlayerPart(SHOES),
 	gsDPPipeSync(),
-	gsDPSetCombineLERP(TEXEL0, SHADE, TEXEL0_ALPHA, SHADE, 0, 0, 0, ENVIRONMENT, TEXEL0, SHADE, TEXEL0_ALPHA, SHADE, 0, 0, 0, ENVIRONMENT),
+	gsDPSetCombineLERP(SHADE, 0, PRIMITIVE, 0, 0, 0, 0, ENVIRONMENT, SHADE, 0, PRIMITIVE, 0, 0, 0, 0, ENVIRONMENT),
 	gsSPTexture(65535, 65535, 0, 0, 1),
-	gsDPSetTextureImage(G_IM_FMT_IA, G_IM_SIZ_8b_LOAD_BLOCK, 1, fumbler_darken_ia8),
-	gsDPSetTile(G_IM_FMT_IA, G_IM_SIZ_8b_LOAD_BLOCK, 0, 0, 7, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 0, 0),
-	gsDPLoadBlock(7, 0, 0, 127, 1024),
-	gsDPSetTile(G_IM_FMT_IA, G_IM_SIZ_8b, 2, 0, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 4, 0, G_TX_WRAP | G_TX_NOMIRROR, 4, 0),
-	gsDPSetTileSize(0, 0, 0, 60, 60),
+	gsDPSetPrimColor(0, 0, 188, 188, 188, 255),
 	gsSPEndDisplayList(),
 };
 

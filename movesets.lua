@@ -257,7 +257,7 @@ local function act_moving_gp(m)
     m.actionTimer = m.actionTimer + 1
     return 0
 end
-hook_mario_action(ACT_MOVING_GP, act_moving_gp)
+hook_mario_action(ACT_MOVING_GP, act_moving_gp, INT_GROUND_POUND)
 
 local function act_gp_cancel(m)
     local e = gExtraStates[m.playerIndex]
@@ -312,7 +312,7 @@ end
 hook_mario_action(ACT_GP_CANCEL, act_gp_cancel)
 
 local function act_sh_bash(m)
-    m.marioBodyState.eyeState = MARIO_EYES_LOOK_LEFT
+    m.marioBodyState.eyeState = MARIO_EYES_LOOK_RIGHT
     m.marioBodyState.punchState = 66
     m.particleFlags = m.particleFlags | PARTICLE_DUST
 
@@ -448,13 +448,14 @@ local function act_humble_gp_land(m)
 
     if (m.input & INPUT_OFF_FLOOR ~= 0) then
         return set_mario_action(m, ACT_FREEFALL, 0)
-    end
-
-    if (m.input & INPUT_ABOVE_SLIDE ~= 0) then
+    elseif (m.input & INPUT_ABOVE_SLIDE ~= 0) then
         return set_mario_action(m, ACT_DIVE_SLIDE, 0)
+    elseif m.actionTimer == 2 then
+        return set_mario_action(m, ACT_STOMACH_SLIDE_STOP, 0)
     end
 
-    landing_step(m, MARIO_ANIM_SLOW_LAND_FROM_DIVE, ACT_IDLE);
+
+
     m.actionTimer = m.actionTimer + 1
     return 0
 end

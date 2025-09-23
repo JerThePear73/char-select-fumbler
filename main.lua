@@ -28,7 +28,7 @@ local VOICETABLE_HUMBLER = {
     [CHAR_SOUND_WAH2] = 'humbler_raha.ogg',
 	[CHAR_SOUND_PUNCH_HOO] = 'humbler_kick.ogg',
 	[CHAR_SOUND_YAH_WAH_HOO] = {'humbler_ho.ogg', 'humbler_ha.ogg'},
-	[CHAR_SOUND_HOOHOO] = 'humbler_yo.ogg',
+	[CHAR_SOUND_HOOHOO] = {'humbler_yo.ogg', 'humbler_hua.ogg'},
 	[CHAR_SOUND_YAHOO_WAHA_YIPPEE] = {'humbler_raha.ogg', 'humbler_blah.ogg'},
 	[CHAR_SOUND_UH] = 'humbler_punch2.ogg',
 	[CHAR_SOUND_UH2] = 'humbler_grab.ogg',
@@ -49,7 +49,7 @@ local VOICETABLE_HUMBLER = {
 	[CHAR_SOUND_ATTACKED] = 'humbler_hurt.ogg',
 	[CHAR_SOUND_PANTING] = 'humbler_pant.ogg',
     [CHAR_SOUND_PANTING_COLD] = 'humbler_pant.ogg',
-	[CHAR_SOUND_ON_FIRE] = {'humbler_falling.ogg', 'humbler_woah'},
+	[CHAR_SOUND_ON_FIRE] = {'humbler_falling.ogg', 'humbler_woah.ogg'},
 	[CHAR_SOUND_SNORING1] = 'humbler_snore1.ogg',
 	[CHAR_SOUND_SNORING2] = 'humbler_snore2.ogg',
 	[CHAR_SOUND_COUGHING1] = 'humbler_cough.ogg',
@@ -101,6 +101,16 @@ local PALETTE_HUMBLER =  {
     [SKIN]   = "fec179",
     [CAP]    = "AA01BC",
     [EMBLEM] = "FFC100",
+}
+local PALETTE_PIRATE = {
+    [PANTS]  = "1e47c6",
+    [SHIRT]  = "ddaa00",
+    [GLOVES] = "7f3900",
+    [SHOES]  = "ff0000",
+    [HAIR]   = "000000",
+    [SKIN]   = "fec179",
+    [CAP]    = "1e47c6",
+    [EMBLEM] = "ddaa00",
 }
 
 local ANIMTABLE_FUMBLER = {
@@ -157,7 +167,7 @@ end
 local CSloaded = false
 local function on_character_select_load()
     _G.charSelect.character_add_palette_preset(E_MODEL_FUMBLER, PALETTE_FUMBLER, "Default")
-    _G.charSelect.character_add_palette_preset(E_MODEL_FUMBLER, PALETTE_CHARITY, "Air Rider")
+    _G.charSelect.character_add_palette_preset(E_MODEL_FUMBLER, PALETTE_CHARITY, "Crazy Kicker")
     _G.charSelect.character_add_animations(E_MODEL_FUMBLER, ANIMTABLE_FUMBLER)
     --_G.charSelect.character_add_caps(E_MODEL_FUMBLER, CAP_FUMBLER)
     _G.charSelect.character_add_health_meter(CT_FUMBLER, HEALTH_METER_MARIO)
@@ -167,6 +177,7 @@ local function on_character_select_load()
     _G.charSelect.character_add_health_meter(CT_JUMBLER, HEALTH_METER_LUIGI)
 
     _G.charSelect.character_add_palette_preset(E_MODEL_HUMBLER, PALETTE_HUMBLER, "Default")
+    _G.charSelect.character_add_palette_preset(E_MODEL_HUMBLER, PALETTE_PIRATE, "Sailor")
     _G.charSelect.character_add_animations(E_MODEL_HUMBLER, ANIMTABLE_HUMBLER)
     _G.charSelect.character_add_health_meter(CT_HUMBLER, HEALTH_METER_WARIO)
     _G.charSelect.character_add_voice(E_MODEL_HUMBLER, VOICETABLE_HUMBLER)

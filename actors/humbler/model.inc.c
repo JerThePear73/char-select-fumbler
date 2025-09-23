@@ -943,7 +943,7 @@ Vtx humbler_Capless_Head_Switch_Option_Capless_Head_mesh_layer_1_vtx_1[85] = {
 	{{ {252, -55, 43}, 0, {-16, 1008}, {99, 185, 36, 255} }},
 	{{ {181, -102, 0}, 0, {0, 0}, {59, 144, 0, 0} }},
 	{{ {129, -97, 99}, 0, {-5, 307}, {32, 159, 75, 150} }},
-	{{ {153, -6, 145}, 0, {-16, 1008}, {30, 14, 123, 255} }},
+	{{ {153, -5, 145}, 0, {-16, 1008}, {30, 14, 123, 255} }},
 	{{ {200, -2, 150}, 0, {-16, 1008}, {51, 229, 113, 255} }},
 	{{ {131, -53, 127}, 0, {0, 0}, {31, 161, 79, 0} }},
 	{{ {62, -37, 132}, 0, {0, 0}, {180, 223, 96, 0} }},
@@ -966,7 +966,7 @@ Vtx humbler_Capless_Head_Switch_Option_Capless_Head_mesh_layer_1_vtx_1[85] = {
 	{{ {60, -111, -104}, 0, {-2, 154}, {39, 142, 217, 109} }},
 	{{ {129, -97, -99}, 0, {-5, 307}, {32, 159, 181, 150} }},
 	{{ {131, -53, -127}, 0, {0, 0}, {31, 161, 177, 0} }},
-	{{ {153, -6, -145}, 0, {-16, 1008}, {30, 14, 133, 255} }},
+	{{ {153, -5, -145}, 0, {-16, 1008}, {30, 14, 133, 255} }},
 	{{ {200, -2, -150}, 0, {-16, 1008}, {51, 229, 143, 255} }},
 	{{ {195, -65, -86}, 0, {-5, 307}, {59, 167, 187, 150} }},
 	{{ {143, -120, 0}, 0, {0, 0}, {33, 133, 0, 0} }},
@@ -992,19 +992,19 @@ Vtx humbler_Capless_Head_Switch_Option_Capless_Head_mesh_layer_1_vtx_1[85] = {
 	{{ {-29, -115, 147}, 0, {0, 0}, {195, 230, 108, 0} }},
 	{{ {105, 53, -124}, 0, {-70, 700}, {6, 41, 136, 0} }},
 	{{ {169, 69, -122}, 0, {-152, -70}, {241, 64, 147, 0} }},
-	{{ {153, -6, -145}, 0, {916, 184}, {30, 14, 133, 0} }},
+	{{ {153, -5, -145}, 0, {916, 184}, {30, 14, 133, 0} }},
 	{{ {228, 88, -119}, 0, {-152, -70}, {21, 38, 137, 0} }},
 	{{ {200, -2, -150}, 0, {916, 184}, {51, 229, 143, 0} }},
 	{{ {60, 10, -134}, 0, {783, 1394}, {195, 14, 146, 0} }},
 	{{ {24, 63, -121}, 0, {56, 1776}, {181, 3, 154, 0} }},
-	{{ {153, -6, -145}, 0, {1062, 934}, {30, 14, 133, 0} }},
-	{{ {153, -6, 145}, 0, {922, 122}, {30, 14, 123, 0} }},
+	{{ {153, -5, -145}, 0, {1062, 934}, {30, 14, 133, 0} }},
+	{{ {153, -5, 145}, 0, {922, 122}, {30, 14, 123, 0} }},
 	{{ {169, 69, 122}, 0, {-236, -63}, {241, 64, 109, 0} }},
 	{{ {105, 53, 124}, 0, {-74, 724}, {6, 41, 120, 0} }},
 	{{ {200, -2, 150}, 0, {922, 122}, {51, 229, 113, 0} }},
 	{{ {228, 88, 119}, 0, {-236, -63}, {21, 38, 119, 0} }},
 	{{ {60, 10, 134}, 0, {861, 1393}, {195, 14, 110, 0} }},
-	{{ {153, -6, 145}, 0, {1124, 896}, {30, 14, 123, 0} }},
+	{{ {153, -5, 145}, 0, {1124, 896}, {30, 14, 123, 0} }},
 	{{ {24, 63, 121}, 0, {126, 1840}, {181, 3, 102, 0} }},
 	{{ {19, -105, -117}, 0, {0, 0}, {186, 198, 167, 0} }},
 	{{ {-10, -131, 0}, 0, {0, 0}, {169, 164, 0, 0} }},
@@ -1131,14 +1131,14 @@ Vtx humbler_Capless_Head_Switch_Option_Capless_Head_mesh_layer_1_vtx_3[75] = {
 	{{ {13, 143, -61}, 0, {272, 832}, {219, 106, 196, 0} }},
 	{{ {94, -28, -160}, 0, {0, 0}, {240, 229, 133, 0} }},
 	{{ {60, 10, -134}, 0, {0, 0}, {195, 14, 146, 0} }},
-	{{ {153, -6, -145}, 0, {0, 0}, {30, 14, 133, 0} }},
+	{{ {153, -5, -145}, 0, {0, 0}, {30, 14, 133, 0} }},
 	{{ {75, -23, -167}, 0, {0, 0}, {227, 248, 133, 0} }},
 	{{ {62, -37, -132}, 0, {0, 0}, {180, 223, 160, 0} }},
 	{{ {62, -37, -132}, 0, {0, 0}, {180, 223, 160, 0} }},
 	{{ {94, -28, -160}, 0, {0, 0}, {240, 229, 133, 0} }},
 	{{ {131, -53, -127}, 0, {0, 0}, {31, 161, 177, 0} }},
 	{{ {161, -56, -191}, 0, {0, 0}, {66, 201, 162, 0} }},
-	{{ {153, -6, -145}, 0, {0, 0}, {30, 14, 133, 0} }},
+	{{ {153, -5, -145}, 0, {0, 0}, {30, 14, 133, 0} }},
 	{{ {60, 10, -134}, 0, {0, 0}, {195, 14, 146, 0} }},
 	{{ {75, -23, -167}, 0, {0, 0}, {227, 248, 133, 0} }},
 	{{ {12, -52, -48}, 0, {0, 0}, {133, 22, 233, 0} }},
@@ -1154,7 +1154,7 @@ Vtx humbler_Capless_Head_Switch_Option_Capless_Head_mesh_layer_1_vtx_3[75] = {
 	{{ {94, -28, 160}, 0, {0, 0}, {240, 229, 123, 0} }},
 	{{ {131, -53, 127}, 0, {0, 0}, {31, 161, 79, 0} }},
 	{{ {161, -56, 191}, 0, {0, 0}, {66, 201, 94, 0} }},
-	{{ {153, -6, 145}, 0, {0, 0}, {30, 14, 123, 0} }},
+	{{ {153, -5, 145}, 0, {0, 0}, {30, 14, 123, 0} }},
 	{{ {21, 116, 104}, 0, {0, 0}, {194, 66, 89, 0} }},
 	{{ {13, 143, 61}, 0, {0, 0}, {219, 106, 60, 0} }},
 	{{ {-19, 138, 34}, 0, {0, 0}, {137, 23, 37, 0} }},
@@ -1461,7 +1461,7 @@ Gfx humbler_Left_Hand_DL_mesh_layer_1_tri_1[] = {
 	gsSPEndDisplayList(),
 };
 
-Vtx humbler_Left_Hand_DL_mesh_layer_5_vtx_0[27] = {
+Vtx humbler_Left_Hand_DL_mesh_layer_6_vtx_0[27] = {
 	{{ {23, 1, 44}, 0, {249, -68}, {247, 243, 126, 255} }},
 	{{ {53, 93, 37}, 0, {733, 526}, {16, 104, 71, 255} }},
 	{{ {6, 60, 29}, 0, {665, 8}, {170, 60, 71, 255} }},
@@ -1491,8 +1491,8 @@ Vtx humbler_Left_Hand_DL_mesh_layer_5_vtx_0[27] = {
 	{{ {103, -3, -50}, 0, {-15, -20}, {84, 244, 162, 255} }},
 };
 
-Gfx humbler_Left_Hand_DL_mesh_layer_5_tri_0[] = {
-	gsSPVertex(humbler_Left_Hand_DL_mesh_layer_5_vtx_0 + 0, 27, 0),
+Gfx humbler_Left_Hand_DL_mesh_layer_6_tri_0[] = {
+	gsSPVertex(humbler_Left_Hand_DL_mesh_layer_6_vtx_0 + 0, 27, 0),
 	gsSP2Triangles(0, 1, 2, 0, 0, 3, 1, 0),
 	gsSP2Triangles(4, 3, 0, 0, 5, 4, 0, 0),
 	gsSP2Triangles(6, 7, 8, 0, 8, 7, 9, 0),
@@ -1598,7 +1598,7 @@ Gfx humbler_Left_Hand_Open_Switch_Option_Left_Hand_Open_mesh_layer_1_tri_1[] = {
 	gsSPEndDisplayList(),
 };
 
-Vtx humbler_Left_Hand_Open_Switch_Option_Left_Hand_Open_mesh_layer_5_vtx_0[47] = {
+Vtx humbler_Left_Hand_Open_Switch_Option_Left_Hand_Open_mesh_layer_6_vtx_0[47] = {
 	{{ {83, 28, 31}, 0, {240, -84}, {30, 9, 123, 255} }},
 	{{ {60, 81, 12}, 0, {642, -50}, {237, 97, 80, 255} }},
 	{{ {12, 62, 23}, 0, {642, 471}, {196, 81, 78, 255} }},
@@ -1648,8 +1648,8 @@ Vtx humbler_Left_Hand_Open_Switch_Option_Left_Hand_Open_mesh_layer_5_vtx_0[47] =
 	{{ {45, 82, -21}, 0, {-20, -21}, {221, 94, 178, 255} }},
 };
 
-Gfx humbler_Left_Hand_Open_Switch_Option_Left_Hand_Open_mesh_layer_5_tri_0[] = {
-	gsSPVertex(humbler_Left_Hand_Open_Switch_Option_Left_Hand_Open_mesh_layer_5_vtx_0 + 0, 32, 0),
+Gfx humbler_Left_Hand_Open_Switch_Option_Left_Hand_Open_mesh_layer_6_tri_0[] = {
+	gsSPVertex(humbler_Left_Hand_Open_Switch_Option_Left_Hand_Open_mesh_layer_6_vtx_0 + 0, 32, 0),
 	gsSP2Triangles(0, 1, 2, 0, 0, 2, 3, 0),
 	gsSP2Triangles(0, 3, 4, 0, 3, 5, 4, 0),
 	gsSP2Triangles(6, 7, 8, 0, 9, 7, 6, 0),
@@ -1668,7 +1668,7 @@ Gfx humbler_Left_Hand_Open_Switch_Option_Left_Hand_Open_mesh_layer_5_tri_0[] = {
 	gsSP2Triangles(10, 17, 9, 0, 10, 16, 17, 0),
 	gsSP2Triangles(29, 16, 10, 0, 10, 30, 29, 0),
 	gsSP2Triangles(30, 10, 11, 0, 11, 31, 30, 0),
-	gsSPVertex(humbler_Left_Hand_Open_Switch_Option_Left_Hand_Open_mesh_layer_5_vtx_0 + 32, 15, 0),
+	gsSPVertex(humbler_Left_Hand_Open_Switch_Option_Left_Hand_Open_mesh_layer_6_vtx_0 + 32, 15, 0),
 	gsSP2Triangles(0, 1, 2, 0, 2, 3, 0, 0),
 	gsSP2Triangles(0, 3, 4, 0, 4, 5, 0, 0),
 	gsSP2Triangles(6, 5, 4, 0, 4, 7, 6, 0),
@@ -1840,59 +1840,56 @@ Gfx humbler_Right_Hand_DL_mesh_layer_1_tri_1[] = {
 	gsSPEndDisplayList(),
 };
 
-Vtx humbler_Right_Hand_DL_mesh_layer_5_vtx_0[28] = {
+Vtx humbler_Right_Hand_DL_mesh_layer_6_vtx_0[27] = {
 	{{ {26, 4, -38}, 0, {242, -66}, {8, 248, 129, 255} }},
 	{{ {8, 62, -23}, 0, {-171, 9}, {181, 63, 176, 255} }},
 	{{ {56, 95, -23}, 0, {-235, 528}, {28, 106, 192, 255} }},
 	{{ {88, 31, -32}, 0, {250, 553}, {76, 22, 157, 255} }},
 	{{ {112, -38, -7}, 0, {749, 482}, {98, 183, 222, 255} }},
 	{{ {54, -47, -11}, 0, {636, -34}, {7, 139, 208, 255} }},
+	{{ {-22, 26, 34}, 0, {-15, -20}, {51, 73, 90, 255} }},
 	{{ {-11, 45, -11}, 0, {-15, -20}, {249, 125, 233, 255} }},
-	{{ {8, 62, -23}, 0, {-15, -20}, {181, 63, 176, 255} }},
-	{{ {26, 4, -38}, 0, {-15, -20}, {8, 248, 129, 255} }},
+	{{ {-29, 52, -14}, 0, {-15, -20}, {48, 117, 242, 255} }},
 	{{ {-6, 24, 26}, 0, {-15, -20}, {254, 41, 120, 255} }},
-	{{ {-22, 26, 34}, 0, {-15, -20}, {204, 46, 106, 255} }},
-	{{ {-29, 52, -14}, 0, {-15, -20}, {190, 105, 228, 255} }},
-	{{ {-5, 0, -51}, 0, {-15, -20}, {235, 4, 131, 255} }},
-	{{ {8, 4, -40}, 0, {-15, -20}, {48, 36, 144, 255} }},
-	{{ {26, -43, -19}, 0, {-15, -20}, {77, 174, 197, 255} }},
-	{{ {54, -47, -11}, 0, {-15, -20}, {7, 139, 208, 255} }},
 	{{ {17, -30, 21}, 0, {-15, -20}, {15, 182, 102, 255} }},
+	{{ {6, -45, 27}, 0, {-15, -20}, {92, 224, 82, 255} }},
+	{{ {26, -43, -19}, 0, {-15, -20}, {77, 174, 197, 255} }},
+	{{ {18, -61, -24}, 0, {-15, -20}, {116, 213, 229, 255} }},
+	{{ {-5, 0, -51}, 0, {-15, -20}, {69, 38, 157, 255} }},
+	{{ {8, 4, -40}, 0, {-15, -20}, {48, 36, 144, 255} }},
+	{{ {26, 4, -38}, 0, {-15, -20}, {8, 248, 129, 255} }},
+	{{ {8, 62, -23}, 0, {-15, -20}, {181, 63, 176, 255} }},
+	{{ {-3, 64, 33}, 0, {-15, -20}, {153, 51, 55, 255} }},
 	{{ {45, -30, 53}, 0, {-15, -20}, {224, 177, 94, 255} }},
+	{{ {54, -47, -11}, 0, {-15, -20}, {7, 139, 208, 255} }},
 	{{ {112, -38, -7}, 0, {-15, -20}, {98, 183, 222, 255} }},
 	{{ {91, -5, 67}, 0, {-15, -20}, {69, 239, 105, 255} }},
 	{{ {93, 37, -10}, 0, {-15, -20}, {116, 51, 254, 255} }},
 	{{ {88, 31, -32}, 0, {-15, -20}, {76, 22, 157, 255} }},
 	{{ {56, 95, -23}, 0, {-15, -20}, {28, 106, 192, 255} }},
 	{{ {45, 92, 47}, 0, {-15, -20}, {11, 99, 78, 255} }},
-	{{ {-3, 64, 33}, 0, {-15, -20}, {153, 51, 55, 255} }},
-	{{ {6, -45, 27}, 0, {-15, -20}, {255, 169, 93, 255} }},
-	{{ {-27, -14, -8}, 0, {-15, -20}, {139, 209, 245, 255} }},
-	{{ {18, -61, -24}, 0, {-15, -20}, {27, 142, 207, 255} }},
 };
 
-Gfx humbler_Right_Hand_DL_mesh_layer_5_tri_0[] = {
-	gsSPVertex(humbler_Right_Hand_DL_mesh_layer_5_vtx_0 + 0, 28, 0),
+Gfx humbler_Right_Hand_DL_mesh_layer_6_tri_0[] = {
+	gsSPVertex(humbler_Right_Hand_DL_mesh_layer_6_vtx_0 + 0, 27, 0),
 	gsSP2Triangles(0, 1, 2, 0, 0, 2, 3, 0),
 	gsSP2Triangles(4, 0, 3, 0, 5, 0, 4, 0),
-	gsSP2Triangles(6, 7, 8, 0, 9, 7, 6, 0),
+	gsSP2Triangles(6, 7, 8, 0, 7, 6, 9, 0),
 	gsSP2Triangles(6, 10, 9, 0, 10, 6, 11, 0),
-	gsSP2Triangles(6, 12, 11, 0, 12, 6, 13, 0),
-	gsSP2Triangles(6, 8, 13, 0, 8, 14, 13, 0),
-	gsSP2Triangles(14, 8, 15, 0, 15, 16, 14, 0),
-	gsSP2Triangles(16, 15, 17, 0, 17, 15, 18, 0),
-	gsSP2Triangles(17, 18, 19, 0, 19, 18, 20, 0),
-	gsSP2Triangles(18, 21, 20, 0, 21, 22, 20, 0),
-	gsSP2Triangles(22, 23, 20, 0, 22, 24, 23, 0),
-	gsSP2Triangles(24, 22, 7, 0, 7, 9, 24, 0),
-	gsSP2Triangles(16, 24, 9, 0, 10, 16, 9, 0),
-	gsSP2Triangles(16, 10, 25, 0, 25, 10, 26, 0),
-	gsSP2Triangles(10, 11, 26, 0, 11, 12, 26, 0),
-	gsSP2Triangles(12, 27, 26, 0, 12, 14, 27, 0),
-	gsSP2Triangles(14, 12, 13, 0, 14, 25, 27, 0),
-	gsSP2Triangles(25, 14, 16, 0, 27, 25, 26, 0),
-	gsSP2Triangles(16, 17, 24, 0, 19, 24, 17, 0),
-	gsSP2Triangles(19, 23, 24, 0, 23, 19, 20, 0),
+	gsSP2Triangles(11, 12, 10, 0, 12, 11, 13, 0),
+	gsSP2Triangles(14, 12, 13, 0, 12, 14, 15, 0),
+	gsSP2Triangles(14, 7, 15, 0, 7, 14, 8, 0),
+	gsSP2Triangles(7, 16, 15, 0, 7, 17, 16, 0),
+	gsSP2Triangles(9, 17, 7, 0, 17, 9, 18, 0),
+	gsSP2Triangles(10, 18, 9, 0, 10, 19, 18, 0),
+	gsSP2Triangles(10, 20, 19, 0, 20, 10, 12, 0),
+	gsSP2Triangles(12, 16, 20, 0, 16, 12, 15, 0),
+	gsSP2Triangles(19, 20, 21, 0, 19, 21, 22, 0),
+	gsSP2Triangles(22, 21, 23, 0, 21, 24, 23, 0),
+	gsSP2Triangles(24, 25, 23, 0, 25, 26, 23, 0),
+	gsSP2Triangles(25, 18, 26, 0, 18, 25, 17, 0),
+	gsSP2Triangles(22, 26, 18, 0, 26, 22, 23, 0),
+	gsSP1Triangle(22, 18, 19, 0),
 	gsSPEndDisplayList(),
 };
 
@@ -1980,7 +1977,7 @@ Gfx humbler_Right_Hand_Open_Switch_Option_Right_Hand_Open_mesh_layer_1_tri_1[] =
 	gsSPEndDisplayList(),
 };
 
-Vtx humbler_Right_Hand_Open_Switch_Option_Right_Hand_Open_mesh_layer_5_vtx_0[45] = {
+Vtx humbler_Right_Hand_Open_Switch_Option_Right_Hand_Open_mesh_layer_6_vtx_0[45] = {
 	{{ {83, 28, -22}, 0, {240, -84}, {37, 12, 135, 255} }},
 	{{ {13, 64, -17}, 0, {642, 471}, {203, 85, 178, 255} }},
 	{{ {60, 81, -3}, 0, {642, -50}, {245, 100, 179, 255} }},
@@ -2028,8 +2025,8 @@ Vtx humbler_Right_Hand_Open_Switch_Option_Right_Hand_Open_mesh_layer_5_vtx_0[45]
 	{{ {108, 98, 11}, 0, {-20, -21}, {30, 112, 203, 255} }},
 };
 
-Gfx humbler_Right_Hand_Open_Switch_Option_Right_Hand_Open_mesh_layer_5_tri_0[] = {
-	gsSPVertex(humbler_Right_Hand_Open_Switch_Option_Right_Hand_Open_mesh_layer_5_vtx_0 + 0, 32, 0),
+Gfx humbler_Right_Hand_Open_Switch_Option_Right_Hand_Open_mesh_layer_6_tri_0[] = {
+	gsSPVertex(humbler_Right_Hand_Open_Switch_Option_Right_Hand_Open_mesh_layer_6_vtx_0 + 0, 32, 0),
 	gsSP2Triangles(0, 1, 2, 0, 0, 3, 1, 0),
 	gsSP2Triangles(0, 4, 3, 0, 3, 4, 5, 0),
 	gsSP2Triangles(6, 7, 8, 0, 9, 6, 8, 0),
@@ -2049,7 +2046,7 @@ Gfx humbler_Right_Hand_Open_Switch_Option_Right_Hand_Open_mesh_layer_5_tri_0[] =
 	gsSP2Triangles(29, 28, 23, 0, 24, 29, 23, 0),
 	gsSP2Triangles(29, 24, 30, 0, 24, 31, 30, 0),
 	gsSP2Triangles(31, 24, 26, 0, 27, 31, 26, 0),
-	gsSPVertex(humbler_Right_Hand_Open_Switch_Option_Right_Hand_Open_mesh_layer_5_vtx_0 + 32, 13, 0),
+	gsSPVertex(humbler_Right_Hand_Open_Switch_Option_Right_Hand_Open_mesh_layer_6_vtx_0 + 32, 13, 0),
 	gsSP2Triangles(0, 1, 2, 0, 1, 3, 2, 0),
 	gsSP2Triangles(3, 1, 4, 0, 4, 5, 3, 0),
 	gsSP2Triangles(6, 7, 8, 0, 6, 9, 7, 0),
@@ -2059,33 +2056,33 @@ Gfx humbler_Right_Hand_Open_Switch_Option_Right_Hand_Open_mesh_layer_5_tri_0[] =
 };
 
 Vtx humbler_Right_Hand_Peace_Switch_Option_Right_Hand_Peace_mesh_layer_1_vtx_0[27] = {
-	{{ {-20, 26, 34}, 0, {982, 1768}, {136, 234, 34, 255} }},
-	{{ {-28, 52, -14}, 0, {1384, 1730}, {130, 249, 239, 255} }},
-	{{ {-25, -14, -8}, 0, {474, 2109}, {139, 209, 245, 255} }},
-	{{ {-3, 0, -51}, 0, {549, 1633}, {153, 220, 192, 255} }},
-	{{ {19, -61, -25}, 0, {-392, 1627}, {161, 176, 231, 255} }},
-	{{ {8, -45, 27}, 0, {-115, 1722}, {156, 182, 28, 255} }},
-	{{ {-20, 26, 34}, 0, {982, 1768}, {51, 73, 90, 255} }},
-	{{ {-9, 45, -11}, 0, {1193, 1446}, {251, 123, 226, 255} }},
-	{{ {-28, 52, -14}, 0, {1384, 1730}, {48, 117, 242, 255} }},
-	{{ {-5, 24, 26}, 0, {884, 1501}, {16, 48, 116, 255} }},
-	{{ {18, -30, 21}, 0, {36, 1440}, {39, 205, 110, 255} }},
-	{{ {8, -45, 27}, 0, {-115, 1722}, {92, 224, 82, 255} }},
-	{{ {27, -43, -19}, 0, {-187, 1365}, {77, 174, 197, 255} }},
-	{{ {19, -61, -25}, 0, {-392, 1627}, {116, 213, 229, 255} }},
-	{{ {-3, 0, -51}, 0, {549, 1633}, {69, 38, 157, 255} }},
-	{{ {10, 4, -40}, 0, {538, 1370}, {48, 36, 144, 255} }},
-	{{ {28, 4, -38}, 0, {449, 1051}, {22, 2, 131, 255} }},
-	{{ {13, 64, -17}, 0, {1337, 921}, {203, 85, 177, 255} }},
-	{{ {4, 67, 27}, 0, {1421, 1065}, {170, 66, 66, 255} }},
-	{{ {45, -30, 27}, 0, {-87, 966}, {216, 181, 95, 255} }},
-	{{ {55, -47, -12}, 0, {-377, 888}, {23, 142, 204, 255} }},
-	{{ {99, -18, -4}, 0, {-191, -86}, {75, 183, 184, 255} }},
-	{{ {88, 18, -15}, 0, {344, -115}, {63, 7, 146, 255} }},
-	{{ {72, 54, -13}, 0, {906, -73}, {39, 46, 144, 255} }},
-	{{ {55, 79, -4}, 0, {1336, 66}, {240, 93, 171, 255} }},
-	{{ {44, 81, 30}, 0, {1421, 251}, {206, 84, 81, 255} }},
-	{{ {57, 50, 31}, 0, {929, 223}, {251, 8, 127, 255} }},
+	{{ {-9, 26, 29}, 0, {982, 1768}, {154, 234, 73, 255} }},
+	{{ {-33, 52, -14}, 0, {1384, 1730}, {132, 249, 27, 255} }},
+	{{ {-28, -14, -10}, 0, {474, 2109}, {142, 209, 30, 255} }},
+	{{ {-22, 0, -57}, 0, {549, 1633}, {137, 220, 231, 255} }},
+	{{ {8, -61, -40}, 0, {-392, 1627}, {158, 176, 9, 255} }},
+	{{ {15, -45, 12}, 0, {-115, 1722}, {172, 182, 60, 255} }},
+	{{ {-9, 26, 29}, 0, {982, 1768}, {79, 73, 67, 255} }},
+	{{ {-15, 45, -18}, 0, {1193, 1446}, {241, 123, 230, 255} }},
+	{{ {-33, 52, -14}, 0, {1384, 1730}, {41, 117, 227, 255} }},
+	{{ {3, 24, 16}, 0, {884, 1501}, {55, 48, 104, 255} }},
+	{{ {23, -30, 3}, 0, {36, 1440}, {74, 205, 90, 255} }},
+	{{ {15, -45, 12}, 0, {-115, 1722}, {114, 224, 45, 255} }},
+	{{ {17, -43, -37}, 0, {-187, 1365}, {52, 174, 174, 255} }},
+	{{ {8, -61, -40}, 0, {-392, 1627}, {100, 213, 191, 255} }},
+	{{ {-22, 0, -57}, 0, {549, 1633}, {31, 38, 139, 255} }},
+	{{ {-6, 4, -51}, 0, {538, 1370}, {7, 36, 134, 255} }},
+	{{ {11, 4, -55}, 0, {449, 1051}, {234, 2, 131, 255} }},
+	{{ {5, 64, -30}, 0, {1337, 921}, {180, 85, 200, 255} }},
+	{{ {11, 67, 14}, 0, {1421, 1065}, {198, 66, 92, 255} }},
+	{{ {49, -30, 0}, 0, {-87, 966}, {251, 181, 103, 255} }},
+	{{ {46, -47, -40}, 0, {-377, 888}, {4, 142, 199, 255} }},
+	{{ {90, -18, -48}, 0, {-191, -86}, {46, 183, 163, 255} }},
+	{{ {75, 18, -54}, 0, {344, -115}, {21, 7, 131, 255} }},
+	{{ {62, 54, -47}, 0, {906, -73}, {255, 46, 138, 255} }},
+	{{ {49, 79, -33}, 0, {1336, 66}, {212, 93, 182, 255} }},
+	{{ {50, 81, 3}, 0, {1421, 251}, {236, 84, 93, 255} }},
+	{{ {62, 50, -1}, 0, {929, 223}, {39, 8, 121, 255} }},
 };
 
 Gfx humbler_Right_Hand_Peace_Switch_Option_Right_Hand_Peace_mesh_layer_1_tri_0[] = {
@@ -2111,31 +2108,31 @@ Gfx humbler_Right_Hand_Peace_Switch_Option_Right_Hand_Peace_mesh_layer_1_tri_0[]
 };
 
 Vtx humbler_Right_Hand_Peace_Switch_Option_Right_Hand_Peace_mesh_layer_1_vtx_1[25] = {
-	{{ {45, -30, 27}, 0, {-87, 966}, {216, 181, 95, 255} }},
-	{{ {74, -3, 54}, 0, {108, 450}, {32, 18, 121, 255} }},
-	{{ {57, 50, 31}, 0, {929, 223}, {251, 8, 127, 255} }},
-	{{ {71, 16, 32}, 0, {404, 192}, {81, 35, 92, 255} }},
-	{{ {83, -12, 33}, 0, {-35, 167}, {96, 241, 82, 255} }},
-	{{ {143, 2, 45}, 0, {-140, -998}, {63, 203, 97, 255} }},
-	{{ {151, -3, 23}, 0, {-248, -1116}, {105, 188, 234, 255} }},
-	{{ {99, -18, -4}, 0, {-191, -86}, {75, 183, 184, 255} }},
-	{{ {84, -39, 37}, 0, {-440, 508}, {62, 170, 70, 255} }},
-	{{ {74, -3, 54}, 0, {108, 450}, {32, 18, 121, 255} }},
-	{{ {55, -47, -12}, 0, {-377, 888}, {23, 142, 204, 255} }},
-	{{ {149, 20, 17}, 0, {64, -1233}, {91, 75, 209, 255} }},
-	{{ {88, 18, -15}, 0, {344, -115}, {63, 7, 146, 255} }},
-	{{ {140, 20, 45}, 0, {119, -1066}, {43, 79, 90, 255} }},
-	{{ {144, 56, 15}, 0, {583, -1367}, {118, 231, 217, 255} }},
-	{{ {134, 77, 16}, 0, {920, -1342}, {61, 104, 215, 255} }},
-	{{ {72, 54, -13}, 0, {906, -73}, {39, 46, 144, 255} }},
-	{{ {125, 75, 43}, 0, {934, -1164}, {21, 91, 86, 255} }},
-	{{ {111, 98, 14}, 0, {1314, -1060}, {117, 9, 208, 255} }},
-	{{ {99, 112, 18}, 0, {1563, -925}, {34, 114, 211, 255} }},
-	{{ {55, 79, -4}, 0, {1336, 66}, {240, 93, 171, 255} }},
-	{{ {92, 113, 38}, 0, {1617, -817}, {1, 103, 74, 255} }},
-	{{ {44, 81, 30}, 0, {1421, 251}, {206, 84, 81, 255} }},
-	{{ {103, 96, 40}, 0, {1329, -897}, {82, 242, 96, 255} }},
-	{{ {134, 55, 43}, 0, {619, -1183}, {77, 221, 95, 255} }},
+	{{ {49, -30, 0}, 0, {-87, 966}, {251, 181, 103, 255} }},
+	{{ {86, -3, 15}, 0, {108, 450}, {72, 18, 103, 255} }},
+	{{ {62, 50, -1}, 0, {929, 223}, {39, 8, 121, 255} }},
+	{{ {76, 16, -5}, 0, {404, 192}, {107, 35, 59, 255} }},
+	{{ {87, -12, -8}, 0, {-35, 167}, {118, 241, 44, 255} }},
+	{{ {148, 2, -17}, 0, {-140, -998}, {92, 203, 70, 255} }},
+	{{ {148, -3, -41}, 0, {-248, -1116}, {91, 188, 200, 255} }},
+	{{ {90, -18, -48}, 0, {-191, -86}, {46, 183, 163, 255} }},
+	{{ {90, -39, -5}, 0, {-440, 508}, {82, 170, 45, 255} }},
+	{{ {86, -3, 15}, 0, {108, 450}, {72, 18, 103, 255} }},
+	{{ {46, -47, -40}, 0, {-377, 888}, {4, 142, 199, 255} }},
+	{{ {144, 20, -45}, 0, {64, -1233}, {69, 75, 181, 255} }},
+	{{ {75, 18, -54}, 0, {344, -115}, {21, 7, 131, 255} }},
+	{{ {145, 20, -16}, 0, {119, -1066}, {71, 79, 69, 255} }},
+	{{ {138, 56, -45}, 0, {583, -1367}, {98, 231, 179, 255} }},
+	{{ {130, 77, -41}, 0, {920, -1342}, {44, 104, 197, 255} }},
+	{{ {62, 54, -47}, 0, {906, -73}, {255, 46, 138, 255} }},
+	{{ {130, 75, -13}, 0, {934, -1164}, {49, 91, 74, 255} }},
+	{{ {107, 98, -35}, 0, {1314, -1060}, {94, 9, 171, 255} }},
+	{{ {97, 112, -27}, 0, {1563, -925}, {16, 114, 203, 255} }},
+	{{ {49, 79, -33}, 0, {1336, 66}, {212, 93, 182, 255} }},
+	{{ {98, 113, -6}, 0, {1617, -817}, {26, 103, 69, 255} }},
+	{{ {50, 81, 3}, 0, {1421, 251}, {236, 84, 93, 255} }},
+	{{ {108, 96, -8}, 0, {1329, -897}, {110, 242, 62, 255} }},
+	{{ {139, 55, -15}, 0, {619, -1183}, {104, 221, 63, 255} }},
 };
 
 Gfx humbler_Right_Hand_Peace_Switch_Option_Right_Hand_Peace_mesh_layer_1_tri_1[] = {
@@ -2162,68 +2159,68 @@ Gfx humbler_Right_Hand_Peace_Switch_Option_Right_Hand_Peace_mesh_layer_1_tri_1[]
 	gsSPEndDisplayList(),
 };
 
-Vtx humbler_Right_Hand_Peace_Switch_Option_Right_Hand_Peace_mesh_layer_5_vtx_0[57] = {
-	{{ {72, 54, -13}, 0, {440, -55}, {39, 46, 144, 255} }},
-	{{ {13, 64, -17}, 0, {650, 461}, {203, 85, 177, 255} }},
-	{{ {55, 79, -4}, 0, {650, 18}, {240, 93, 171, 255} }},
-	{{ {28, 4, -38}, 0, {217, 528}, {22, 2, 131, 255} }},
-	{{ {88, 18, -15}, 0, {166, -76}, {63, 7, 146, 255} }},
-	{{ {99, -18, -4}, 0, {-95, -61}, {75, 183, 184, 255} }},
-	{{ {55, -47, -12}, 0, {-186, 444}, {23, 142, 204, 255} }},
-	{{ {-20, 26, 34}, 0, {-31, -24}, {51, 73, 90, 255} }},
-	{{ {-9, 45, -11}, 0, {-31, -24}, {251, 123, 226, 255} }},
-	{{ {-28, 52, -14}, 0, {-31, -24}, {48, 117, 242, 255} }},
-	{{ {-5, 24, 26}, 0, {-31, -24}, {16, 48, 116, 255} }},
-	{{ {18, -30, 21}, 0, {-31, -24}, {39, 205, 110, 255} }},
-	{{ {8, -45, 27}, 0, {-31, -24}, {92, 224, 82, 255} }},
-	{{ {27, -43, -19}, 0, {-31, -24}, {77, 174, 197, 255} }},
-	{{ {19, -61, -25}, 0, {-31, -24}, {116, 213, 229, 255} }},
-	{{ {-3, 0, -51}, 0, {-31, -24}, {69, 38, 157, 255} }},
-	{{ {10, 4, -40}, 0, {-31, -24}, {48, 36, 144, 255} }},
-	{{ {28, 4, -38}, 0, {-31, -24}, {22, 2, 131, 255} }},
-	{{ {13, 64, -17}, 0, {-31, -24}, {203, 85, 177, 255} }},
-	{{ {4, 67, 27}, 0, {-31, -24}, {170, 66, 66, 255} }},
-	{{ {45, -30, 27}, 0, {-31, -24}, {216, 181, 95, 255} }},
-	{{ {55, -47, -12}, 0, {-31, -24}, {23, 142, 204, 255} }},
-	{{ {84, -39, 37}, 0, {-31, -24}, {62, 170, 70, 255} }},
-	{{ {99, -18, -4}, 0, {-31, -24}, {75, 183, 184, 255} }},
-	{{ {83, -12, 33}, 0, {-31, -24}, {96, 241, 82, 255} }},
-	{{ {151, -3, 23}, 0, {-31, -24}, {105, 188, 234, 255} }},
-	{{ {149, 20, 17}, 0, {-31, -24}, {91, 75, 209, 255} }},
-	{{ {88, 18, -15}, 0, {-31, -24}, {63, 7, 146, 255} }},
-	{{ {140, 20, 45}, 0, {-31, -24}, {43, 79, 90, 255} }},
-	{{ {71, 16, 32}, 0, {-31, -24}, {81, 35, 92, 255} }},
-	{{ {144, 56, 15}, 0, {-31, -24}, {118, 231, 217, 255} }},
-	{{ {134, 77, 16}, 0, {-31, -24}, {61, 104, 215, 255} }},
-	{{ {88, 18, -15}, 0, {-31, -24}, {63, 7, 146, 255} }},
-	{{ {72, 54, -13}, 0, {-31, -24}, {39, 46, 144, 255} }},
-	{{ {134, 77, 16}, 0, {-31, -24}, {61, 104, 215, 255} }},
-	{{ {125, 75, 43}, 0, {-31, -24}, {21, 91, 86, 255} }},
-	{{ {57, 50, 31}, 0, {-31, -24}, {251, 8, 127, 255} }},
-	{{ {111, 98, 14}, 0, {-31, -24}, {117, 9, 208, 255} }},
-	{{ {99, 112, 18}, 0, {-31, -24}, {34, 114, 211, 255} }},
-	{{ {55, 79, -4}, 0, {-31, -24}, {240, 93, 171, 255} }},
-	{{ {92, 113, 38}, 0, {-31, -24}, {1, 103, 74, 255} }},
-	{{ {44, 81, 30}, 0, {-31, -24}, {206, 84, 81, 255} }},
-	{{ {13, 64, -17}, 0, {-31, -24}, {203, 85, 177, 255} }},
-	{{ {4, 67, 27}, 0, {-31, -24}, {170, 66, 66, 255} }},
-	{{ {45, -30, 27}, 0, {-31, -24}, {216, 181, 95, 255} }},
-	{{ {74, -3, 54}, 0, {-31, -24}, {32, 18, 121, 255} }},
-	{{ {71, 16, 32}, 0, {-31, -24}, {81, 35, 92, 255} }},
-	{{ {83, -12, 33}, 0, {-31, -24}, {96, 241, 82, 255} }},
-	{{ {143, 2, 45}, 0, {-31, -24}, {63, 203, 97, 255} }},
-	{{ {151, -3, 23}, 0, {-31, -24}, {105, 188, 234, 255} }},
-	{{ {140, 20, 45}, 0, {-31, -24}, {43, 79, 90, 255} }},
-	{{ {149, 20, 17}, 0, {-31, -24}, {91, 75, 209, 255} }},
-	{{ {74, -3, 54}, 0, {-31, -24}, {32, 18, 121, 255} }},
-	{{ {84, -39, 37}, 0, {-31, -24}, {62, 170, 70, 255} }},
-	{{ {103, 96, 40}, 0, {-31, -24}, {82, 242, 96, 255} }},
-	{{ {134, 55, 43}, 0, {-31, -24}, {77, 221, 95, 255} }},
-	{{ {144, 56, 15}, 0, {-31, -24}, {118, 231, 217, 255} }},
+Vtx humbler_Right_Hand_Peace_Switch_Option_Right_Hand_Peace_mesh_layer_6_vtx_0[57] = {
+	{{ {62, 54, -47}, 0, {440, -55}, {255, 46, 138, 255} }},
+	{{ {5, 64, -30}, 0, {650, 461}, {180, 85, 200, 255} }},
+	{{ {49, 79, -33}, 0, {650, 18}, {212, 93, 182, 255} }},
+	{{ {11, 4, -55}, 0, {217, 528}, {234, 2, 131, 255} }},
+	{{ {75, 18, -54}, 0, {166, -76}, {21, 7, 131, 255} }},
+	{{ {90, -18, -48}, 0, {-95, -61}, {46, 183, 163, 255} }},
+	{{ {46, -47, -40}, 0, {-186, 444}, {4, 142, 199, 255} }},
+	{{ {-9, 26, 29}, 0, {-31, -24}, {79, 73, 67, 255} }},
+	{{ {-15, 45, -18}, 0, {-31, -24}, {241, 123, 230, 255} }},
+	{{ {-33, 52, -14}, 0, {-31, -24}, {41, 117, 227, 255} }},
+	{{ {3, 24, 16}, 0, {-31, -24}, {55, 48, 104, 255} }},
+	{{ {23, -30, 3}, 0, {-31, -24}, {74, 205, 90, 255} }},
+	{{ {15, -45, 12}, 0, {-31, -24}, {114, 224, 45, 255} }},
+	{{ {17, -43, -37}, 0, {-31, -24}, {52, 174, 174, 255} }},
+	{{ {8, -61, -40}, 0, {-31, -24}, {100, 213, 191, 255} }},
+	{{ {-22, 0, -57}, 0, {-31, -24}, {31, 38, 139, 255} }},
+	{{ {-6, 4, -51}, 0, {-31, -24}, {7, 36, 134, 255} }},
+	{{ {11, 4, -55}, 0, {-31, -24}, {234, 2, 131, 255} }},
+	{{ {5, 64, -30}, 0, {-31, -24}, {180, 85, 200, 255} }},
+	{{ {11, 67, 14}, 0, {-31, -24}, {198, 66, 92, 255} }},
+	{{ {49, -30, 0}, 0, {-31, -24}, {251, 181, 103, 255} }},
+	{{ {46, -47, -40}, 0, {-31, -24}, {4, 142, 199, 255} }},
+	{{ {90, -39, -5}, 0, {-31, -24}, {82, 170, 45, 255} }},
+	{{ {90, -18, -48}, 0, {-31, -24}, {46, 183, 163, 255} }},
+	{{ {87, -12, -8}, 0, {-31, -24}, {118, 241, 44, 255} }},
+	{{ {148, -3, -41}, 0, {-31, -24}, {91, 188, 200, 255} }},
+	{{ {144, 20, -45}, 0, {-31, -24}, {69, 75, 181, 255} }},
+	{{ {75, 18, -54}, 0, {-31, -24}, {21, 7, 131, 255} }},
+	{{ {145, 20, -16}, 0, {-31, -24}, {71, 79, 69, 255} }},
+	{{ {76, 16, -5}, 0, {-31, -24}, {107, 35, 59, 255} }},
+	{{ {138, 56, -45}, 0, {-31, -24}, {98, 231, 179, 255} }},
+	{{ {130, 77, -41}, 0, {-31, -24}, {44, 104, 197, 255} }},
+	{{ {75, 18, -54}, 0, {-31, -24}, {21, 7, 131, 255} }},
+	{{ {62, 54, -47}, 0, {-31, -24}, {255, 46, 138, 255} }},
+	{{ {130, 77, -41}, 0, {-31, -24}, {44, 104, 197, 255} }},
+	{{ {130, 75, -13}, 0, {-31, -24}, {49, 91, 74, 255} }},
+	{{ {62, 50, -1}, 0, {-31, -24}, {39, 8, 121, 255} }},
+	{{ {107, 98, -35}, 0, {-31, -24}, {94, 9, 171, 255} }},
+	{{ {97, 112, -27}, 0, {-31, -24}, {16, 114, 203, 255} }},
+	{{ {49, 79, -33}, 0, {-31, -24}, {212, 93, 182, 255} }},
+	{{ {98, 113, -6}, 0, {-31, -24}, {26, 103, 69, 255} }},
+	{{ {50, 81, 3}, 0, {-31, -24}, {236, 84, 93, 255} }},
+	{{ {5, 64, -30}, 0, {-31, -24}, {180, 85, 200, 255} }},
+	{{ {11, 67, 14}, 0, {-31, -24}, {198, 66, 92, 255} }},
+	{{ {49, -30, 0}, 0, {-31, -24}, {251, 181, 103, 255} }},
+	{{ {86, -3, 15}, 0, {-31, -24}, {72, 18, 103, 255} }},
+	{{ {76, 16, -5}, 0, {-31, -24}, {107, 35, 59, 255} }},
+	{{ {87, -12, -8}, 0, {-31, -24}, {118, 241, 44, 255} }},
+	{{ {148, 2, -17}, 0, {-31, -24}, {92, 203, 70, 255} }},
+	{{ {148, -3, -41}, 0, {-31, -24}, {91, 188, 200, 255} }},
+	{{ {145, 20, -16}, 0, {-31, -24}, {71, 79, 69, 255} }},
+	{{ {144, 20, -45}, 0, {-31, -24}, {69, 75, 181, 255} }},
+	{{ {86, -3, 15}, 0, {-31, -24}, {72, 18, 103, 255} }},
+	{{ {90, -39, -5}, 0, {-31, -24}, {82, 170, 45, 255} }},
+	{{ {108, 96, -8}, 0, {-31, -24}, {110, 242, 62, 255} }},
+	{{ {139, 55, -15}, 0, {-31, -24}, {104, 221, 63, 255} }},
+	{{ {138, 56, -45}, 0, {-31, -24}, {98, 231, 179, 255} }},
 };
 
-Gfx humbler_Right_Hand_Peace_Switch_Option_Right_Hand_Peace_mesh_layer_5_tri_0[] = {
-	gsSPVertex(humbler_Right_Hand_Peace_Switch_Option_Right_Hand_Peace_mesh_layer_5_vtx_0 + 0, 32, 0),
+Gfx humbler_Right_Hand_Peace_Switch_Option_Right_Hand_Peace_mesh_layer_6_tri_0[] = {
+	gsSPVertex(humbler_Right_Hand_Peace_Switch_Option_Right_Hand_Peace_mesh_layer_6_vtx_0 + 0, 32, 0),
 	gsSP2Triangles(0, 1, 2, 0, 0, 3, 1, 0),
 	gsSP2Triangles(4, 3, 0, 0, 4, 5, 3, 0),
 	gsSP2Triangles(3, 5, 6, 0, 7, 8, 9, 0),
@@ -2242,7 +2239,7 @@ Gfx humbler_Right_Hand_Peace_Switch_Option_Right_Hand_Peace_mesh_layer_5_tri_0[]
 	gsSP2Triangles(23, 27, 26, 0, 27, 28, 26, 0),
 	gsSP2Triangles(27, 29, 28, 0, 29, 27, 30, 0),
 	gsSP1Triangle(27, 31, 30, 0),
-	gsSPVertex(humbler_Right_Hand_Peace_Switch_Option_Right_Hand_Peace_mesh_layer_5_vtx_0 + 32, 25, 0),
+	gsSPVertex(humbler_Right_Hand_Peace_Switch_Option_Right_Hand_Peace_mesh_layer_6_vtx_0 + 32, 25, 0),
 	gsSP2Triangles(0, 1, 2, 0, 1, 3, 2, 0),
 	gsSP2Triangles(1, 4, 3, 0, 4, 1, 5, 0),
 	gsSP2Triangles(1, 6, 5, 0, 1, 7, 6, 0),
@@ -2414,7 +2411,7 @@ Gfx humbler_Right_Hand_Cap_Switch_Option_Right_Hand_Cap_mesh_layer_1_tri_3[] = {
 	gsSPEndDisplayList(),
 };
 
-Vtx humbler_Right_Hand_Cap_Switch_Option_Right_Hand_Cap_mesh_layer_5_vtx_0[28] = {
+Vtx humbler_Right_Hand_Cap_Switch_Option_Right_Hand_Cap_mesh_layer_6_vtx_0[28] = {
 	{{ {28, 4, -38}, 0, {242, -66}, {8, 248, 129, 255} }},
 	{{ {10, 62, -23}, 0, {-171, 9}, {181, 63, 176, 255} }},
 	{{ {57, 95, -23}, 0, {-235, 528}, {28, 106, 193, 255} }},
@@ -2445,8 +2442,8 @@ Vtx humbler_Right_Hand_Cap_Switch_Option_Right_Hand_Cap_mesh_layer_5_vtx_0[28] =
 	{{ {19, -61, -25}, 0, {-15, -20}, {27, 142, 207, 255} }},
 };
 
-Gfx humbler_Right_Hand_Cap_Switch_Option_Right_Hand_Cap_mesh_layer_5_tri_0[] = {
-	gsSPVertex(humbler_Right_Hand_Cap_Switch_Option_Right_Hand_Cap_mesh_layer_5_vtx_0 + 0, 28, 0),
+Gfx humbler_Right_Hand_Cap_Switch_Option_Right_Hand_Cap_mesh_layer_6_tri_0[] = {
+	gsSPVertex(humbler_Right_Hand_Cap_Switch_Option_Right_Hand_Cap_mesh_layer_6_vtx_0 + 0, 28, 0),
 	gsSP2Triangles(0, 1, 2, 0, 0, 2, 3, 0),
 	gsSP2Triangles(4, 0, 3, 0, 5, 0, 4, 0),
 	gsSP2Triangles(6, 7, 8, 0, 9, 7, 6, 0),
@@ -2622,7 +2619,7 @@ Gfx humbler_Right_Hand_Wing_Cap_Swtich_Option_Right_Hand_Wing_Cap_mesh_layer_1_t
 	gsSPEndDisplayList(),
 };
 
-Vtx humbler_Right_Hand_Wing_Cap_Swtich_Option_Right_Hand_Wing_Cap_mesh_layer_5_vtx_0[28] = {
+Vtx humbler_Right_Hand_Wing_Cap_Swtich_Option_Right_Hand_Wing_Cap_mesh_layer_6_vtx_0[28] = {
 	{{ {28, 4, -38}, 0, {242, -66}, {8, 248, 129, 255} }},
 	{{ {10, 62, -23}, 0, {-171, 9}, {181, 63, 176, 255} }},
 	{{ {57, 95, -23}, 0, {-235, 528}, {28, 106, 193, 255} }},
@@ -2653,8 +2650,8 @@ Vtx humbler_Right_Hand_Wing_Cap_Swtich_Option_Right_Hand_Wing_Cap_mesh_layer_5_v
 	{{ {19, -61, -25}, 0, {-15, -20}, {27, 142, 207, 255} }},
 };
 
-Gfx humbler_Right_Hand_Wing_Cap_Swtich_Option_Right_Hand_Wing_Cap_mesh_layer_5_tri_0[] = {
-	gsSPVertex(humbler_Right_Hand_Wing_Cap_Swtich_Option_Right_Hand_Wing_Cap_mesh_layer_5_vtx_0 + 0, 28, 0),
+Gfx humbler_Right_Hand_Wing_Cap_Swtich_Option_Right_Hand_Wing_Cap_mesh_layer_6_tri_0[] = {
+	gsSPVertex(humbler_Right_Hand_Wing_Cap_Swtich_Option_Right_Hand_Wing_Cap_mesh_layer_6_vtx_0 + 0, 28, 0),
 	gsSP2Triangles(0, 1, 2, 0, 0, 2, 3, 0),
 	gsSP2Triangles(4, 0, 3, 0, 5, 0, 4, 0),
 	gsSP2Triangles(6, 7, 8, 0, 9, 7, 6, 0),
@@ -3840,15 +3837,15 @@ Gfx humbler_Left_Hand_DL_mesh_layer_1_mat_override_Gold_Metal_0[] = {
 	gsSPEndDisplayList(),
 };
 
-Gfx humbler_Left_Hand_DL_mesh_layer_5[] = {
+Gfx humbler_Left_Hand_DL_mesh_layer_6[] = {
 	gsSPDisplayList(mat_humbler_H__EMBLEM_),
-	gsSPDisplayList(humbler_Left_Hand_DL_mesh_layer_5_tri_0),
+	gsSPDisplayList(humbler_Left_Hand_DL_mesh_layer_6_tri_0),
 	gsSPEndDisplayList(),
 };
 
-Gfx humbler_Left_Hand_DL_mesh_layer_5_mat_override_Gold_Metal_0[] = {
+Gfx humbler_Left_Hand_DL_mesh_layer_6_mat_override_Gold_Metal_0[] = {
 	gsSPDisplayList(mat_humbler_Gold_Metal),
-	gsSPDisplayList(humbler_Left_Hand_DL_mesh_layer_5_tri_0),
+	gsSPDisplayList(humbler_Left_Hand_DL_mesh_layer_6_tri_0),
 	gsSPDisplayList(mat_revert_humbler_Gold_Metal),
 	gsSPEndDisplayList(),
 };
@@ -3869,15 +3866,15 @@ Gfx humbler_Left_Hand_Open_Switch_Option_Left_Hand_Open_mesh_layer_1_mat_overrid
 	gsSPEndDisplayList(),
 };
 
-Gfx humbler_Left_Hand_Open_Switch_Option_Left_Hand_Open_mesh_layer_5[] = {
+Gfx humbler_Left_Hand_Open_Switch_Option_Left_Hand_Open_mesh_layer_6[] = {
 	gsSPDisplayList(mat_humbler_H__EMBLEM_),
-	gsSPDisplayList(humbler_Left_Hand_Open_Switch_Option_Left_Hand_Open_mesh_layer_5_tri_0),
+	gsSPDisplayList(humbler_Left_Hand_Open_Switch_Option_Left_Hand_Open_mesh_layer_6_tri_0),
 	gsSPEndDisplayList(),
 };
 
-Gfx humbler_Left_Hand_Open_Switch_Option_Left_Hand_Open_mesh_layer_5_mat_override_Gold_Metal_0[] = {
+Gfx humbler_Left_Hand_Open_Switch_Option_Left_Hand_Open_mesh_layer_6_mat_override_Gold_Metal_0[] = {
 	gsSPDisplayList(mat_humbler_Gold_Metal),
-	gsSPDisplayList(humbler_Left_Hand_Open_Switch_Option_Left_Hand_Open_mesh_layer_5_tri_0),
+	gsSPDisplayList(humbler_Left_Hand_Open_Switch_Option_Left_Hand_Open_mesh_layer_6_tri_0),
 	gsSPDisplayList(mat_revert_humbler_Gold_Metal),
 	gsSPEndDisplayList(),
 };
@@ -3939,15 +3936,15 @@ Gfx humbler_Right_Hand_DL_mesh_layer_1_mat_override_Gold_Metal_0[] = {
 	gsSPEndDisplayList(),
 };
 
-Gfx humbler_Right_Hand_DL_mesh_layer_5[] = {
+Gfx humbler_Right_Hand_DL_mesh_layer_6[] = {
 	gsSPDisplayList(mat_humbler_H__EMBLEM_),
-	gsSPDisplayList(humbler_Right_Hand_DL_mesh_layer_5_tri_0),
+	gsSPDisplayList(humbler_Right_Hand_DL_mesh_layer_6_tri_0),
 	gsSPEndDisplayList(),
 };
 
-Gfx humbler_Right_Hand_DL_mesh_layer_5_mat_override_Gold_Metal_0[] = {
+Gfx humbler_Right_Hand_DL_mesh_layer_6_mat_override_Gold_Metal_0[] = {
 	gsSPDisplayList(mat_humbler_Gold_Metal),
-	gsSPDisplayList(humbler_Right_Hand_DL_mesh_layer_5_tri_0),
+	gsSPDisplayList(humbler_Right_Hand_DL_mesh_layer_6_tri_0),
 	gsSPDisplayList(mat_revert_humbler_Gold_Metal),
 	gsSPEndDisplayList(),
 };
@@ -3968,15 +3965,15 @@ Gfx humbler_Right_Hand_Open_Switch_Option_Right_Hand_Open_mesh_layer_1_mat_overr
 	gsSPEndDisplayList(),
 };
 
-Gfx humbler_Right_Hand_Open_Switch_Option_Right_Hand_Open_mesh_layer_5[] = {
+Gfx humbler_Right_Hand_Open_Switch_Option_Right_Hand_Open_mesh_layer_6[] = {
 	gsSPDisplayList(mat_humbler_H__EMBLEM_),
-	gsSPDisplayList(humbler_Right_Hand_Open_Switch_Option_Right_Hand_Open_mesh_layer_5_tri_0),
+	gsSPDisplayList(humbler_Right_Hand_Open_Switch_Option_Right_Hand_Open_mesh_layer_6_tri_0),
 	gsSPEndDisplayList(),
 };
 
-Gfx humbler_Right_Hand_Open_Switch_Option_Right_Hand_Open_mesh_layer_5_mat_override_Gold_Metal_0[] = {
+Gfx humbler_Right_Hand_Open_Switch_Option_Right_Hand_Open_mesh_layer_6_mat_override_Gold_Metal_0[] = {
 	gsSPDisplayList(mat_humbler_Gold_Metal),
-	gsSPDisplayList(humbler_Right_Hand_Open_Switch_Option_Right_Hand_Open_mesh_layer_5_tri_0),
+	gsSPDisplayList(humbler_Right_Hand_Open_Switch_Option_Right_Hand_Open_mesh_layer_6_tri_0),
 	gsSPDisplayList(mat_revert_humbler_Gold_Metal),
 	gsSPEndDisplayList(),
 };
@@ -3997,15 +3994,15 @@ Gfx humbler_Right_Hand_Peace_Switch_Option_Right_Hand_Peace_mesh_layer_1_mat_ove
 	gsSPEndDisplayList(),
 };
 
-Gfx humbler_Right_Hand_Peace_Switch_Option_Right_Hand_Peace_mesh_layer_5[] = {
+Gfx humbler_Right_Hand_Peace_Switch_Option_Right_Hand_Peace_mesh_layer_6[] = {
 	gsSPDisplayList(mat_humbler_H__EMBLEM_),
-	gsSPDisplayList(humbler_Right_Hand_Peace_Switch_Option_Right_Hand_Peace_mesh_layer_5_tri_0),
+	gsSPDisplayList(humbler_Right_Hand_Peace_Switch_Option_Right_Hand_Peace_mesh_layer_6_tri_0),
 	gsSPEndDisplayList(),
 };
 
-Gfx humbler_Right_Hand_Peace_Switch_Option_Right_Hand_Peace_mesh_layer_5_mat_override_Gold_Metal_0[] = {
+Gfx humbler_Right_Hand_Peace_Switch_Option_Right_Hand_Peace_mesh_layer_6_mat_override_Gold_Metal_0[] = {
 	gsSPDisplayList(mat_humbler_Gold_Metal),
-	gsSPDisplayList(humbler_Right_Hand_Peace_Switch_Option_Right_Hand_Peace_mesh_layer_5_tri_0),
+	gsSPDisplayList(humbler_Right_Hand_Peace_Switch_Option_Right_Hand_Peace_mesh_layer_6_tri_0),
 	gsSPDisplayList(mat_revert_humbler_Gold_Metal),
 	gsSPEndDisplayList(),
 };
@@ -4032,15 +4029,15 @@ Gfx humbler_Right_Hand_Cap_Switch_Option_Right_Hand_Cap_mesh_layer_1_mat_overrid
 	gsSPEndDisplayList(),
 };
 
-Gfx humbler_Right_Hand_Cap_Switch_Option_Right_Hand_Cap_mesh_layer_5[] = {
+Gfx humbler_Right_Hand_Cap_Switch_Option_Right_Hand_Cap_mesh_layer_6[] = {
 	gsSPDisplayList(mat_humbler_H__EMBLEM_),
-	gsSPDisplayList(humbler_Right_Hand_Cap_Switch_Option_Right_Hand_Cap_mesh_layer_5_tri_0),
+	gsSPDisplayList(humbler_Right_Hand_Cap_Switch_Option_Right_Hand_Cap_mesh_layer_6_tri_0),
 	gsSPEndDisplayList(),
 };
 
-Gfx humbler_Right_Hand_Cap_Switch_Option_Right_Hand_Cap_mesh_layer_5_mat_override_Gold_Metal_0[] = {
+Gfx humbler_Right_Hand_Cap_Switch_Option_Right_Hand_Cap_mesh_layer_6_mat_override_Gold_Metal_0[] = {
 	gsSPDisplayList(mat_humbler_Gold_Metal),
-	gsSPDisplayList(humbler_Right_Hand_Cap_Switch_Option_Right_Hand_Cap_mesh_layer_5_tri_0),
+	gsSPDisplayList(humbler_Right_Hand_Cap_Switch_Option_Right_Hand_Cap_mesh_layer_6_tri_0),
 	gsSPDisplayList(mat_revert_humbler_Gold_Metal),
 	gsSPEndDisplayList(),
 };
@@ -4067,15 +4064,15 @@ Gfx humbler_Right_Hand_Wing_Cap_Swtich_Option_Right_Hand_Wing_Cap_mesh_layer_1_m
 	gsSPEndDisplayList(),
 };
 
-Gfx humbler_Right_Hand_Wing_Cap_Swtich_Option_Right_Hand_Wing_Cap_mesh_layer_5[] = {
+Gfx humbler_Right_Hand_Wing_Cap_Swtich_Option_Right_Hand_Wing_Cap_mesh_layer_6[] = {
 	gsSPDisplayList(mat_humbler_H__EMBLEM_),
-	gsSPDisplayList(humbler_Right_Hand_Wing_Cap_Swtich_Option_Right_Hand_Wing_Cap_mesh_layer_5_tri_0),
+	gsSPDisplayList(humbler_Right_Hand_Wing_Cap_Swtich_Option_Right_Hand_Wing_Cap_mesh_layer_6_tri_0),
 	gsSPEndDisplayList(),
 };
 
-Gfx humbler_Right_Hand_Wing_Cap_Swtich_Option_Right_Hand_Wing_Cap_mesh_layer_5_mat_override_Gold_Metal_0[] = {
+Gfx humbler_Right_Hand_Wing_Cap_Swtich_Option_Right_Hand_Wing_Cap_mesh_layer_6_mat_override_Gold_Metal_0[] = {
 	gsSPDisplayList(mat_humbler_Gold_Metal),
-	gsSPDisplayList(humbler_Right_Hand_Wing_Cap_Swtich_Option_Right_Hand_Wing_Cap_mesh_layer_5_tri_0),
+	gsSPDisplayList(humbler_Right_Hand_Wing_Cap_Swtich_Option_Right_Hand_Wing_Cap_mesh_layer_6_tri_0),
 	gsSPDisplayList(mat_revert_humbler_Gold_Metal),
 	gsSPEndDisplayList(),
 };

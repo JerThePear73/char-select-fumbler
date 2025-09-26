@@ -112,6 +112,16 @@ local PALETTE_PIRATE = {
     [CAP]    = "1e47c6",
     [EMBLEM] = "ddaa00",
 }
+local PALETTE_BIKER =  {
+    [PANTS]  = "ff8590",
+    [SHIRT]  = "4a93ff",
+    [GLOVES] = "ffff00",
+    [SHOES]  = "004779",
+    [HAIR]   = "8D6734",
+    [SKIN]   = "fec179",
+    [CAP]    = "ffff00",
+    [EMBLEM] = "0059ff",
+}
 
 local ANIMTABLE_FUMBLER = {
     --[CHAR_ANIM_RUNNING] = "fumbler_run",
@@ -178,6 +188,7 @@ local function on_character_select_load()
 
     _G.charSelect.character_add_palette_preset(E_MODEL_HUMBLER, PALETTE_HUMBLER, "Default")
     _G.charSelect.character_add_palette_preset(E_MODEL_HUMBLER, PALETTE_PIRATE, "Sailor")
+    _G.charSelect.character_add_palette_preset(E_MODEL_HUMBLER, PALETTE_BIKER, "Biker")
     _G.charSelect.character_add_animations(E_MODEL_HUMBLER, ANIMTABLE_HUMBLER)
     _G.charSelect.character_add_health_meter(CT_HUMBLER, HEALTH_METER_WARIO)
     _G.charSelect.character_add_voice(E_MODEL_HUMBLER, VOICETABLE_HUMBLER)

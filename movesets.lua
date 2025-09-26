@@ -103,20 +103,6 @@ function dash_attacks(m, o, intee)
                 coin.oForwardVel = 0
             end)
     end
-
-    --if obj_has_behavior_id(o, id_bhvBigBoulder) ~= 0 then
-    --    obj_mark_for_deletion(o)
-    --    play_sound(SOUND_GENERAL_BREAK_BOX, m.marioObj.header.gfx.cameraToObject)
-    --    spawn_triangle_break_particles(30, 138, 3.0, 4)
-    --    spawn_non_sync_object(
-    --        id_bhvThreeCoinsSpawn,
-    --        E_MODEL_YELLOW_COIN,
-    --        o.oPosX, o.oPosY, o.oPosZ,
-    --        function (coin)
-    --            coin.oVelY = math.random(20, 40)
-    --            coin.oForwardVel = 0
-    --        end)
-    --end
 end
 
 function humble_bump(m, x, y)
@@ -136,7 +122,7 @@ function particle_clone_init(o)
   end
   local m = gMarioStates[index]
   o.oFlags = OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE
-  --o.oOpacity = 0
+  --o.oOpacity = 200
 
   o.oPosX = m.marioObj.header.gfx.pos.x
   o.oPosY = m.marioObj.header.gfx.pos.y
@@ -157,7 +143,7 @@ function particle_clone_init(o)
 end
 
 function particle_clone_loop(o)
-  --o.oOpacity = 200 - (o.oTimer * 200) // PARTICLE_TIMER
+  --o.oOpacity = o.oOpacity * 0.9
   o.header.gfx.animInfo.animFrame = o.header.gfx.animInfo.animFrame - 1
   if o.oTimer >= PARTICLE_TIMER then
     obj_mark_for_deletion(o)

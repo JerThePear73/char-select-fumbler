@@ -122,7 +122,7 @@ function particle_clone_init(o)
   end
   local m = gMarioStates[index]
   o.oFlags = OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE
-  --o.oOpacity = 200
+  o.oOpacity = 200
 
   o.oPosX = m.marioObj.header.gfx.pos.x
   o.oPosY = m.marioObj.header.gfx.pos.y
@@ -143,7 +143,7 @@ function particle_clone_init(o)
 end
 
 function particle_clone_loop(o)
-  --o.oOpacity = o.oOpacity * 0.9
+  o.oOpacity = o.oOpacity * 0.5
   o.header.gfx.animInfo.animFrame = o.header.gfx.animInfo.animFrame - 1
   if o.oTimer >= PARTICLE_TIMER then
     obj_mark_for_deletion(o)
@@ -198,6 +198,21 @@ end
 
 id_bhvParticleRing = hook_behavior(nil, OBJ_LIST_UNIMPORTANT, true, particle_ring_init, particle_ring_loop,
   "bhvRingParticle")
+
+local function pause_check()
+    local m = gMarioStates[0]
+
+    if m.action == ACT_START_SLEEPING or m.action == ACT_SLEEPING or m.actionTimer < 80 and
+        (m.action == ACT_STAR_DANCE_EXIT or m.action == ACT_STAR_DANCE_NO_EXIT or m.action == ACT_STAR_DANCE_WATER) then
+        return 0.2
+    end
+
+    if is_game_paused() or _G.charSelect.is_menu_open() then
+        return 0
+    end
+
+    return 1
+end   
 
 
 -- CUSTOM ACTIONS --
@@ -303,7 +318,7 @@ local function act_sh_bash(m)
     m.particleFlags = m.particleFlags | PARTICLE_DUST
 
     if (m.actionTimer & 2 == 0) then
-        audio_sample_play(SOUND_HUMBLE_SH_BASH, m.pos, 0.75)
+        audio_sample_play(SOUND_HUMBLE_SH_BASH, m.pos, pause_check())
     end
 
     if m.actionTimer < 2 then
@@ -338,10 +353,10 @@ local function act_sh_bash(m)
     mario_set_forward_vel(m, speed)
 
     if m.input & INPUT_A_PRESSED ~= 0 then
-        audio_sample_play(SOUND_HUMBLE_LEAP, m.pos, 1.25)
+        audio_sample_play(SOUND_HUMBLE_LEAP, m.pos, pause_check())
         m.vel.y = 50
         set_mario_action(m, ACT_SH_BASH_JUMP, 0)
-    elseif (m.input & INPUT_B_PRESSED ~= 0 and m.actionTimer > 5) or is_game_paused() then
+    elseif (m.input & INPUT_B_PRESSED ~= 0 and m.actionTimer > 5) or ((is_game_paused() or _G.charSelect.is_menu_open()) and m.playerIndex == 0) then
         set_mario_action(m, ACT_BRAKING, 0)
     elseif m.input & INPUT_Z_PRESSED ~= 0 then
         set_mario_action(m, ACT_CROUCH_SLIDE, 0)
@@ -382,7 +397,7 @@ hook_mario_action(ACT_SH_BASH_JUMP, act_sh_bash_jump)
 local function act_humble_gp(m)
     local e = gExtraStates[m.playerIndex]
 
-    if m.actionTimer == 1 then
+    if m.actionTimer < 2 then
         play_character_sound(m, CHAR_SOUND_GROUND_POUND_WAH)
         e.gfxY = 0x11000
     elseif m.actionTimer < 10 then
@@ -427,7 +442,7 @@ end
 hook_mario_action(ACT_HUMBLE_GP, act_humble_gp, INT_GROUND_POUND)
 
 local function act_humble_gp_land(m)
-    if m.actionTimer == 1 then
+    if m.actionTimer < 2 then
         m.vel.x = 0
         m.vel.z = 0
     end
@@ -450,15 +465,15 @@ hook_mario_action(ACT_HUMBLE_GP_LAND, act_humble_gp_land, INT_GROUND_POUND)
 local function act_humble_gp_cancel(m)
     local e = gExtraStates[m.playerIndex]
 
-    if m.actionTimer == 1 then
+    if m.actionTimer < 2 then
         m.vel.y = 30
-        m.forwardVel = 35
+        m.forwardVel = 40
         play_character_sound(m, CHAR_SOUND_HOOHOO)
         e.gfxY = 0 - 0x11000
         m.faceAngle.y = m.intendedYaw
         m.particleFlags = m.particleFlags | PARTICLE_MIST_CIRCLE
     end
-    local stepResult = common_air_action_step(m, ACT_BUTT_SLIDE, MARIO_ANIM_GROUND_POUND, AIR_STEP_CHECK_LEDGE_GRAB)
+    local stepResult = common_air_action_step(m, ACT_BUTT_SLIDE_AIR, MARIO_ANIM_GROUND_POUND, AIR_STEP_CHECK_LEDGE_GRAB)
     if stepResult == AIR_STEP_HIT_WALL then
         m.particleFlags = m.particleFlags | PARTICLE_VERTICAL_STAR
         set_mario_action(m, ACT_BACKWARD_AIR_KB, 0)
@@ -478,9 +493,9 @@ local function act_corkscrew(m)
     smlua_anim_util_set_animation(m.marioObj, "humbler_corkscrew")
     m.marioBodyState.handState = MARIO_HAND_OPEN
 
-    if m.actionTimer == 1 then
+    if m.actionTimer < 2 then
         play_character_sound(m, CHAR_SOUND_EEUH)
-        audio_sample_play(SOUND_HUMBLE_CORKSCREW, m.pos, 0.7)
+        audio_sample_play(SOUND_HUMBLE_CORKSCREW, m.pos, pause_check())
         m.faceAngle.y = m.intendedYaw
         e.gfxY = 0x20000
     elseif m.actionTimer > 1 then
@@ -668,7 +683,7 @@ local function humbler_set_action(m)
     local e = gExtraStates[m.playerIndex]
 
     -- shoulder bash
-    if m.action == ACT_MOVE_PUNCHING then
+    if m.action == ACT_MOVE_PUNCHING and m.input & INPUT_NONZERO_ANALOG ~= 0 then
         e.prevPosY = m.pos.y
         m.action = ACT_SH_BASH
     end

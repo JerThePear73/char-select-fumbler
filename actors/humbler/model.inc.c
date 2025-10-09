@@ -1461,7 +1461,7 @@ Gfx humbler_Left_Hand_DL_mesh_layer_1_tri_1[] = {
 	gsSPEndDisplayList(),
 };
 
-Vtx humbler_Left_Hand_DL_mesh_layer_6_vtx_0[27] = {
+Vtx humbler_Left_Hand_DL_mesh_layer_4_vtx_0[27] = {
 	{{ {23, 1, 44}, 0, {249, -68}, {247, 243, 126, 255} }},
 	{{ {53, 93, 37}, 0, {733, 526}, {16, 104, 71, 255} }},
 	{{ {6, 60, 29}, 0, {665, 8}, {170, 60, 71, 255} }},
@@ -1491,8 +1491,8 @@ Vtx humbler_Left_Hand_DL_mesh_layer_6_vtx_0[27] = {
 	{{ {103, -3, -50}, 0, {-15, -20}, {84, 244, 162, 255} }},
 };
 
-Gfx humbler_Left_Hand_DL_mesh_layer_6_tri_0[] = {
-	gsSPVertex(humbler_Left_Hand_DL_mesh_layer_6_vtx_0 + 0, 27, 0),
+Gfx humbler_Left_Hand_DL_mesh_layer_4_tri_0[] = {
+	gsSPVertex(humbler_Left_Hand_DL_mesh_layer_4_vtx_0 + 0, 27, 0),
 	gsSP2Triangles(0, 1, 2, 0, 0, 3, 1, 0),
 	gsSP2Triangles(4, 3, 0, 0, 5, 4, 0, 0),
 	gsSP2Triangles(6, 7, 8, 0, 8, 7, 9, 0),
@@ -1598,7 +1598,7 @@ Gfx humbler_Left_Hand_Open_Switch_Option_Left_Hand_Open_mesh_layer_1_tri_1[] = {
 	gsSPEndDisplayList(),
 };
 
-Vtx humbler_Left_Hand_Open_Switch_Option_Left_Hand_Open_mesh_layer_6_vtx_0[47] = {
+Vtx humbler_Left_Hand_Open_Switch_Option_Left_Hand_Open_mesh_layer_4_vtx_0[47] = {
 	{{ {83, 28, 31}, 0, {240, -84}, {30, 9, 123, 255} }},
 	{{ {60, 81, 12}, 0, {642, -50}, {237, 97, 80, 255} }},
 	{{ {12, 62, 23}, 0, {642, 471}, {196, 81, 78, 255} }},
@@ -1648,8 +1648,8 @@ Vtx humbler_Left_Hand_Open_Switch_Option_Left_Hand_Open_mesh_layer_6_vtx_0[47] =
 	{{ {45, 82, -21}, 0, {-20, -21}, {221, 94, 178, 255} }},
 };
 
-Gfx humbler_Left_Hand_Open_Switch_Option_Left_Hand_Open_mesh_layer_6_tri_0[] = {
-	gsSPVertex(humbler_Left_Hand_Open_Switch_Option_Left_Hand_Open_mesh_layer_6_vtx_0 + 0, 32, 0),
+Gfx humbler_Left_Hand_Open_Switch_Option_Left_Hand_Open_mesh_layer_4_tri_0[] = {
+	gsSPVertex(humbler_Left_Hand_Open_Switch_Option_Left_Hand_Open_mesh_layer_4_vtx_0 + 0, 32, 0),
 	gsSP2Triangles(0, 1, 2, 0, 0, 2, 3, 0),
 	gsSP2Triangles(0, 3, 4, 0, 3, 5, 4, 0),
 	gsSP2Triangles(6, 7, 8, 0, 9, 7, 6, 0),
@@ -1668,7 +1668,7 @@ Gfx humbler_Left_Hand_Open_Switch_Option_Left_Hand_Open_mesh_layer_6_tri_0[] = {
 	gsSP2Triangles(10, 17, 9, 0, 10, 16, 17, 0),
 	gsSP2Triangles(29, 16, 10, 0, 10, 30, 29, 0),
 	gsSP2Triangles(30, 10, 11, 0, 11, 31, 30, 0),
-	gsSPVertex(humbler_Left_Hand_Open_Switch_Option_Left_Hand_Open_mesh_layer_6_vtx_0 + 32, 15, 0),
+	gsSPVertex(humbler_Left_Hand_Open_Switch_Option_Left_Hand_Open_mesh_layer_4_vtx_0 + 32, 15, 0),
 	gsSP2Triangles(0, 1, 2, 0, 2, 3, 0, 0),
 	gsSP2Triangles(0, 3, 4, 0, 4, 5, 0, 0),
 	gsSP2Triangles(6, 5, 4, 0, 4, 7, 6, 0),
@@ -1840,7 +1840,7 @@ Gfx humbler_Right_Hand_DL_mesh_layer_1_tri_1[] = {
 	gsSPEndDisplayList(),
 };
 
-Vtx humbler_Right_Hand_DL_mesh_layer_6_vtx_0[27] = {
+Vtx humbler_Right_Hand_DL_mesh_layer_4_vtx_0[27] = {
 	{{ {26, 4, -38}, 0, {242, -66}, {8, 248, 129, 255} }},
 	{{ {8, 62, -23}, 0, {-171, 9}, {181, 63, 176, 255} }},
 	{{ {56, 95, -23}, 0, {-235, 528}, {28, 106, 192, 255} }},
@@ -1870,8 +1870,8 @@ Vtx humbler_Right_Hand_DL_mesh_layer_6_vtx_0[27] = {
 	{{ {45, 92, 47}, 0, {-15, -20}, {11, 99, 78, 255} }},
 };
 
-Gfx humbler_Right_Hand_DL_mesh_layer_6_tri_0[] = {
-	gsSPVertex(humbler_Right_Hand_DL_mesh_layer_6_vtx_0 + 0, 27, 0),
+Gfx humbler_Right_Hand_DL_mesh_layer_4_tri_0[] = {
+	gsSPVertex(humbler_Right_Hand_DL_mesh_layer_4_vtx_0 + 0, 27, 0),
 	gsSP2Triangles(0, 1, 2, 0, 0, 2, 3, 0),
 	gsSP2Triangles(4, 0, 3, 0, 5, 0, 4, 0),
 	gsSP2Triangles(6, 7, 8, 0, 7, 6, 9, 0),
@@ -1977,7 +1977,7 @@ Gfx humbler_Right_Hand_Open_Switch_Option_Right_Hand_Open_mesh_layer_1_tri_1[] =
 	gsSPEndDisplayList(),
 };
 
-Vtx humbler_Right_Hand_Open_Switch_Option_Right_Hand_Open_mesh_layer_6_vtx_0[45] = {
+Vtx humbler_Right_Hand_Open_Switch_Option_Right_Hand_Open_mesh_layer_4_vtx_0[45] = {
 	{{ {83, 28, -22}, 0, {240, -84}, {37, 12, 135, 255} }},
 	{{ {13, 64, -17}, 0, {642, 471}, {203, 85, 178, 255} }},
 	{{ {60, 81, -3}, 0, {642, -50}, {245, 100, 179, 255} }},
@@ -2025,8 +2025,8 @@ Vtx humbler_Right_Hand_Open_Switch_Option_Right_Hand_Open_mesh_layer_6_vtx_0[45]
 	{{ {108, 98, 11}, 0, {-20, -21}, {30, 112, 203, 255} }},
 };
 
-Gfx humbler_Right_Hand_Open_Switch_Option_Right_Hand_Open_mesh_layer_6_tri_0[] = {
-	gsSPVertex(humbler_Right_Hand_Open_Switch_Option_Right_Hand_Open_mesh_layer_6_vtx_0 + 0, 32, 0),
+Gfx humbler_Right_Hand_Open_Switch_Option_Right_Hand_Open_mesh_layer_4_tri_0[] = {
+	gsSPVertex(humbler_Right_Hand_Open_Switch_Option_Right_Hand_Open_mesh_layer_4_vtx_0 + 0, 32, 0),
 	gsSP2Triangles(0, 1, 2, 0, 0, 3, 1, 0),
 	gsSP2Triangles(0, 4, 3, 0, 3, 4, 5, 0),
 	gsSP2Triangles(6, 7, 8, 0, 9, 6, 8, 0),
@@ -2046,7 +2046,7 @@ Gfx humbler_Right_Hand_Open_Switch_Option_Right_Hand_Open_mesh_layer_6_tri_0[] =
 	gsSP2Triangles(29, 28, 23, 0, 24, 29, 23, 0),
 	gsSP2Triangles(29, 24, 30, 0, 24, 31, 30, 0),
 	gsSP2Triangles(31, 24, 26, 0, 27, 31, 26, 0),
-	gsSPVertex(humbler_Right_Hand_Open_Switch_Option_Right_Hand_Open_mesh_layer_6_vtx_0 + 32, 13, 0),
+	gsSPVertex(humbler_Right_Hand_Open_Switch_Option_Right_Hand_Open_mesh_layer_4_vtx_0 + 32, 13, 0),
 	gsSP2Triangles(0, 1, 2, 0, 1, 3, 2, 0),
 	gsSP2Triangles(3, 1, 4, 0, 4, 5, 3, 0),
 	gsSP2Triangles(6, 7, 8, 0, 6, 9, 7, 0),
@@ -2159,7 +2159,7 @@ Gfx humbler_Right_Hand_Peace_Switch_Option_Right_Hand_Peace_mesh_layer_1_tri_1[]
 	gsSPEndDisplayList(),
 };
 
-Vtx humbler_Right_Hand_Peace_Switch_Option_Right_Hand_Peace_mesh_layer_6_vtx_0[57] = {
+Vtx humbler_Right_Hand_Peace_Switch_Option_Right_Hand_Peace_mesh_layer_4_vtx_0[57] = {
 	{{ {62, 54, -47}, 0, {440, -55}, {255, 46, 138, 255} }},
 	{{ {5, 64, -30}, 0, {650, 461}, {180, 85, 200, 255} }},
 	{{ {49, 79, -33}, 0, {650, 18}, {212, 93, 182, 255} }},
@@ -2219,8 +2219,8 @@ Vtx humbler_Right_Hand_Peace_Switch_Option_Right_Hand_Peace_mesh_layer_6_vtx_0[5
 	{{ {138, 56, -45}, 0, {-31, -24}, {98, 231, 179, 255} }},
 };
 
-Gfx humbler_Right_Hand_Peace_Switch_Option_Right_Hand_Peace_mesh_layer_6_tri_0[] = {
-	gsSPVertex(humbler_Right_Hand_Peace_Switch_Option_Right_Hand_Peace_mesh_layer_6_vtx_0 + 0, 32, 0),
+Gfx humbler_Right_Hand_Peace_Switch_Option_Right_Hand_Peace_mesh_layer_4_tri_0[] = {
+	gsSPVertex(humbler_Right_Hand_Peace_Switch_Option_Right_Hand_Peace_mesh_layer_4_vtx_0 + 0, 32, 0),
 	gsSP2Triangles(0, 1, 2, 0, 0, 3, 1, 0),
 	gsSP2Triangles(4, 3, 0, 0, 4, 5, 3, 0),
 	gsSP2Triangles(3, 5, 6, 0, 7, 8, 9, 0),
@@ -2239,7 +2239,7 @@ Gfx humbler_Right_Hand_Peace_Switch_Option_Right_Hand_Peace_mesh_layer_6_tri_0[]
 	gsSP2Triangles(23, 27, 26, 0, 27, 28, 26, 0),
 	gsSP2Triangles(27, 29, 28, 0, 29, 27, 30, 0),
 	gsSP1Triangle(27, 31, 30, 0),
-	gsSPVertex(humbler_Right_Hand_Peace_Switch_Option_Right_Hand_Peace_mesh_layer_6_vtx_0 + 32, 25, 0),
+	gsSPVertex(humbler_Right_Hand_Peace_Switch_Option_Right_Hand_Peace_mesh_layer_4_vtx_0 + 32, 25, 0),
 	gsSP2Triangles(0, 1, 2, 0, 1, 3, 2, 0),
 	gsSP2Triangles(1, 4, 3, 0, 4, 1, 5, 0),
 	gsSP2Triangles(1, 6, 5, 0, 1, 7, 6, 0),
@@ -2411,7 +2411,7 @@ Gfx humbler_Right_Hand_Cap_Switch_Option_Right_Hand_Cap_mesh_layer_1_tri_3[] = {
 	gsSPEndDisplayList(),
 };
 
-Vtx humbler_Right_Hand_Cap_Switch_Option_Right_Hand_Cap_mesh_layer_6_vtx_0[28] = {
+Vtx humbler_Right_Hand_Cap_Switch_Option_Right_Hand_Cap_mesh_layer_4_vtx_0[28] = {
 	{{ {28, 4, -38}, 0, {242, -66}, {8, 248, 129, 255} }},
 	{{ {10, 62, -23}, 0, {-171, 9}, {181, 63, 176, 255} }},
 	{{ {57, 95, -23}, 0, {-235, 528}, {28, 106, 193, 255} }},
@@ -2442,8 +2442,8 @@ Vtx humbler_Right_Hand_Cap_Switch_Option_Right_Hand_Cap_mesh_layer_6_vtx_0[28] =
 	{{ {19, -61, -25}, 0, {-15, -20}, {27, 142, 207, 255} }},
 };
 
-Gfx humbler_Right_Hand_Cap_Switch_Option_Right_Hand_Cap_mesh_layer_6_tri_0[] = {
-	gsSPVertex(humbler_Right_Hand_Cap_Switch_Option_Right_Hand_Cap_mesh_layer_6_vtx_0 + 0, 28, 0),
+Gfx humbler_Right_Hand_Cap_Switch_Option_Right_Hand_Cap_mesh_layer_4_tri_0[] = {
+	gsSPVertex(humbler_Right_Hand_Cap_Switch_Option_Right_Hand_Cap_mesh_layer_4_vtx_0 + 0, 28, 0),
 	gsSP2Triangles(0, 1, 2, 0, 0, 2, 3, 0),
 	gsSP2Triangles(4, 0, 3, 0, 5, 0, 4, 0),
 	gsSP2Triangles(6, 7, 8, 0, 9, 7, 6, 0),
@@ -2619,7 +2619,7 @@ Gfx humbler_Right_Hand_Wing_Cap_Swtich_Option_Right_Hand_Wing_Cap_mesh_layer_1_t
 	gsSPEndDisplayList(),
 };
 
-Vtx humbler_Right_Hand_Wing_Cap_Swtich_Option_Right_Hand_Wing_Cap_mesh_layer_6_vtx_0[28] = {
+Vtx humbler_Right_Hand_Wing_Cap_Swtich_Option_Right_Hand_Wing_Cap_mesh_layer_4_vtx_0[28] = {
 	{{ {28, 4, -38}, 0, {242, -66}, {8, 248, 129, 255} }},
 	{{ {10, 62, -23}, 0, {-171, 9}, {181, 63, 176, 255} }},
 	{{ {57, 95, -23}, 0, {-235, 528}, {28, 106, 193, 255} }},
@@ -2650,8 +2650,8 @@ Vtx humbler_Right_Hand_Wing_Cap_Swtich_Option_Right_Hand_Wing_Cap_mesh_layer_6_v
 	{{ {19, -61, -25}, 0, {-15, -20}, {27, 142, 207, 255} }},
 };
 
-Gfx humbler_Right_Hand_Wing_Cap_Swtich_Option_Right_Hand_Wing_Cap_mesh_layer_6_tri_0[] = {
-	gsSPVertex(humbler_Right_Hand_Wing_Cap_Swtich_Option_Right_Hand_Wing_Cap_mesh_layer_6_vtx_0 + 0, 28, 0),
+Gfx humbler_Right_Hand_Wing_Cap_Swtich_Option_Right_Hand_Wing_Cap_mesh_layer_4_tri_0[] = {
+	gsSPVertex(humbler_Right_Hand_Wing_Cap_Swtich_Option_Right_Hand_Wing_Cap_mesh_layer_4_vtx_0 + 0, 28, 0),
 	gsSP2Triangles(0, 1, 2, 0, 0, 2, 3, 0),
 	gsSP2Triangles(4, 0, 3, 0, 5, 0, 4, 0),
 	gsSP2Triangles(6, 7, 8, 0, 9, 7, 6, 0),
@@ -3837,15 +3837,15 @@ Gfx humbler_Left_Hand_DL_mesh_layer_1_mat_override_Gold_Metal_0[] = {
 	gsSPEndDisplayList(),
 };
 
-Gfx humbler_Left_Hand_DL_mesh_layer_6[] = {
+Gfx humbler_Left_Hand_DL_mesh_layer_4[] = {
 	gsSPDisplayList(mat_humbler_H__EMBLEM_),
-	gsSPDisplayList(humbler_Left_Hand_DL_mesh_layer_6_tri_0),
+	gsSPDisplayList(humbler_Left_Hand_DL_mesh_layer_4_tri_0),
 	gsSPEndDisplayList(),
 };
 
-Gfx humbler_Left_Hand_DL_mesh_layer_6_mat_override_Gold_Metal_0[] = {
+Gfx humbler_Left_Hand_DL_mesh_layer_4_mat_override_Gold_Metal_0[] = {
 	gsSPDisplayList(mat_humbler_Gold_Metal),
-	gsSPDisplayList(humbler_Left_Hand_DL_mesh_layer_6_tri_0),
+	gsSPDisplayList(humbler_Left_Hand_DL_mesh_layer_4_tri_0),
 	gsSPDisplayList(mat_revert_humbler_Gold_Metal),
 	gsSPEndDisplayList(),
 };
@@ -3866,15 +3866,15 @@ Gfx humbler_Left_Hand_Open_Switch_Option_Left_Hand_Open_mesh_layer_1_mat_overrid
 	gsSPEndDisplayList(),
 };
 
-Gfx humbler_Left_Hand_Open_Switch_Option_Left_Hand_Open_mesh_layer_6[] = {
+Gfx humbler_Left_Hand_Open_Switch_Option_Left_Hand_Open_mesh_layer_4[] = {
 	gsSPDisplayList(mat_humbler_H__EMBLEM_),
-	gsSPDisplayList(humbler_Left_Hand_Open_Switch_Option_Left_Hand_Open_mesh_layer_6_tri_0),
+	gsSPDisplayList(humbler_Left_Hand_Open_Switch_Option_Left_Hand_Open_mesh_layer_4_tri_0),
 	gsSPEndDisplayList(),
 };
 
-Gfx humbler_Left_Hand_Open_Switch_Option_Left_Hand_Open_mesh_layer_6_mat_override_Gold_Metal_0[] = {
+Gfx humbler_Left_Hand_Open_Switch_Option_Left_Hand_Open_mesh_layer_4_mat_override_Gold_Metal_0[] = {
 	gsSPDisplayList(mat_humbler_Gold_Metal),
-	gsSPDisplayList(humbler_Left_Hand_Open_Switch_Option_Left_Hand_Open_mesh_layer_6_tri_0),
+	gsSPDisplayList(humbler_Left_Hand_Open_Switch_Option_Left_Hand_Open_mesh_layer_4_tri_0),
 	gsSPDisplayList(mat_revert_humbler_Gold_Metal),
 	gsSPEndDisplayList(),
 };
@@ -3936,15 +3936,15 @@ Gfx humbler_Right_Hand_DL_mesh_layer_1_mat_override_Gold_Metal_0[] = {
 	gsSPEndDisplayList(),
 };
 
-Gfx humbler_Right_Hand_DL_mesh_layer_6[] = {
+Gfx humbler_Right_Hand_DL_mesh_layer_4[] = {
 	gsSPDisplayList(mat_humbler_H__EMBLEM_),
-	gsSPDisplayList(humbler_Right_Hand_DL_mesh_layer_6_tri_0),
+	gsSPDisplayList(humbler_Right_Hand_DL_mesh_layer_4_tri_0),
 	gsSPEndDisplayList(),
 };
 
-Gfx humbler_Right_Hand_DL_mesh_layer_6_mat_override_Gold_Metal_0[] = {
+Gfx humbler_Right_Hand_DL_mesh_layer_4_mat_override_Gold_Metal_0[] = {
 	gsSPDisplayList(mat_humbler_Gold_Metal),
-	gsSPDisplayList(humbler_Right_Hand_DL_mesh_layer_6_tri_0),
+	gsSPDisplayList(humbler_Right_Hand_DL_mesh_layer_4_tri_0),
 	gsSPDisplayList(mat_revert_humbler_Gold_Metal),
 	gsSPEndDisplayList(),
 };
@@ -3965,15 +3965,15 @@ Gfx humbler_Right_Hand_Open_Switch_Option_Right_Hand_Open_mesh_layer_1_mat_overr
 	gsSPEndDisplayList(),
 };
 
-Gfx humbler_Right_Hand_Open_Switch_Option_Right_Hand_Open_mesh_layer_6[] = {
+Gfx humbler_Right_Hand_Open_Switch_Option_Right_Hand_Open_mesh_layer_4[] = {
 	gsSPDisplayList(mat_humbler_H__EMBLEM_),
-	gsSPDisplayList(humbler_Right_Hand_Open_Switch_Option_Right_Hand_Open_mesh_layer_6_tri_0),
+	gsSPDisplayList(humbler_Right_Hand_Open_Switch_Option_Right_Hand_Open_mesh_layer_4_tri_0),
 	gsSPEndDisplayList(),
 };
 
-Gfx humbler_Right_Hand_Open_Switch_Option_Right_Hand_Open_mesh_layer_6_mat_override_Gold_Metal_0[] = {
+Gfx humbler_Right_Hand_Open_Switch_Option_Right_Hand_Open_mesh_layer_4_mat_override_Gold_Metal_0[] = {
 	gsSPDisplayList(mat_humbler_Gold_Metal),
-	gsSPDisplayList(humbler_Right_Hand_Open_Switch_Option_Right_Hand_Open_mesh_layer_6_tri_0),
+	gsSPDisplayList(humbler_Right_Hand_Open_Switch_Option_Right_Hand_Open_mesh_layer_4_tri_0),
 	gsSPDisplayList(mat_revert_humbler_Gold_Metal),
 	gsSPEndDisplayList(),
 };
@@ -3994,15 +3994,15 @@ Gfx humbler_Right_Hand_Peace_Switch_Option_Right_Hand_Peace_mesh_layer_1_mat_ove
 	gsSPEndDisplayList(),
 };
 
-Gfx humbler_Right_Hand_Peace_Switch_Option_Right_Hand_Peace_mesh_layer_6[] = {
+Gfx humbler_Right_Hand_Peace_Switch_Option_Right_Hand_Peace_mesh_layer_4[] = {
 	gsSPDisplayList(mat_humbler_H__EMBLEM_),
-	gsSPDisplayList(humbler_Right_Hand_Peace_Switch_Option_Right_Hand_Peace_mesh_layer_6_tri_0),
+	gsSPDisplayList(humbler_Right_Hand_Peace_Switch_Option_Right_Hand_Peace_mesh_layer_4_tri_0),
 	gsSPEndDisplayList(),
 };
 
-Gfx humbler_Right_Hand_Peace_Switch_Option_Right_Hand_Peace_mesh_layer_6_mat_override_Gold_Metal_0[] = {
+Gfx humbler_Right_Hand_Peace_Switch_Option_Right_Hand_Peace_mesh_layer_4_mat_override_Gold_Metal_0[] = {
 	gsSPDisplayList(mat_humbler_Gold_Metal),
-	gsSPDisplayList(humbler_Right_Hand_Peace_Switch_Option_Right_Hand_Peace_mesh_layer_6_tri_0),
+	gsSPDisplayList(humbler_Right_Hand_Peace_Switch_Option_Right_Hand_Peace_mesh_layer_4_tri_0),
 	gsSPDisplayList(mat_revert_humbler_Gold_Metal),
 	gsSPEndDisplayList(),
 };
@@ -4029,15 +4029,15 @@ Gfx humbler_Right_Hand_Cap_Switch_Option_Right_Hand_Cap_mesh_layer_1_mat_overrid
 	gsSPEndDisplayList(),
 };
 
-Gfx humbler_Right_Hand_Cap_Switch_Option_Right_Hand_Cap_mesh_layer_6[] = {
+Gfx humbler_Right_Hand_Cap_Switch_Option_Right_Hand_Cap_mesh_layer_4[] = {
 	gsSPDisplayList(mat_humbler_H__EMBLEM_),
-	gsSPDisplayList(humbler_Right_Hand_Cap_Switch_Option_Right_Hand_Cap_mesh_layer_6_tri_0),
+	gsSPDisplayList(humbler_Right_Hand_Cap_Switch_Option_Right_Hand_Cap_mesh_layer_4_tri_0),
 	gsSPEndDisplayList(),
 };
 
-Gfx humbler_Right_Hand_Cap_Switch_Option_Right_Hand_Cap_mesh_layer_6_mat_override_Gold_Metal_0[] = {
+Gfx humbler_Right_Hand_Cap_Switch_Option_Right_Hand_Cap_mesh_layer_4_mat_override_Gold_Metal_0[] = {
 	gsSPDisplayList(mat_humbler_Gold_Metal),
-	gsSPDisplayList(humbler_Right_Hand_Cap_Switch_Option_Right_Hand_Cap_mesh_layer_6_tri_0),
+	gsSPDisplayList(humbler_Right_Hand_Cap_Switch_Option_Right_Hand_Cap_mesh_layer_4_tri_0),
 	gsSPDisplayList(mat_revert_humbler_Gold_Metal),
 	gsSPEndDisplayList(),
 };
@@ -4064,15 +4064,15 @@ Gfx humbler_Right_Hand_Wing_Cap_Swtich_Option_Right_Hand_Wing_Cap_mesh_layer_1_m
 	gsSPEndDisplayList(),
 };
 
-Gfx humbler_Right_Hand_Wing_Cap_Swtich_Option_Right_Hand_Wing_Cap_mesh_layer_6[] = {
+Gfx humbler_Right_Hand_Wing_Cap_Swtich_Option_Right_Hand_Wing_Cap_mesh_layer_4[] = {
 	gsSPDisplayList(mat_humbler_H__EMBLEM_),
-	gsSPDisplayList(humbler_Right_Hand_Wing_Cap_Swtich_Option_Right_Hand_Wing_Cap_mesh_layer_6_tri_0),
+	gsSPDisplayList(humbler_Right_Hand_Wing_Cap_Swtich_Option_Right_Hand_Wing_Cap_mesh_layer_4_tri_0),
 	gsSPEndDisplayList(),
 };
 
-Gfx humbler_Right_Hand_Wing_Cap_Swtich_Option_Right_Hand_Wing_Cap_mesh_layer_6_mat_override_Gold_Metal_0[] = {
+Gfx humbler_Right_Hand_Wing_Cap_Swtich_Option_Right_Hand_Wing_Cap_mesh_layer_4_mat_override_Gold_Metal_0[] = {
 	gsSPDisplayList(mat_humbler_Gold_Metal),
-	gsSPDisplayList(humbler_Right_Hand_Wing_Cap_Swtich_Option_Right_Hand_Wing_Cap_mesh_layer_6_tri_0),
+	gsSPDisplayList(humbler_Right_Hand_Wing_Cap_Swtich_Option_Right_Hand_Wing_Cap_mesh_layer_4_tri_0),
 	gsSPDisplayList(mat_revert_humbler_Gold_Metal),
 	gsSPEndDisplayList(),
 };

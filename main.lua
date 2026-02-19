@@ -56,7 +56,7 @@ local VOICETABLE_HUMBLER = {
 	[CHAR_SOUND_COUGHING2] = 'humbler_cough.ogg',
 	[CHAR_SOUND_COUGHING3] = 'humbler_cough.ogg',
 	[CHAR_SOUND_DYING] = 'humbler_death.ogg',
-	[CHAR_SOUND_DROWNING] = 'humbler_drown.ogg',
+	[CHAR_SOUND_DROWNING] = 'humbler_drowning.ogg',
 	[CHAR_SOUND_MAMA_MIA] = 'humbler_mamamia.ogg',
 } 
 
@@ -132,29 +132,37 @@ local ANIMTABLE_JUMBLER = {
     [CHAR_ANIM_SINGLE_JUMP] = "jumbler_single_jump",
     [_G.charSelect.CS_ANIM_MENU] = "mario_anim_cs_menu",
 }
-local ANIMTABLE_HUMBLER = {
-    [CHAR_ANIM_RUNNING] = "humbler_run",
-    [CHAR_ANIM_START_TWIRL] = "humbler_start_twirl",
-    [CHAR_ANIM_TWIRL] = "humbler_twirl",
-    [_G.charSelect.CS_ANIM_MENU] = "wario_anim_cs_menu",
-}
 
 local HEALTH_METER_MARIO = {
     label = {
         left = get_texture_info("mario-hp-left"),
         right = get_texture_info("mario-hp-right"),
+    },
+    pie = {
+        [1] = get_texture_info("char_select_custom_meter_pie1"),
+        [2] = get_texture_info("char_select_custom_meter_pie2"),
+        [3] = get_texture_info("char_select_custom_meter_pie3"),
+        [4] = get_texture_info("char_select_custom_meter_pie4"),
+        [5] = get_texture_info("char_select_custom_meter_pie5"),
+        [6] = get_texture_info("char_select_custom_meter_pie6"),
+        [7] = get_texture_info("char_select_custom_meter_pie7"),
+        [8] = get_texture_info("char_select_custom_meter_pie8"),
     }
 }
 local HEALTH_METER_LUIGI = {
     label = {
         left = get_texture_info("char-select-luigi-meter-left"),
         right = get_texture_info("char-select-luigi-meter-right"),
-    }
-}
-local HEALTH_METER_WARIO = {
-    label = {
-        left = get_texture_info("char-select-wario-meter-left"),
-        right = get_texture_info("char-select-wario-meter-right"),
+    },
+    pie = {
+        [1] = get_texture_info("char_select_custom_meter_pie1"),
+        [2] = get_texture_info("char_select_custom_meter_pie2"),
+        [3] = get_texture_info("char_select_custom_meter_pie3"),
+        [4] = get_texture_info("char_select_custom_meter_pie4"),
+        [5] = get_texture_info("char_select_custom_meter_pie5"),
+        [6] = get_texture_info("char_select_custom_meter_pie6"),
+        [7] = get_texture_info("char_select_custom_meter_pie7"),
+        [8] = get_texture_info("char_select_custom_meter_pie8"),
     }
 }
 
@@ -170,8 +178,6 @@ if _G.charSelectExists then
         ""}, "JerThePear", {r = 255, g = 255, b = 255}, E_MODEL_FUMBLER, CT_MARIO, TEX_FUMBLER)
     CT_JUMBLER = _G.charSelect.character_add("Jumbler", { "The fumbler's icy brother. Where's Jumble Jr?",
         ""}, "JerThePear", {r = 000, g = 255, b = 255}, E_MODEL_JUMBLER, CT_LUIGI, TEX_JUMBLER)
-    CT_HUMBLER = _G.charSelect.character_add("Humbler", { "A real humble guy. Hungry for coins to donate to charities.",
-        ""}, "JerThePear", {r = 255, g = 255, b = 000}, E_MODEL_HUMBLER, CT_WARIO, TEX_HUMBLER)
 end
 
 local CSloaded = false
@@ -186,13 +192,25 @@ local function on_character_select_load()
     _G.charSelect.character_add_animations(E_MODEL_JUMBLER, ANIMTABLE_JUMBLER)
     _G.charSelect.character_add_health_meter(CT_JUMBLER, HEALTH_METER_LUIGI)
 
+    if CT_J_WARIO ~= nil then
+        
+    local ANIMTABLE_HUMBLER = {
+        [CHAR_ANIM_RUNNING] = "humbler_run",
+        [CHAR_ANIM_SINGLE_JUMP] = "JWAR_SINGLE_JUMP",
+        [MARIO_ANIM_LAND_FROM_SINGLE_JUMP] = "JWAR_SINGLE_JUMP_LAND",
+        [CHAR_ANIM_START_TWIRL] = "JWAR_START_TWIRL",
+        [CHAR_ANIM_TWIRL] = "JWAR_TWIRL",
+        [_G.charSelect.CS_ANIM_MENU] = "JWAR_MENU",
+    }
+
     _G.charSelect.character_add_palette_preset(E_MODEL_HUMBLER, PALETTE_HUMBLER, "Default")
     _G.charSelect.character_add_palette_preset(E_MODEL_HUMBLER, PALETTE_PIRATE, "Sailor")
     _G.charSelect.character_add_palette_preset(E_MODEL_HUMBLER, PALETTE_BIKER, "Biker")
     _G.charSelect.character_add_animations(E_MODEL_HUMBLER, ANIMTABLE_HUMBLER)
-    _G.charSelect.character_add_health_meter(CT_HUMBLER, HEALTH_METER_WARIO)
     _G.charSelect.character_add_voice(E_MODEL_HUMBLER, VOICETABLE_HUMBLER)
-
+    _G.charSelect.character_add_costume(CT_J_WARIO, "Humbler", { "A real humble guy. Hungry for coins to donate to charities.",
+        ""}, "JerThePear", {r = 255, g = 255, b = 000}, E_MODEL_HUMBLER, CT_WARIO, TEX_HUMBLER)
+    end
 
     CSloaded = true
 end

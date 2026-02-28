@@ -151,8 +151,8 @@ local HEALTH_METER_MARIO = {
 }
 local HEALTH_METER_LUIGI = {
     label = {
-        left = get_texture_info("char-select-luigi-meter-left"),
-        right = get_texture_info("char-select-luigi-meter-right"),
+        left = get_texture_info("char_select_luigi_meter_left"),
+        right = get_texture_info("char_select_luigi_meter_right"),
     },
     pie = {
         [1] = get_texture_info("char_select_custom_meter_pie1"),

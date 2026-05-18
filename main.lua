@@ -58,95 +58,163 @@ local VOICETABLE_HUMBLER = {
 	[CHAR_SOUND_DYING] = 'humbler_death.ogg',
 	[CHAR_SOUND_DROWNING] = 'humbler_drowning.ogg',
 	[CHAR_SOUND_MAMA_MIA] = 'humbler_mamamia.ogg',
-} 
-
-local PALETTE_FUMBLER =  {
-    [PANTS]  = "ffffff",
-    [SHIRT]  = "ff0000",
-    [GLOVES] = "ffffff",
-    [SHOES]  = "333333",
-    [HAIR]   = "730600",
-    [SKIN]   = "fec179",
-    [CAP]    = "ffffff",
-    [EMBLEM] = "ff0000",
-}
-local PALETTE_CHARITY = {
-    [PANTS]  = { r = 0xb2, g = 0x28, b = 0x18 },
-    [SHIRT]  = { r = 0xff, g = 0xe0, b = 0xe0 },
-    [GLOVES] = { r = 0xff, g = 0xff, b = 0xff },
-    [SHOES]  = { r = 0x72, g = 0x1c, b = 0x0e },
-    [HAIR]   = { r = 0x73, g = 0x06, b = 0x00 },
-    [SKIN]   = { r = 0xfe, g = 0xc1, b = 0x79 },
-    [CAP]    = { r = 0xff, g = 0xe0, b = 0xe0 },
-    [EMBLEM] = { r = 0xff, g = 0x00, b = 0x00 },
 }
 
-local PALETTE_JUMBLER =  {
-    [PANTS]  = "00ffff",
-    [SHIRT]  = "00ff00",
-    [GLOVES] = "2B3A59",
-    [SHOES]  = "333333",
-    [HAIR]   = "730600",
-    [SKIN]   = "fec179",
-    [CAP]    = "00ffff",
-    [EMBLEM] = "00ff00",
+local PALETTES_FUMBLER = {
+    {
+        name = "Default",
+        [PANTS]  = "ffffff",
+        [SHIRT]  = "ff0000",
+        [GLOVES] = "ffffff",
+        [SHOES]  = "333333",
+        [HAIR]   = "730600",
+        [SKIN]   = "fec179",
+        [CAP]    = "ffffff",
+        [EMBLEM] = "ff0000",
+    },{
+        name = "Crazy Kicker",
+        [PANTS]  = { r = 0xb2, g = 0x28, b = 0x18 },
+        [SHIRT]  = { r = 0xff, g = 0xe0, b = 0xe0 },
+        [GLOVES] = { r = 0xff, g = 0xff, b = 0xff },
+        [SHOES]  = { r = 0x72, g = 0x1c, b = 0x0e },
+        [HAIR]   = { r = 0x73, g = 0x06, b = 0x00 },
+        [SKIN]   = { r = 0xfe, g = 0xc1, b = 0x79 },
+        [CAP]    = { r = 0xff, g = 0xe0, b = 0xe0 },
+        [EMBLEM] = { r = 0xff, g = 0x00, b = 0x00 },
+    },{
+        name = "Toothpaste",
+        [PANTS]  = "9dffb8",
+        [SHIRT]  = "242282",
+        [GLOVES] = "ffffff",
+        [SHOES]  = "864200",
+        [HAIR]   = "730600",
+        [SKIN]   = "fec179",
+        [CAP]    = "9dffb8",
+        [EMBLEM] = "242282",
+    },{
+        name = "Nohn Jimbus",
+        [PANTS]  = "ff0000",
+        [SHIRT]  = "000000",
+        [GLOVES] = "00ff00",
+        [SHOES]  = "ffffff",
+        [HAIR]   = "ffff00",
+        [SKIN]   = "00ffff",
+        [CAP]    = "ffffff",
+        [EMBLEM] = "00ffff",
+    }
 }
 
-local PALETTE_HUMBLER =  {
-    [PANTS]  = "5C4176",
-    [SHIRT]  = "FFC100",
-    [GLOVES] = "333333",
-    [SHOES]  = "E894FF",
-    [HAIR]   = "8D6734",
-    [SKIN]   = "fec179",
-    [CAP]    = "AA01BC",
-    [EMBLEM] = "FFC100",
+local PALETTES_JUMBLER =  {
+    {
+        name = "Default",
+        [PANTS]  = "00ffff",
+        [SHIRT]  = "00ff00",
+        [GLOVES] = "2B3A59",
+        [SHOES]  = "333333",
+        [HAIR]   = "730600",
+        [SKIN]   = "fec179",
+        [CAP]    = "00ffff",
+        [EMBLEM] = "00ff00",
+    },{
+        name = "John Nimbus",
+        [PANTS]  = "0000ff",
+        [SHIRT]  = "000000",
+        [GLOVES] = "00ff00",
+        [SHOES]  = "ffffff",
+        [HAIR]   = "00ffff",
+        [SKIN]   = "ffff00",
+        [CAP]    = "ffffff",
+        [EMBLEM] = "ffff00",
+    }
 }
-local PALETTE_PIRATE = {
-    [PANTS]  = "1e47c6",
-    [SHIRT]  = "ddaa00",
-    [GLOVES] = "7f3900",
-    [SHOES]  = "ff0000",
-    [HAIR]   = "000000",
-    [SKIN]   = "fec179",
-    [CAP]    = "1e47c6",
-    [EMBLEM] = "ddaa00",
-}
-local PALETTE_BIKER =  {
-    [PANTS]  = "ff8590",
-    [SHIRT]  = "4a93ff",
-    [GLOVES] = "ffff00",
-    [SHOES]  = "004779",
-    [HAIR]   = "8D6734",
-    [SKIN]   = "fec179",
-    [CAP]    = "ffff00",
-    [EMBLEM] = "0059ff",
+
+local PALETTES_HUMBLER =  {
+    {
+        name = "Default",
+        [PANTS]  = "5C4176",
+        [SHIRT]  = "FFC100",
+        [GLOVES] = "333333",
+        [SHOES]  = "E894FF",
+        [HAIR]   = "8D6734",
+        [SKIN]   = "fec179",
+        [CAP]    = "AA01BC",
+        [EMBLEM] = "FFC100",
+    },{
+        name = "Biker",
+        [PANTS]  = "ff8590",
+        [SHIRT]  = "4a93ff",
+        [GLOVES] = "ffff00",
+        [SHOES]  = "004779",
+        [HAIR]   = "8D6734",
+        [SKIN]   = "fec179",
+        [CAP]    = "ffff00",
+        [EMBLEM] = "0059ff",
+    },{
+        name = "Pirate",
+        [PANTS]  = "1e47c6",
+        [SHIRT]  = "ddaa00",
+        [GLOVES] = "7f3900",
+        [SHOES]  = "ff0000",
+        [HAIR]   = "000000",
+        [SKIN]   = "fec179",
+        [CAP]    = "1e47c6",
+        [EMBLEM] = "ddaa00",
+    }
 }
 
 local ANIMTABLE_FUMBLER = {
     --[CHAR_ANIM_RUNNING] = "fumbler_run",
-    [CHAR_ANIM_SINGLE_JUMP] = "fumbler_single_jump",
-    [_G.charSelect.CS_ANIM_MENU] = "mario_anim_cs_menu",
+    [_G.charSelect.CS_ANIM_MENU]            = "mario_anim_cs_menu",
+    [CHAR_ANIM_SINGLE_JUMP]                 = "fumbler_single_jump",
+    [CHAR_ANIM_GROUND_POUND_LANDING]        = "fumbler_gp_end",
+    [CHAR_ANIM_TRIPLE_JUMP_GROUND_POUND]    = "fumbler_gp_start",
+    [CHAR_ANIM_START_GROUND_POUND]          = "fumbler_gp_start",
+    [CHAR_ANIM_GROUND_POUND]                = "fumbler_gp",
 }
 local ANIMTABLE_JUMBLER = {
-    [CHAR_ANIM_SINGLE_JUMP] = "jumbler_single_jump",
-    [_G.charSelect.CS_ANIM_MENU] = "mario_anim_cs_menu",
+    [_G.charSelect.CS_ANIM_MENU]            = "mario_anim_cs_menu",
+    [CHAR_ANIM_SINGLE_JUMP]                 = "jumbler_single_jump",
+}
+local EYES_FUMBLER = {
+    [_G.charSelect.CS_ANIM_MENU]            = MARIO_EYES_LOOK_RIGHT,
+    [CHAR_ANIM_IDLE_HEAD_LEFT]              = MARIO_EYES_LOOK_RIGHT,
+    [CHAR_ANIM_IDLE_HEAD_RIGHT]             = MARIO_EYES_LOOK_LEFT,
+    [CHAR_ANIM_GROUND_POUND_LANDING]        = MARIO_EYES_DEAD,
+    [CHAR_ANIM_TRIPLE_JUMP_GROUND_POUND]    = MARIO_EYES_DEAD,
+    [CHAR_ANIM_START_GROUND_POUND]          = MARIO_EYES_DEAD,
+    [CHAR_ANIM_GROUND_POUND]                = MARIO_EYES_DEAD,
+    [CHAR_ANIM_SOFT_BACK_KB]                = MARIO_EYES_DEAD,
+    [CHAR_ANIM_SOFT_FRONT_KB]               = MARIO_EYES_DEAD,
+    [CHAR_ANIM_BACKWARD_KB]                 = MARIO_EYES_DEAD,
+    [CHAR_ANIM_FORWARD_KB]                  = MARIO_EYES_DEAD,
+    [CHAR_ANIM_BACKWARDS_WATER_KB]          = MARIO_EYES_DEAD,
+    [CHAR_ANIM_WATER_FORWARD_KB]            = MARIO_EYES_DEAD,
+    [CHAR_ANIM_BACKWARD_AIR_KB]             = MARIO_EYES_DEAD,
+    [CHAR_ANIM_AIR_FORWARD_KB]              = MARIO_EYES_DEAD,
+    [CHAR_ANIM_FALL_OVER_BACKWARDS]         = MARIO_EYES_DEAD,
+    [CHAR_ANIM_STAR_DANCE]                  = function(m, frame) if frame > 37 then return MARIO_EYES_LOOK_UP end end,
+    [CHAR_ANIM_WATER_STAR_DANCE]            = function(m, frame) if frame > 68 then return MARIO_EYES_LOOK_UP end end,
+}
+local HANDS_FUMBLER = {
+    [CHAR_ANIM_TRIPLE_JUMP_GROUND_POUND]    = function(m, frame) if frame < 7 then return MARIO_HAND_OPEN end end,
+    [CHAR_ANIM_START_GROUND_POUND]          = function(m, frame) if frame < 7 then return MARIO_HAND_OPEN end end,
+    [CHAR_ANIM_TWIRL]                       = MARIO_HAND_OPEN,
 }
 
 local HEALTH_METER_MARIO = {
     label = {
-        left = get_texture_info("mario-hp-left"),
-        right = get_texture_info("mario-hp-right"),
+        left = get_texture_info("texture_power_meter_left_side"),
+        right = get_texture_info("texture_power_meter_right_side"),
     },
     pie = {
-        [1] = get_texture_info("char_select_custom_meter_pie1"),
-        [2] = get_texture_info("char_select_custom_meter_pie2"),
-        [3] = get_texture_info("char_select_custom_meter_pie3"),
-        [4] = get_texture_info("char_select_custom_meter_pie4"),
-        [5] = get_texture_info("char_select_custom_meter_pie5"),
-        [6] = get_texture_info("char_select_custom_meter_pie6"),
-        [7] = get_texture_info("char_select_custom_meter_pie7"),
-        [8] = get_texture_info("char_select_custom_meter_pie8"),
+        [1] = get_texture_info("texture_power_meter_one_segments"),
+        [2] = get_texture_info("texture_power_meter_two_segments"),
+        [3] = get_texture_info("texture_power_meter_three_segments"),
+        [4] = get_texture_info("texture_power_meter_four_segments"),
+        [5] = get_texture_info("texture_power_meter_five_segments"),
+        [6] = get_texture_info("texture_power_meter_six_segments"),
+        [7] = get_texture_info("texture_power_meter_seven_segments"),
+        [8] = get_texture_info("texture_power_meter_full"),
     }
 }
 local HEALTH_METER_LUIGI = {
@@ -174,22 +242,24 @@ local HEALTH_METER_LUIGI = {
 --}
 
 if _G.charSelectExists then
-    CT_FUMBLER = _G.charSelect.character_add("Fumbler", { "What a fumble,,, that's embarassing.",
-        ""}, "JerThePear", {r = 255, g = 255, b = 255}, E_MODEL_FUMBLER, CT_MARIO, TEX_FUMBLER)
-    CT_JUMBLER = _G.charSelect.character_add("Jumbler", { "The fumbler's icy brother. Where's Jumble Jr?",
-        ""}, "JerThePear", {r = 000, g = 255, b = 255}, E_MODEL_JUMBLER, CT_LUIGI, TEX_JUMBLER)
+    CT_FUMBLER = _G.charSelect.character_add("Fumbler", "What a fumble,,, that's embarassing.", "JerThePear", {r = 255, g = 255, b = 255}, E_MODEL_FUMBLER, CT_MARIO, TEX_FUMBLER)
+    CT_JUMBLER = _G.charSelect.character_add("Jumbler", "The Fumbler's icy brother. Where's Jumble Jr?", "JerThePear", {r = 000, g = 255, b = 255}, E_MODEL_JUMBLER, CT_LUIGI, TEX_JUMBLER)
 end
 
 local CSloaded = false
 local function on_character_select_load()
-    _G.charSelect.character_add_palette_preset(E_MODEL_FUMBLER, PALETTE_FUMBLER, "Default")
-    _G.charSelect.character_add_palette_preset(E_MODEL_FUMBLER, PALETTE_CHARITY, "Crazy Kicker")
-    _G.charSelect.character_add_animations(E_MODEL_FUMBLER, ANIMTABLE_FUMBLER)
+    for i = 1, #PALETTES_FUMBLER do
+        _G.charSelect.character_add_palette_preset(E_MODEL_FUMBLER, PALETTES_FUMBLER[i], PALETTES_FUMBLER[i].name)
+	end
+    _G.charSelect.character_add_animations(E_MODEL_FUMBLER, ANIMTABLE_FUMBLER, EYES_FUMBLER, HANDS_FUMBLER)
+    --_G.charSelect.character_add_voice(E_MODEL_FUMBLER, VOICETABLE_FUMBLER)
     --_G.charSelect.character_add_caps(E_MODEL_FUMBLER, CAP_FUMBLER)
     _G.charSelect.character_add_health_meter(CT_FUMBLER, HEALTH_METER_MARIO)
 
-    _G.charSelect.character_add_palette_preset(E_MODEL_JUMBLER, PALETTE_JUMBLER, "Default")
-    _G.charSelect.character_add_animations(E_MODEL_JUMBLER, ANIMTABLE_JUMBLER)
+    for i = 1, #PALETTES_JUMBLER do
+        _G.charSelect.character_add_palette_preset(E_MODEL_JUMBLER, PALETTES_JUMBLER[i], PALETTES_JUMBLER[i].name)
+	end
+    _G.charSelect.character_add_animations(E_MODEL_JUMBLER, ANIMTABLE_JUMBLER, EYES_FUMBLER)
     _G.charSelect.character_add_health_meter(CT_JUMBLER, HEALTH_METER_LUIGI)
 
     if CT_J_WARIO ~= nil then
@@ -203,9 +273,9 @@ local function on_character_select_load()
         [_G.charSelect.CS_ANIM_MENU] = "JWAR_MENU",
     }
 
-    _G.charSelect.character_add_palette_preset(E_MODEL_HUMBLER, PALETTE_HUMBLER, "Default")
-    _G.charSelect.character_add_palette_preset(E_MODEL_HUMBLER, PALETTE_PIRATE, "Sailor")
-    _G.charSelect.character_add_palette_preset(E_MODEL_HUMBLER, PALETTE_BIKER, "Biker")
+    for i = 1, #PALETTES_HUMBLER do
+        _G.charSelect.character_add_palette_preset(E_MODEL_HUMBLER, PALETTES_HUMBLER[i], PALETTES_HUMBLER[i].name)
+	end
     _G.charSelect.character_add_animations(E_MODEL_HUMBLER, ANIMTABLE_HUMBLER)
     _G.charSelect.character_add_voice(E_MODEL_HUMBLER, VOICETABLE_HUMBLER)
     _G.charSelect.character_add_costume(CT_J_WARIO, "Humbler", { "A real humble guy. Hungry for coins to donate to charities.",
@@ -217,11 +287,13 @@ end
 
 local function on_character_sound(m, sound)
     if not CSloaded then return end
+    --if _G.charSelect.character_get_voice(m) == VOICETABLE_FUMBLER then return _G.charSelect.voice.sound(m, sound) end
     if _G.charSelect.character_get_voice(m) == VOICETABLE_HUMBLER then return _G.charSelect.voice.sound(m, sound) end
 end
 
 local function on_character_snore(m)
     if not CSloaded then return end
+    --if _G.charSelect.character_get_voice(m) == VOICETABLE_FUMBLER then return _G.charSelect.voice.snore(m) end
     if _G.charSelect.character_get_voice(m) == VOICETABLE_HUMBLER then return _G.charSelect.voice.snore(m) end
 end
 

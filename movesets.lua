@@ -215,19 +215,23 @@ local function act_moving_gp(m)
 
     local stepResult = common_air_action_step(m, landingAction, MARIO_ANIM_TRIPLE_JUMP_GROUND_POUND, AIR_STEP_NONE)
     if stepResult == AIR_STEP_LANDED then
-        if should_get_stuck_in_ground(m) ~= 0 then
-            queue_rumble_data_mario(m, 5, 80)
-            play_character_sound(m, CHAR_SOUND_OOOF2)
-            m.particleFlags = m.particleFlags | PARTICLE_MIST_CIRCLE
-            set_mario_action(m, ACT_BUTT_STUCK_IN_GROUND, 0)
-        else
-            play_mario_heavy_landing_sound(m, SOUND_ACTION_TERRAIN_HEAVY_LANDING)
-            m.particleFlags = m.particleFlags | PARTICLE_MIST_CIRCLE | PARTICLE_HORIZONTAL_STAR
-            if e.particleArg == E_MODEL_RED_FLAME then
-                check_fall_damage(m, ACT_HARD_BACKWARD_GROUND_KB)
+        if landingAction == ACT_GROUND_POUND_LAND then
+            if should_get_stuck_in_ground(m) ~= 0 then
+                queue_rumble_data_mario(m, 5, 80)
+                play_character_sound(m, CHAR_SOUND_OOOF2)
+                m.particleFlags = m.particleFlags | PARTICLE_MIST_CIRCLE
+                set_mario_action(m, ACT_BUTT_STUCK_IN_GROUND, 0)
+            else
+                play_mario_heavy_landing_sound(m, SOUND_ACTION_TERRAIN_HEAVY_LANDING)
+                m.particleFlags = m.particleFlags | PARTICLE_MIST_CIRCLE | PARTICLE_HORIZONTAL_STAR
+                if e.particleArg == E_MODEL_RED_FLAME then
+                    check_fall_damage(m, ACT_HARD_BACKWARD_GROUND_KB)
+                end
             end
+            set_camera_shake_from_hit(SHAKE_GROUND_POUND)
+        else
+            play_mario_landing_sound(m, SOUND_ACTION_TERRAIN_LANDING)
         end
-        set_camera_shake_from_hit(SHAKE_GROUND_POUND)
     end
     
     m.actionTimer = m.actionTimer + 1
@@ -326,7 +330,10 @@ local function act_custom_longjump(m)
     m.vel.y = m.vel.y + 2
     --m.faceAngle.y = m.intendedYaw - approach_s32(convert_s16(m.intendedYaw - m.faceAngle.y), 0, 0x100, 0x100)
 
-    common_air_action_step(m, ACT_LONG_JUMP_LAND, CHAR_ANIM_SLOW_LONGJUMP, AIR_STEP_CHECK_LEDGE_GRAB)
+    local stepResult = common_air_action_step(m, ACT_LONG_JUMP_LAND, CHAR_ANIM_SLOW_LONGJUMP, AIR_STEP_CHECK_LEDGE_GRAB)
+    if stepResult == AIR_STEP_LANDED then
+        play_mario_landing_sound(m, SOUND_ACTION_TERRAIN_LANDING)
+    end
 
     m.actionTimer = m.actionTimer + 1
     return 0
@@ -556,7 +563,7 @@ local function fumbler_update(m)
         end
     -- hud calcs
         if e.comboTimer > 0 then
-            if (m.pos.y == m.floorHeight) then
+            if m.pos.y == m.floorHeight and (m.action ~= ACT_SLIDE_KICK_SLIDE and m.action ~= ACT_BUTT_SLIDE) then
                 e.comboTimer = e.comboTimer - 1
             end
             if comboEndActions[m.action] then

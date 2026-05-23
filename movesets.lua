@@ -3,45 +3,71 @@ local ACT_GP_CANCEL = allocate_mario_action(ACT_GROUP_AIRBORNE | ACT_FLAG_AIR | 
 local ACT_GP_JUMP = allocate_mario_action(ACT_GROUP_AIRBORNE | ACT_FLAG_AIR)
 local ACT_CUSTOM_LONGJUMP = allocate_mario_action(ACT_GROUP_AIRBORNE | ACT_FLAG_AIR | ACT_FLAG_ALLOW_VERTICAL_WIND_ACTION)
 local ACT_FUMBLER_SPIN = allocate_mario_action(ACT_GROUP_AIRBORNE | ACT_FLAG_AIR | ACT_FLAG_ATTACKING | ACT_FLAG_ALLOW_VERTICAL_WIND_ACTION)
+local ACT_FUMBLER_TRICK = allocate_mario_action(ACT_GROUP_AIRBORNE | ACT_FLAG_AIR | ACT_FLAG_ALLOW_VERTICAL_WIND_ACTION)
+local ACT_JUMBLER_ROCKET_CHARGE = allocate_mario_action(ACT_GROUP_AIRBORNE | ACT_FLAG_AIR)
+local ACT_JUMBLER_ROCKET = allocate_mario_action(ACT_GROUP_AIRBORNE | ACT_FLAG_AIR | ACT_FLAG_ATTACKING | ACT_FLAG_ALLOW_VERTICAL_WIND_ACTION)
 
 local E_MODEL_ICE_SPARKLES = smlua_model_util_get_id('ice_sparkle_geo')
 local TEX_FUMBLER_COMBO = get_texture_info("fumbler_combo")
+local TEX_JUMBLER_DICE = get_texture_info("jumbler_dice")
+local TEX_JUMBLER_ITEM = get_texture_info("jumbler_item")
+local TEX_JUMBLER_Y_BUTTON = get_texture_info("jumbler_y_button")
 local SOUND_FUMBLER_COMBO = audio_stream_load("fumbler_combo_1.ogg")
 local SOUND_FUMBLER_COMBO_COMPLETE = audio_stream_load("fumbler_combo_2.ogg")
 
 local stepFrame = 5
+local itemSpinTime = 10
 local ANGLE_QUEUE_SIZE = 9
 local SPIN_TIMER_SUCCESSFUL_INPUT = 4
 
+local JUMBLE_ITEM_1UP           = 1
+local JUMBLE_ITEM_5UP           = 2
+local JUMBLE_ITEM_STARMAN       = 3
+local JUMBLE_ITEM_KOOPA         = 4
+local JUMBLE_ITEM_COIN_10       = 5
+local JUMBLE_ITEM_COIN_30       = 6
+local JUMBLE_ITEM_COIN_50       = 7
+local JUMBLE_ITEM_CAPS          = 8
+local JUMBLE_ITEM_TORNADO       = 9
+local JUMBLE_ITEM_CRAZED_CRATE  = 10
+
 local gExtraStates = {}
-for i = 0, MAX_PLAYERS - 1 do
+
+for i = 0, (MAX_PLAYERS - 1) do
     gExtraStates[i] = {
         prevActionTimer = 0,
-        canGPCancel = true,
-        canTwirl = true,
+        canGPCancel = false,
+        canTwirl = false,
         extActionArg = 0,
         particleArg = 0,
         perfectTimer = 0,
         gpJumpType = 0,
-        combo = 0,
-        comboTimer = 0,
-        opacity = 100,
-        hudScaleX = 0,
-        hudScaleY = 0,
-        hudShakeX = 0,
-        hudShakeY = 0,
+        bank = mod_storage_load_number("bank"),
         gfxX = 0,
         gfxY = 0,
         gfxZ = 0,
+        -- hud
+        combo = 0,
+        comboTimer = 0,
+        jumbleItem = 0,
+        jumbleTimer = 0,
+        jumbleLight = 0,
+        opacity = 0,
+        offset = 0,
+        hudSquish = 0,
+        hudShakeX = 0,
+        hudShakeY = 0,
+        -- humble shop
+        humbleShopOpen = false,
+        -- spin
         stickLastAngle = 0,
         spinDirection = 0,
         spinBufferTimer = 0,
         spinInput = 0,
         lastStickMag = 0,
+        angleDeltaQueue = {}
     }
-    local e = gExtraStates[i]
-    e.angleDeltaQueue = {}
-    for j=0,(ANGLE_QUEUE_SIZE-1) do e.angleDeltaQueue[j] = 0 end
+    for j=0,(ANGLE_QUEUE_SIZE-1) do gExtraStates[i].angleDeltaQueue[j] = 0 end
 end
 
 -- BEHAVIOURS --
@@ -79,9 +105,8 @@ local function do_fumbler_combo()
     local e = gExtraStates[0]
     e.combo = e.combo + 1
     e.comboTimer = 40
-    e.opacity = 100
-    e.hudScaleX = 0.5
-    e.hudScaleY = -0.5
+    e.opacity = 255
+    e.hudSquish = 0.5
 
     if e.combo == 7 then
         audio_stream_play(SOUND_FUMBLER_COMBO_COMPLETE, true, pause_check())
@@ -95,18 +120,38 @@ local function do_fumbler_combo()
         end
         audio_stream_set_frequency(SOUND_FUMBLER_COMBO, pitch)
     end
+
+    if e.combo < 8 then
+        e.bank = e.bank + e.combo
+    else
+        e.bank = e.bank + 7
+    end
+    mod_storage_save_number("bank", e.bank) -- remove later if I want fumbling to lose the combo's coins
 end
 
 local function do_fumble()
     local m = gMarioStates[0]
     local e = gExtraStates[0]
     e.combo = -1
-    e.opacity = 100
+    e.opacity = 255
     e.comboTimer = 20
-    e.hudScaleX = -0.5
-    e.hudScaleY = 0.5
+    e.hudSquish = -0.5
 
     play_sound(SOUND_MENU_CAMERA_BUZZ, m.marioObj.header.gfx.cameraToObject)
+end
+
+local function do_jumble()
+    local m = gMarioStates[0]
+    local e = gExtraStates[0]
+
+    --e.jumbleItem = JUMBLE_ITEM_STARMAN
+    e.jumbleItem = math.random(1, 10)
+    e.opacity = 255
+    e.hudSquish = -0.5
+
+    if m.playerIndex == 0 then
+        play_sound(SOUND_GENERAL_BUBBLES, m.marioObj.header.gfx.cameraToObject)
+    end
 end
 
 function mario_update_spin_input(m)
@@ -250,6 +295,7 @@ local function act_gp_cancel(m)
         if e.prevActionTimer < 10 then
             e.extActionArg = 0
             play_character_sound(m, CHAR_SOUND_HOOHOO)
+            play_sound(SOUND_GENERAL_SWISH_WATER, m.marioObj.header.gfx.cameraToObject)
         else
             e.extActionArg = 1
             play_character_sound(m, CHAR_SOUND_TWIRL_BOUNCE)
@@ -343,6 +389,8 @@ hook_mario_action(ACT_CUSTOM_LONGJUMP, act_custom_longjump)
 local function act_fumbler_spin(m)
     local e = gExtraStates[0]
 
+    m.marioBodyState.handState = MARIO_HAND_OPEN
+
     if m.actionTimer == 0 then
         play_character_sound(m, CHAR_SOUND_YAHOO_WAHA_YIPPEE)
         m.vel.y = 10
@@ -353,8 +401,10 @@ local function act_fumbler_spin(m)
     m.vel.y = m.vel.y + 2.5
     --m.faceAngle.y = m.intendedYaw - approach_s32(convert_s16(m.intendedYaw - m.faceAngle.y), 0, 0x100, 0x100)
 
-    common_air_action_step(m, ACT_FREEFALL_LAND, CHAR_ANIM_TWIRL, AIR_STEP_CHECK_LEDGE_GRAB)
-    if e.canGPCancel and m.input & INPUT_B_PRESSED ~= 0 then
+    local stepResult = common_air_action_step(m, ACT_FREEFALL_LAND, CHAR_ANIM_TWIRL, AIR_STEP_CHECK_LEDGE_GRAB)
+    if m.input & INPUT_Z_PRESSED ~= 0 then
+        set_mario_action(m, ACT_GROUND_POUND, 0)
+    elseif e.canGPCancel and m.input & INPUT_B_PRESSED ~= 0 then
         set_mario_action(m, ACT_DIVE, 0)
         m.faceAngle.y = m.intendedYaw
         m.forwardVel = 20
@@ -375,6 +425,122 @@ local function act_fumbler_spin(m)
 end
 hook_mario_action(ACT_FUMBLER_SPIN, act_fumbler_spin)
 
+local function act_fumbler_trick(m)
+    local e = gExtraStates[0]
+
+    m.marioBodyState.handState = MARIO_HAND_OPEN
+
+    if m.actionTimer == 0 then
+        play_character_sound(m, CHAR_SOUND_HAHA)
+        m.particleFlags = m.particleFlags | PARTICLE_VERTICAL_STAR
+        do_fumbler_combo()
+    end
+
+    local stepResult = common_air_action_step(m, ACT_BUTT_SLIDE, CHAR_ANIM_BREAKDANCE, AIR_STEP_NONE)
+    if m.actionTimer > 10 then
+        m.action = ACT_BUTT_SLIDE_AIR
+    end
+
+    set_mario_anim_with_accel(m, CHAR_ANIM_BREAKDANCE, 0x15000)
+
+    m.actionTimer = m.actionTimer + 1
+end
+hook_mario_action(ACT_FUMBLER_TRICK, act_fumbler_trick)
+
+function act_jumbler_rocket_charge(m)
+    local e = gExtraStates[m.playerIndex]
+    local s = gStarmanStates[m.playerIndex]
+    local exitType = math.random(0,3)
+    if s.hasStarman then
+        exitType = 3
+    end
+
+    if m.actionTimer <= 1 then
+        e.gfxY = m.faceAngle.y
+    end
+
+	if m.actionTimer % 10 == 0 and m.actionTimer < 40 then
+	    set_mario_particle_flags(m, PARTICLE_MIST_CIRCLE, 0)
+	    play_sound(SOUND_OBJ_FLAME_BLOWN, m.marioObj.header.gfx.cameraToObject)
+        m.vel.y = m.vel.y + 30
+    else
+        m.vel.y = m.vel.y / 2 - m.actionTimer / 5
+	end
+
+	if m.forwardVel > 2 then
+	    mario_set_forward_vel(m, m.forwardVel - 0.05 * (m.actionTimer / 2))
+	else
+	    mario_set_forward_vel(m, 2)
+	end
+
+	local stepResult = perform_air_step(m, 0)
+    if stepResult == AIR_STEP_LANDED then
+        m.faceAngle.y = e.gfxY
+        set_mario_action(m, ACT_FREEFALL_LAND, 0)
+    elseif stepResult == AIR_STEP_HIT_WALL then
+        set_mario_action(m, ACT_AIR_HIT_WALL, 0)
+    end
+
+    if m.input & INPUT_A_DOWN == 0 then
+        m.faceAngle.y = e.gfxY
+	    set_mario_action(m, ACT_JUMBLER_ROCKET, exitType)
+	end
+
+	set_mario_animation(m, MARIO_ANIM_START_CROUCHING)
+	set_anim_to_frame(m, 2)
+
+    if m.input & INPUT_NONZERO_ANALOG ~= 0 then
+        e.gfxY = m.intendedYaw - approach_s32(convert_s16(m.intendedYaw - e.gfxY), 0, 0x400, 0x400)
+    end
+
+    m.marioObj.header.gfx.angle.y = e.gfxY
+    if m.actionTimer < 75 then m.actionTimer = m.actionTimer + 1 end
+	return 0
+end
+hook_mario_action(ACT_JUMBLER_ROCKET_CHARGE, act_jumbler_rocket_charge)
+
+local function act_jumbler_rocket(m)
+    local e = gExtraStates[0]
+    local rocketArgs = {
+        [0] = {sound = CHAR_SOUND_DOH, vel = 20, particle = PARTICLE_MIST_CIRCLE},
+        [1] = {sound = CHAR_SOUND_YAHOO, vel = 60, particle = PARTICLE_MIST_CIRCLE},
+        [2] = {sound = CHAR_SOUND_YAHOO, vel = 60, particle = PARTICLE_MIST_CIRCLE},
+        [3] = {sound = CHAR_SOUND_SO_LONGA_BOWSER, vel = 120, particle = PARTICLE_MIST_CIRCLE},
+    }
+
+    m.marioBodyState.handState = MARIO_HAND_OPEN
+
+    if m.actionTimer == 1 then
+        play_character_sound(m, rocketArgs[m.actionArg].sound)
+        stop_sound(SOUND_OBJ_FLAME_BLOWN, m.marioObj.header.gfx.cameraToObject)
+        play_sound(SOUND_OBJ_CANNON4, m.marioObj.header.gfx.cameraToObject)
+        set_mario_particle_flags(m, rocketArgs[m.actionArg].particle, 0)
+        m.forwardVel = rocketArgs[m.actionArg].vel
+        m.vel.y = 30
+    elseif m.actionTimer > 2 then
+        if m.actionArg == 3 then
+            set_mario_particle_flags(m, PARTICLE_FIRE, 0)
+        else
+            set_mario_particle_flags(m, PARTICLE_DUST, 0)
+        end
+        if m.actionArg ~= 0 then
+            play_sound(SOUND_AIR_BOWSER_SPIT_FIRE, m.marioObj.header.gfx.cameraToObject)
+        end
+    end
+
+    local stepResult = common_air_action_step(m, ACT_DIVE_SLIDE, CHAR_ANIM_SWIM_PART2, AIR_STEP_CHECK_LEDGE_GRAB)
+    if stepResult == AIR_STEP_HIT_WALL then
+        set_mario_action(m, ACT_BACKWARD_AIR_KB, 0)
+        set_mario_particle_flags(m, PARTICLE_VERTICAL_STAR, 0)
+    end
+
+    set_anim_to_frame(m, 0)
+
+    m.actionTimer = m.actionTimer + 1
+    return 0
+end
+hook_mario_action(ACT_JUMBLER_ROCKET, act_jumbler_rocket)
+
 -- UPDATES --
 
 local fumblerSpinTable = {
@@ -391,6 +557,8 @@ local fumblerSpinTable = {
     [ACT_GP_JUMP] = true,
     [ACT_WALL_KICK_AIR] = true,
     [ACT_FORWARD_ROLLOUT] = true,
+    [ACT_SPECIAL_TRIPLE_JUMP] = true,
+    [ACT_TWIRLING] = true,
 }
 
 local perfectActions = {
@@ -462,7 +630,6 @@ local function fumbler_update(m)
             else
                 m.pos.y = m.pos.y + 20
                 set_mario_action(m, ACT_GP_JUMP, 0)
-                --m.faceAngle.y = m.intendedYaw
             end
         end
     -- lava boost particles
@@ -526,7 +693,7 @@ local function fumbler_update(m)
                 e.gfxY = e.gfxY * 0.8
                 m.marioObj.header.gfx.angle.y = m.faceAngle.y + e.gfxY
 
-                if e.gfxY == 0x15000 * 0.8 and m.prevAction == ACT_FREEFALL_LAND then
+                if e.gfxY == 0x15000 * 0.8 then
                     do_fumbler_combo()
                 end
             end
@@ -551,6 +718,10 @@ local function fumbler_update(m)
             m.marioObj.header.gfx.scale.y = 1 - e.gfxZ
             m.marioObj.header.gfx.scale.z = 1 + (e.gfxZ * 2)
             m.marioObj.header.gfx.pos.y = m.pos.y + (e.gfxZ * 100)
+        end
+    -- slide trick
+        if m.action == ACT_BUTT_SLIDE_AIR and m.actionTimer < 4 and m.input & INPUT_Z_PRESSED ~= 0 then
+            set_mario_action(m, ACT_FUMBLER_TRICK, 0)
         end
 
 
@@ -577,8 +748,7 @@ local function fumbler_update(m)
                 e.combo = 0
             end
         end
-        e.hudScaleX = math.lerp(e.hudScaleX, 0, 0.3)
-        e.hudScaleY = math.lerp(e.hudScaleY, 0, 0.3)
+        e.hudSquish = math.lerp(e.hudSquish, 0, 0.3)
         if e.combo >= 7 then
             e.hudShakeX = math.random(6 - e.combo, -6 + e.combo)
             e.hudShakeY = math.random(6 - e.combo, -6 + e.combo)
@@ -652,10 +822,10 @@ local function fumbler_hud()
     local m = gMarioStates[0]
     local e = gExtraStates[0]
     local comboSprite = 1
-    local ScaleX = 2 + e.hudScaleX
-    local ScaleY = 2 + e.hudScaleY
-    local PosX = 64 * e.hudScaleX
-    local PosY = 64 * e.hudScaleY
+    local ScaleX = 2 + e.hudSquish
+    local ScaleY = 2 - e.hudSquish
+    local PosX = 64 * e.hudSquish
+    local PosY = 64 * (0 - e.hudSquish)
 
     if e.combo == -1 then
         comboSprite = 7
@@ -665,7 +835,7 @@ local function fumbler_hud()
         comboSprite = 6
     end
 
-    djui_hud_set_color(255, 255, 255, (e.opacity/100)*255)
+    djui_hud_set_color(255, 255, 255, e.opacity)
     djui_hud_set_resolution(RESOLUTION_DJUI)
 
     djui_hud_render_texture_tile(TEX_FUMBLER_COMBO, 80 - PosX + e.hudShakeX, 150 - PosY + e.hudShakeY, ScaleX, ScaleY, comboSprite*128, 0, 128, 128)
@@ -674,28 +844,42 @@ local function fumbler_hud()
     local TimerHeight = 20
     local inset = 8
 
-    djui_hud_set_color(0, 0, 0, (e.opacity/100)*255)
+    djui_hud_set_color(0, 0, 0, e.opacity)
     djui_hud_render_rect(80, 410, TimerWidth, TimerHeight)
 
     djui_hud_set_color(255, (e.comboTimer/40)*255, (e.comboTimer/40)*255, (e.opacity/100)*255)
     if e.combo ~= -1 then
         djui_hud_render_rect(80 + inset, 410 + inset, (e.comboTimer/40)*(TimerWidth - (2*inset)), TimerHeight - (2*inset))
     end
-
-    --djui_hud_set_color(255, 0, 0, 255)
-    --djui_hud_print_text(string.format("opacity: "..e.opacity..""), 1600, 150, 1)
-    --djui_hud_print_text(string.format("comboTimer: "..e.comboTimer..""), 1600, 175, 1)
-    --djui_hud_print_text(string.format("comboSprite: "..comboSprite..""), 1600, 200, 1)
 end
+
+local jumblerJumpTable = {
+    [ACT_JUMP] = true,
+    [ACT_DOUBLE_JUMP] = true,
+    [ACT_TRIPLE_JUMP] = true,
+    [ACT_BACKFLIP] = true,
+    [ACT_SIDE_FLIP] = true,
+    [ACT_WALL_KICK_AIR] = false,
+}
 
 local function jumbler_update(m)
     local e = gExtraStates[m.playerIndex]
 
     e.particleArg = E_MODEL_ICE_SPARKLES
+    mario_update_spin_input(m)
+
+    if m.pos.y == m.floorHeight then
+        e.canGPCancel = true
+        e.canTwirl = true
+    end
 
     -- dust
         if get_global_timer() % stepFrame == 0 and m.forwardVel > 29 and m.action == ACT_WALKING then
             m.particleFlags = m.particleFlags | PARTICLE_DUST
+        end
+    -- torso tilt
+        if m.action == ACT_WALKING then
+            m.marioBodyState.torsoAngle.x = 0
         end
     -- sprungflip (moving gp)
         if m.action == ACT_DIVE_SLIDE and m.input & INPUT_Z_PRESSED ~= 0 then
@@ -712,31 +896,120 @@ local function jumbler_update(m)
         if m.pos.y == m.floorHeight then
             e.canGPCancel = true
         end
+    -- GP jump
+        if m.action == ACT_GROUND_POUND_LAND and m.input & INPUT_A_PRESSED ~= 0 then
+            m.pos.y = m.pos.y + 20
+            set_mario_action(m, ACT_GP_JUMP, 0)
+        end
     -- GP fix
         if m.action == ACT_GROUND_POUND then
             m.marioObj.header.gfx.angle.y = m.faceAngle.y
+        end
+    -- sliding
+        if  m.action == ACT_SLIDE_KICK_SLIDE or m.action == ACT_BUTT_SLIDE then
+            m.slideVelX = m.slideVelX * 1.02
+            m.slideVelZ = m.slideVelZ * 1.02
+        end
+        if m.action == ACT_GROUND_POUND_LAND and m.floor.normal.y < 0.9 then
+            set_mario_action(m, ACT_BUTT_SLIDE, 0)
+        end
+        if m.action == ACT_BUTT_SLIDE and m.prevAction == ACT_GROUND_POUND_LAND and m.actionTimer < 2 and m.forwardVel < 100 then
+            m.slideVelX = (m.slideVelX/m.floor.normal.y)*4
+            m.slideVelZ = (m.slideVelZ/m.floor.normal.y)*4
         end
     -- syrup special swimming
         if m.action == ACT_FLUTTER_KICK and m.marioObj.header.gfx.animInfo.animID == MARIO_ANIM_FLUTTERKICK then
             m.particleFlags = m.particleFlags | PARTICLE_PLUNGE_BUBBLE
         end
-end
+    -- spin
+        if e.spinInput ~= 0 and fumblerSpinTable[m.action] and e.canTwirl then
+            set_mario_action(m, ACT_FUMBLER_SPIN, 0)
+            e.canTwirl = false
+        end
+        if m.action == ACT_FUMBLER_SPIN then
+            m.marioObj.header.gfx.scale.x = 1 + (e.gfxZ * 2)
+            m.marioObj.header.gfx.scale.y = 1 - e.gfxZ
+            m.marioObj.header.gfx.scale.z = 1 + (e.gfxZ * 2)
+            m.marioObj.header.gfx.pos.y = m.pos.y + (e.gfxZ * 100)
+        end
+    -- rocket
+        if fumblerSpinTable[m.action] and m.input & INPUT_A_PRESSED ~= 0 and m.vel.y < 10 and m.pos.y > (m.floorHeight + 50) then
+            set_mario_action(m, ACT_JUMBLER_ROCKET_CHARGE, 0)
+        end
 
-local jumblerJumpTable = {
-    [ACT_JUMP] = true,
-    [ACT_DOUBLE_JUMP] = true,
-    [ACT_TRIPLE_JUMP] = true,
-    [ACT_BACKFLIP] = true,
-    [ACT_SIDE_FLIP] = true
-}
+    -- hud calcs
+        if e.jumbleTimer >= 50 then
+            if (e.jumbleTimer % 3 ) == 0 then
+                do_jumble()
+            end
+        elseif e.jumbleTimer == 49 then
+            local jumbleItemTable = {
+                [JUMBLE_ITEM_1UP]           = {count = 1,   bhv = id_bhv1upJumpOnApproach,  model = E_MODEL_1UP,            pos = 200,  vel = 0,    sound = SOUND_OBJ_GOOMBA_WALK},
+                [JUMBLE_ITEM_5UP]           = {count = 5,   bhv = id_bhv1upRunningAway,     model = E_MODEL_1UP,            pos = 200,  vel = 0,    sound = nil},
+                [JUMBLE_ITEM_KOOPA]         = {count = 1,   bhv = id_bhvKoopaShell,         model = E_MODEL_KOOPA_SHELL,    pos = 100,  vel = 50,    sound = SOUND_OBJ_GOOMBA_WALK},
+                [JUMBLE_ITEM_COIN_10]       = {count = 1,   bhv = id_bhvTenCoinsSpawn,      model = E_MODEL_NONE,           pos = 200,  vel = 0,    sound = nil},
+                [JUMBLE_ITEM_COIN_30]       = {count = 3,   bhv = id_bhvTenCoinsSpawn,      model = E_MODEL_NONE,           pos = 200,  vel = 0,    sound = nil},
+                [JUMBLE_ITEM_COIN_50]       = {count = 5,   bhv = id_bhvTenCoinsSpawn,      model = E_MODEL_NONE,           pos = 200,  vel = 0,    sound = nil},
+                [JUMBLE_ITEM_CAPS]          = {count = 1,   bhv = id_bhvMetalCap,           model = E_MODEL_NONE,           pos = 0,    vel = 0,    sound = SOUND_ACTION_METAL_JUMP},
+                [JUMBLE_ITEM_TORNADO]       = {count = 1,   bhv = id_bhvSpindrift,          model = E_MODEL_SPINDRIFT,      pos = 200,  vel = 70,   sound = SOUND_OBJ_GOOMBA_ALERT},
+                [JUMBLE_ITEM_CRAZED_CRATE]  = {count = 1,   bhv = id_bhvJumpingBox,         model = E_MODEL_NONE,           pos = 200,  vel = 50,  sound = SOUND_GENERAL_BOING1},
+                [JUMBLE_ITEM_STARMAN]       = {sound = nil},
+            }
+            --if m.playerIndex == 0 then play_sound(SOUND_GENERAL_RED_COIN, m.marioObj.header.gfx.cameraToObject) end
+            if e.jumbleItem ~= JUMBLE_ITEM_STARMAN then
+                for i = 0, jumbleItemTable[e.jumbleItem].count - 1 do
+                    spawn_sync_object(jumbleItemTable[e.jumbleItem].bhv, jumbleItemTable[e.jumbleItem].model, m.pos.x, m.pos.y + jumbleItemTable[e.jumbleItem].pos, m.pos.z, function(o) o.oVelY = jumbleItemTable[e.jumbleItem].vel end)
+                end
+            else
+                local s = gStarmanStates[m.playerIndex]
+                
+                m.capTimer = 30*30
+                play_sound(SOUND_MENU_STAR_SOUND, m.marioObj.header.gfx.cameraToObject)
+                play_character_sound(m, CHAR_SOUND_HERE_WE_GO)
+                s.hasStarman = true
+                s.starmanTimer = 0
+                --m.flags = m.flags & ~MARIO_WING_CAP
+                --m.flags = m.flags & ~MARIO_VANISH_CAP
+                --m.flags = m.flags & ~MARIO_METAL_CAP
+            end
+            spawn_triangle_break_particles(15, 138, 2, 4)
+            if e.jumbleItem == JUMBLE_ITEM_CAPS then
+                m.flags = m.flags | MARIO_METAL_CAP | MARIO_WING_CAP
+                m.capTimer = 45*30
+            end
+            if jumbleItemTable[e.jumbleItem].sound ~= nil then
+                play_sound(jumbleItemTable[e.jumbleItem].sound, m.marioObj.header.gfx.cameraToObject)
+            end
+        end
+        if e.jumbleTimer > 0 then
+            e.jumbleTimer = e.jumbleTimer - 1
+        else
+            if e.opacity > 5 then
+                e.opacity = math.lerp(e.opacity, 0, 0.3)
+            elseif e.opacity <= 5 then
+                e.opacity = 0
+                e.combo = 0
+            end
+        end
+        e.hudSquish = math.lerp(e.hudSquish, 0, 0.3)
+
+        if m.controller.buttonPressed & Y_BUTTON ~= 0 and e.bank >= 10 and not is_game_paused() then
+            e.jumbleTimer = 100
+            e.bank = e.bank - 10
+            play_sound(SOUND_GENERAL2_SWITCH_TICK_FAST, m.marioObj.header.gfx.cameraToObject)
+            mod_storage_save_number("bank", e.bank)
+        end
+
+        local targetOffset = 0
+        if e.opacity == 255 or e.bank < 10 then
+            targetOffset = 30
+        end
+        e.offset = math.lerp(e.offset, targetOffset, 0.2)
+end
 
 local function jumbler_set_action(m)
     local e = gExtraStates[m.playerIndex]
 
-    -- slide kick height
-        if m.action == ACT_SLIDE_KICK then
-            m.vel.y = m.forwardVel/2
-        end
     -- replace metal fall
         if m.action == ACT_WATER_PLUNGE and m.flags & MARIO_METAL_CAP ~= 0 then
             m.action = ACT_METAL_WATER_JUMP
@@ -745,18 +1018,90 @@ local function jumbler_set_action(m)
         end
     -- jump height
         if jumblerJumpTable[m.action] then
-            m.vel.y = m.vel.y + 5
+            m.vel.y = m.vel.y + 7
         end
 end
 
 local function jumbler_before_phys_step(m)
+    local e = gExtraStates[m.playerIndex]
+    local swimBoost = 3
     -- faster swimming
     if m.action == ACT_FLUTTER_KICK and m.marioObj.header.gfx.animInfo.animID == MARIO_ANIM_FLUTTERKICK then
-        m.vel.x = m.vel.x * 3
-        m.vel.y = m.vel.y * 3
-        m.vel.z = m.vel.z * 3
+        m.vel.x = m.vel.x * swimBoost
+        m.vel.y = m.vel.y * swimBoost
+        m.vel.z = m.vel.z * swimBoost
     end
 end
+
+local function jumbler_hud()
+    local m = gMarioStates[0]
+    local e = gExtraStates[0]
+    local hudScale = 1 + e.hudSquish
+    local PosItem = 16 * e.hudSquish
+    local colour = 0
+
+    if e.bank >= 10 then
+        colour = math.abs(math.sin(get_global_timer()*0.3))*255
+    end
+
+    local promptX = 30
+    local promptY = 63
+    djui_hud_set_resolution(RESOLUTION_N64)
+    djui_hud_set_color(0, 0, 0, 255)
+    djui_hud_render_rect(promptX - 11 + e.offset, promptY - 5, 26, 26)
+    djui_hud_set_color(255, 255, 255, 255)
+    djui_hud_render_rect(promptX - 10 + e.offset, promptY - 4, 25, 24)
+    djui_hud_set_color(0, 0, 0, 255)
+    djui_hud_render_rect(promptX - 9 + e.offset, promptY - 3, 24, 22)
+    djui_hud_set_color(255, 255, 0, 255)
+    djui_hud_set_font(FONT_RECOLOR_HUD)
+    djui_hud_print_text("Y", promptX - 8 + e.offset, promptY + 1, 0.8)
+    djui_hud_set_color(255, 255, 255, 255)
+    djui_hud_set_font(FONT_HUD)
+    djui_hud_print_text("10", promptX + 1 + e.offset, promptY + 9, 0.5)
+    djui_hud_render_texture(gTextures.coin, promptX + 5 + e.offset, promptY, 0.5, 0.5)
+
+    djui_hud_set_font(FONT_RECOLOR_HUD)
+    djui_hud_set_color(0, colour, colour, 255)
+    djui_hud_print_text("JUMBLE!", 20, 35, 1)
+
+    djui_hud_set_color(255, 255, 255, 255)
+    local PosX = 45
+    local PosY = 55
+    djui_hud_render_texture_tile(TEX_JUMBLER_ITEM, PosX, PosY, 1, 1, 0, 0, 32, 32)
+    djui_hud_set_color(255, 255, 255, e.opacity)
+    djui_hud_render_texture_tile(TEX_JUMBLER_ITEM, PosX - PosItem, PosY - PosItem, hudScale, hudScale, e.jumbleItem*32, 0, 32, 32)
+end
+
+-- Coins
+
+local function do_coin_hud()
+    local m = gMarioStates[0]
+    local e = gExtraStates[0]
+
+    djui_hud_set_resolution(RESOLUTION_N64)
+    djui_hud_set_color(255, 255, 255, 255)
+    djui_hud_set_font(FONT_HUD)
+
+    djui_hud_render_texture(gTextures.coin, 10, 210, 1, 1)
+    djui_hud_print_text(string.format("%.0f", e.bank), 26, 210, 1)
+
+    --djui_hud_set_color(255, 0, 0, 255)
+    --djui_hud_set_resolution(RESOLUTION_DJUI)
+    --djui_hud_set_font(FONT_ALIASED)
+    --djui_hud_print_text(string.format("actionTimer: "..m.actionTimer..""), 1600, 200, 1)
+end
+hook_event(HOOK_ON_HUD_RENDER_BEHIND, do_coin_hud)
+
+local function bank_add_coin(id)
+    local m = gMarioStates[0]
+    local e = gExtraStates[0]
+    if id == SOUND_GENERAL_COIN or id == SOUND_GENERAL_COIN_WATER then
+        e.bank = e.bank + 1
+        mod_storage_save_number("bank", e.bank)
+    end
+end
+hook_event(HOOK_ON_PLAY_SOUND, bank_add_coin)
 
 _G.charSelect.character_hook_moveset(CT_FUMBLER, HOOK_MARIO_UPDATE, fumbler_update)
 _G.charSelect.character_hook_moveset(CT_FUMBLER, HOOK_ON_SET_MARIO_ACTION, fumbler_set_action)
@@ -766,3 +1111,4 @@ _G.charSelect.character_hook_moveset(CT_FUMBLER, HOOK_ON_HUD_RENDER_BEHIND, fumb
 _G.charSelect.character_hook_moveset(CT_JUMBLER, HOOK_MARIO_UPDATE, jumbler_update)
 _G.charSelect.character_hook_moveset(CT_JUMBLER, HOOK_ON_SET_MARIO_ACTION, jumbler_set_action)
 _G.charSelect.character_hook_moveset(CT_JUMBLER, HOOK_BEFORE_PHYS_STEP, jumbler_before_phys_step)
+_G.charSelect.character_hook_moveset(CT_JUMBLER, HOOK_ON_HUD_RENDER_BEHIND, jumbler_hud)

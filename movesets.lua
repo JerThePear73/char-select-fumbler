@@ -370,6 +370,7 @@ local function act_custom_longjump(m)
         play_character_sound(m, CHAR_SOUND_YAHOO)
         if m.forwardVel < 35 then
             m.forwardVel = approach_f32(m.forwardVel, 0.0, 0.35, 0.35)
+            m.forwardVel = m.forwardVel * 1.5
         end
     end
 
@@ -549,7 +550,8 @@ local fumblerSpinTable = {
     [ACT_TRIPLE_JUMP] = true,
     [ACT_BACKFLIP] = true,
     [ACT_SIDE_FLIP] = true,
-    [ACT_CUSTOM_LONGJUMP] = true,
+    [ACT_LONG_JUMP] = true,
+    --[ACT_CUSTOM_LONGJUMP] = true,
     [ACT_FREEFALL] = true,
     [ACT_DIVE] = true,
     [ACT_JUMP_KICK] = true,
@@ -699,7 +701,7 @@ local function fumbler_update(m)
             end
         end
     -- slide kick
-        if m.action == ACT_SLIDE_KICK and m.actionArg == 2 then
+        if m.action == ACT_SLIDE_KICK and e.extActionArg == 1 then
             e.gfxX = e.gfxX * 0.8
             e.gfxY = e.gfxY * 0.8
             m.marioObj.header.gfx.angle.x = e.gfxX
@@ -722,6 +724,10 @@ local function fumbler_update(m)
     -- slide trick
         if m.action == ACT_BUTT_SLIDE_AIR and m.actionTimer < 4 and m.input & INPUT_Z_PRESSED ~= 0 then
             set_mario_action(m, ACT_FUMBLER_TRICK, 0)
+        end
+    -- longjump
+        if m.action == ACT_LONG_JUMP then
+            m.marioObj.oMarioLongJumpIsSlow = true
         end
 
 
@@ -782,12 +788,8 @@ local function fumbler_set_action(m)
             m.particleFlags = m.particleFlags | PARTICLE_WATER_SPLASH | PARTICLE_PLUNGE_BUBBLE
         end
     -- fizzle
-        if m.action == ACT_WATER_PLUNGE and (m.prevAction == ACT_MOVING_GP or (m.prevAction == ACT_GP_CANCEL and e.extActionArg == 1)) then
+        if m.action == ACT_WATER_PLUNGE and (m.prevAction == ACT_MOVING_GP or (m.prevAction == ACT_SLIDE_KICK and e.extActionArg == 1)) then
             play_sound(SOUND_GENERAL_FLAME_OUT, m.marioObj.header.gfx.cameraToObject)
-        end
-    -- custom longjump
-        if m.action == ACT_LONG_JUMP then
-            set_mario_action(m, ACT_CUSTOM_LONGJUMP, 0)
         end
     -- fix repeated firsties
         if m.action == ACT_WALL_KICK_AIR then
@@ -802,13 +804,17 @@ local function fumbler_set_action(m)
             end
         end
     -- slide kick
-        if m.action == ACT_SLIDE_KICK and m.forwardVel > 45 then
-            play_sound(SOUND_GENERAL_SWISH_WATER, m.marioObj.header.gfx.cameraToObject)
-            m.actionArg = 2
-            m.vel.y = 20
-            e.gfxX = -0x10000
-            e.gfxY = 100
-            do_fumbler_combo()
+        if m.action == ACT_SLIDE_KICK then
+            if m.forwardVel > 45 then
+                play_sound(SOUND_GENERAL_SWISH_WATER, m.marioObj.header.gfx.cameraToObject)
+                e.extActionArg = 1
+                m.vel.y = 20
+                e.gfxX = -0x10000
+                e.gfxY = 100
+                do_fumbler_combo()
+            else
+                e.extActionArg = 0
+            end
         end
 end
 
@@ -1039,24 +1045,28 @@ local function jumbler_hud()
     local hudScale = 1 + e.hudSquish
     local PosItem = 16 * e.hudSquish
     local colour = 0
+    local promptOpacity = 255
 
     if e.bank >= 10 then
         colour = math.abs(math.sin(get_global_timer()*0.3))*255
+    end
+    if e.offset > 29 then
+        promptOpacity = 0
     end
 
     local promptX = 30
     local promptY = 63
     djui_hud_set_resolution(RESOLUTION_N64)
-    djui_hud_set_color(0, 0, 0, 255)
+    djui_hud_set_color(0, 0, 0, promptOpacity)
     djui_hud_render_rect(promptX - 11 + e.offset, promptY - 5, 26, 26)
-    djui_hud_set_color(255, 255, 255, 255)
+    djui_hud_set_color(255, 255, 255, promptOpacity)
     djui_hud_render_rect(promptX - 10 + e.offset, promptY - 4, 25, 24)
-    djui_hud_set_color(0, 0, 0, 255)
+    djui_hud_set_color(0, 0, 0, promptOpacity)
     djui_hud_render_rect(promptX - 9 + e.offset, promptY - 3, 24, 22)
-    djui_hud_set_color(255, 255, 0, 255)
+    djui_hud_set_color(255, 255, 0, promptOpacity)
     djui_hud_set_font(FONT_RECOLOR_HUD)
     djui_hud_print_text("Y", promptX - 8 + e.offset, promptY + 1, 0.8)
-    djui_hud_set_color(255, 255, 255, 255)
+    djui_hud_set_color(255, 255, 255, promptOpacity)
     djui_hud_set_font(FONT_HUD)
     djui_hud_print_text("10", promptX + 1 + e.offset, promptY + 9, 0.5)
     djui_hud_render_texture(gTextures.coin, promptX + 5 + e.offset, promptY, 0.5, 0.5)
@@ -1068,6 +1078,7 @@ local function jumbler_hud()
     djui_hud_set_color(255, 255, 255, 255)
     local PosX = 45
     local PosY = 55
+    if e.offset > 29 then djui_hud_set_color(255, 255, 255, e.opacity) end
     djui_hud_render_texture_tile(TEX_JUMBLER_ITEM, PosX, PosY, 1, 1, 0, 0, 32, 32)
     djui_hud_set_color(255, 255, 255, e.opacity)
     djui_hud_render_texture_tile(TEX_JUMBLER_ITEM, PosX - PosItem, PosY - PosItem, hudScale, hudScale, e.jumbleItem*32, 0, 32, 32)
@@ -1089,7 +1100,12 @@ local function do_coin_hud()
     --djui_hud_set_color(255, 0, 0, 255)
     --djui_hud_set_resolution(RESOLUTION_DJUI)
     --djui_hud_set_font(FONT_ALIASED)
-    --djui_hud_print_text(string.format("actionTimer: "..m.actionTimer..""), 1600, 200, 1)
+    --local anim = m.marioObj.header.gfx.animInfo
+    --djui_hud_print_text(string.format("animID: "..anim.animID..""), 1600, 200, 1)
+    --djui_hud_print_text(string.format("animAccel: "..anim.animAccel..""), 1600, 225, 1)
+    --djui_hud_print_text(string.format("animFrame: "..anim.animFrame..""), 1600, 250, 1)
+    --djui_hud_print_text(string.format("animFrameAccelAssist: "..anim.animFrameAccelAssist..""), 1600, 275, 1)
+    --djui_hud_print_text(string.format("offset: "..e.offset..""), 1600, 200, 1)
 end
 hook_event(HOOK_ON_HUD_RENDER_BEHIND, do_coin_hud)
 

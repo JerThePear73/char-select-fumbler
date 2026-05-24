@@ -694,10 +694,9 @@ local function fumbler_update(m)
                 spawn_fumbler_particles(m)
                 e.gfxY = e.gfxY * 0.8
                 m.marioObj.header.gfx.angle.y = m.faceAngle.y + e.gfxY
-
-                if e.gfxY == 0x15000 * 0.8 then
-                    do_fumbler_combo()
-                end
+            end
+            if e.gfxY == 0x15000 * 0.8 * 0.8 then
+                do_fumbler_combo()
             end
         end
     -- slide kick
@@ -726,7 +725,7 @@ local function fumbler_update(m)
             set_mario_action(m, ACT_FUMBLER_TRICK, 0)
         end
     -- longjump
-        if m.action == ACT_LONG_JUMP then
+        if m.action == ACT_LONG_JUMP and m.playerIndex == 0 then
             m.marioObj.oMarioLongJumpIsSlow = true
         end
 
@@ -868,6 +867,19 @@ local jumblerJumpTable = {
     [ACT_WALL_KICK_AIR] = false,
 }
 
+local jumbleItemTable = {
+    [JUMBLE_ITEM_1UP]           = {count = 1,   bhv = id_bhv1upJumpOnApproach,  model = E_MODEL_1UP,            pos = 200,  vel = 0,    sound = SOUND_OBJ_GOOMBA_WALK},
+    [JUMBLE_ITEM_5UP]           = {count = 5,   bhv = id_bhv1upRunningAway,     model = E_MODEL_1UP,            pos = 200,  vel = 0,    sound = nil},
+    [JUMBLE_ITEM_KOOPA]         = {count = 1,   bhv = id_bhvKoopaShell,         model = E_MODEL_KOOPA_SHELL,    pos = 100,  vel = 50,   sound = SOUND_OBJ_GOOMBA_WALK},
+    [JUMBLE_ITEM_COIN_10]       = {count = 1,   bhv = id_bhvTenCoinsSpawn,      model = E_MODEL_NONE,           pos = 200,  vel = 0,    sound = nil},
+    [JUMBLE_ITEM_COIN_30]       = {count = 3,   bhv = id_bhvTenCoinsSpawn,      model = E_MODEL_NONE,           pos = 200,  vel = 0,    sound = nil},
+    [JUMBLE_ITEM_COIN_50]       = {count = 5,   bhv = id_bhvTenCoinsSpawn,      model = E_MODEL_NONE,           pos = 200,  vel = 0,    sound = nil},
+    [JUMBLE_ITEM_CAPS]          = {count = 1,   bhv = id_bhvMetalCap,           model = E_MODEL_NONE,           pos = 0,    vel = 0,    sound = SOUND_ACTION_METAL_JUMP},
+    [JUMBLE_ITEM_TORNADO]       = {count = 1,   bhv = id_bhvSpindrift,          model = E_MODEL_SPINDRIFT,      pos = 200,  vel = 70,   sound = SOUND_OBJ_GOOMBA_ALERT},
+    [JUMBLE_ITEM_CRAZED_CRATE]  = {count = 1,   bhv = id_bhvJumpingBox,         model = E_MODEL_NONE,           pos = 200,  vel = 50,   sound = SOUND_GENERAL_BOING1},
+    [JUMBLE_ITEM_STARMAN]       = {count = 1,   bhv = nil,                      model = nil,                    pos = nil,  vel = nil,  sound = nil},
+}
+
 local function jumbler_update(m)
     local e = gExtraStates[m.playerIndex]
 
@@ -942,6 +954,17 @@ local function jumbler_update(m)
         if fumblerSpinTable[m.action] and m.input & INPUT_A_PRESSED ~= 0 and m.vel.y < 10 and m.pos.y > (m.floorHeight + 50) then
             set_mario_action(m, ACT_JUMBLER_ROCKET_CHARGE, 0)
         end
+    --wing cap
+        if m.action == ACT_DIVE and m.prevAction ~= ACT_GROUND_POUND and m.flags & MARIO_WING_CAP ~= 0 and m.vel.y < 0 and m.pos.y > (m.floorHeight + 100) then
+            m.action = ACT_FLYING
+            e.gfxZ = 0x10000
+        end
+        if m.action == ACT_FLYING then
+            e.gfxZ = math.lerp(e.gfxZ, 0, 0.1)
+            m.marioObj.header.gfx.angle.z = m.marioObj.header.gfx.angle.z + e.gfxZ
+        end
+
+
 
     -- hud calcs
         if e.jumbleTimer >= 50 then
@@ -949,42 +972,32 @@ local function jumbler_update(m)
                 do_jumble()
             end
         elseif e.jumbleTimer == 49 then
-            local jumbleItemTable = {
-                [JUMBLE_ITEM_1UP]           = {count = 1,   bhv = id_bhv1upJumpOnApproach,  model = E_MODEL_1UP,            pos = 200,  vel = 0,    sound = SOUND_OBJ_GOOMBA_WALK},
-                [JUMBLE_ITEM_5UP]           = {count = 5,   bhv = id_bhv1upRunningAway,     model = E_MODEL_1UP,            pos = 200,  vel = 0,    sound = nil},
-                [JUMBLE_ITEM_KOOPA]         = {count = 1,   bhv = id_bhvKoopaShell,         model = E_MODEL_KOOPA_SHELL,    pos = 100,  vel = 50,    sound = SOUND_OBJ_GOOMBA_WALK},
-                [JUMBLE_ITEM_COIN_10]       = {count = 1,   bhv = id_bhvTenCoinsSpawn,      model = E_MODEL_NONE,           pos = 200,  vel = 0,    sound = nil},
-                [JUMBLE_ITEM_COIN_30]       = {count = 3,   bhv = id_bhvTenCoinsSpawn,      model = E_MODEL_NONE,           pos = 200,  vel = 0,    sound = nil},
-                [JUMBLE_ITEM_COIN_50]       = {count = 5,   bhv = id_bhvTenCoinsSpawn,      model = E_MODEL_NONE,           pos = 200,  vel = 0,    sound = nil},
-                [JUMBLE_ITEM_CAPS]          = {count = 1,   bhv = id_bhvMetalCap,           model = E_MODEL_NONE,           pos = 0,    vel = 0,    sound = SOUND_ACTION_METAL_JUMP},
-                [JUMBLE_ITEM_TORNADO]       = {count = 1,   bhv = id_bhvSpindrift,          model = E_MODEL_SPINDRIFT,      pos = 200,  vel = 70,   sound = SOUND_OBJ_GOOMBA_ALERT},
-                [JUMBLE_ITEM_CRAZED_CRATE]  = {count = 1,   bhv = id_bhvJumpingBox,         model = E_MODEL_NONE,           pos = 200,  vel = 50,  sound = SOUND_GENERAL_BOING1},
-                [JUMBLE_ITEM_STARMAN]       = {sound = nil},
-            }
             --if m.playerIndex == 0 then play_sound(SOUND_GENERAL_RED_COIN, m.marioObj.header.gfx.cameraToObject) end
-            if e.jumbleItem ~= JUMBLE_ITEM_STARMAN then
-                for i = 0, jumbleItemTable[e.jumbleItem].count - 1 do
-                    spawn_sync_object(jumbleItemTable[e.jumbleItem].bhv, jumbleItemTable[e.jumbleItem].model, m.pos.x, m.pos.y + jumbleItemTable[e.jumbleItem].pos, m.pos.z, function(o) o.oVelY = jumbleItemTable[e.jumbleItem].vel end)
+            if jumbleItemTable[e.jumbleItem] ~= nil then
+                if e.jumbleItem ~= JUMBLE_ITEM_STARMAN then
+                    for i = 0, jumbleItemTable[e.jumbleItem].count - 1 do
+                        spawn_sync_object(jumbleItemTable[e.jumbleItem].bhv, jumbleItemTable[e.jumbleItem].model, m.pos.x, m.pos.y + jumbleItemTable[e.jumbleItem].pos, m.pos.z, function(o) o.oVelY = jumbleItemTable[e.jumbleItem].vel end)
+                        if jumbleItemTable[e.jumbleItem].sound ~= nil then
+                            play_sound(jumbleItemTable[e.jumbleItem].sound, m.marioObj.header.gfx.cameraToObject)
+                        end
+                    end
+                else
+                    local s = gStarmanStates[m.playerIndex]
+                    
+                    m.capTimer = 30*30
+                    play_sound(SOUND_MENU_STAR_SOUND, m.marioObj.header.gfx.cameraToObject)
+                    play_character_sound(m, CHAR_SOUND_HERE_WE_GO)
+                    s.hasStarman = true
+                    s.starmanTimer = 0
+                    --m.flags = m.flags & ~MARIO_WING_CAP
+                    --m.flags = m.flags & ~MARIO_VANISH_CAP
+                    --m.flags = m.flags & ~MARIO_METAL_CAP
                 end
-            else
-                local s = gStarmanStates[m.playerIndex]
-                
-                m.capTimer = 30*30
-                play_sound(SOUND_MENU_STAR_SOUND, m.marioObj.header.gfx.cameraToObject)
-                play_character_sound(m, CHAR_SOUND_HERE_WE_GO)
-                s.hasStarman = true
-                s.starmanTimer = 0
-                --m.flags = m.flags & ~MARIO_WING_CAP
-                --m.flags = m.flags & ~MARIO_VANISH_CAP
-                --m.flags = m.flags & ~MARIO_METAL_CAP
             end
             spawn_triangle_break_particles(15, 138, 2, 4)
             if e.jumbleItem == JUMBLE_ITEM_CAPS then
                 m.flags = m.flags | MARIO_METAL_CAP | MARIO_WING_CAP
                 m.capTimer = 45*30
-            end
-            if jumbleItemTable[e.jumbleItem].sound ~= nil then
-                play_sound(jumbleItemTable[e.jumbleItem].sound, m.marioObj.header.gfx.cameraToObject)
             end
         end
         if e.jumbleTimer > 0 then

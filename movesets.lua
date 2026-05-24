@@ -993,7 +993,7 @@ local function jumbler_update(m)
         end
         e.hudSquish = math.lerp(e.hudSquish, 0, 0.3)
 
-        if m.controller.buttonPressed & Y_BUTTON ~= 0 and e.bank >= 10 and not is_game_paused() then
+        if m.controller.buttonPressed & Y_BUTTON ~= 0 and e.bank >= 10 and not is_game_paused() and e.jumbleTimer < 49 then
             e.jumbleTimer = 100
             e.bank = e.bank - 10
             play_sound(SOUND_GENERAL2_SWITCH_TICK_FAST, m.marioObj.header.gfx.cameraToObject)

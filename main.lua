@@ -92,7 +92,27 @@ local PALETTES_FUMBLER = {
         [CAP]    = "9dffb8",
         [EMBLEM] = "242282",
     },{
-        name = "Nohn Jimbus",
+        name = "Apple",
+        [PANTS]  = "ff2000",
+        [SHIRT]  = "408000",
+        [GLOVES] = "a4ff72",
+        [SHOES]  = "a4ff72",
+        [HAIR]   = "9c0000",
+        [SKIN]   = "fec179",
+        [CAP]    = "ff2000",
+        [EMBLEM] = "408000",
+    },{
+        name = "Coelco Adam",
+        [PANTS]  = "bb4233",
+        [SHIRT]  = "4020ff",
+        [GLOVES] = "4020ff",
+        [SHOES]  = "4020ff",
+        [HAIR]   = "4020ff",
+        [SKIN]   = "e7a184",
+        [CAP]    = "bb4233",
+        [EMBLEM] = "4020ff",
+    },{
+        name = "Jimbus",
         [PANTS]  = "ff0000",
         [SHIRT]  = "000000",
         [GLOVES] = "00ff00",
@@ -101,6 +121,16 @@ local PALETTES_FUMBLER = {
         [SKIN]   = "00ffff",
         [CAP]    = "ffffff",
         [EMBLEM] = "00ffff",
+    },{
+        name = "Anti-Fumbler",
+        [PANTS]  = "111111",
+        [SHIRT]  = "880000",
+        [GLOVES] = "ff0000",
+        [SHOES]  = "ff0000",
+        [HAIR]   = "730600",
+        [SKIN]   = "fec179",
+        [CAP]    = "111111",
+        [EMBLEM] = "ff0000",
     }
 }
 
@@ -116,7 +146,7 @@ local PALETTES_JUMBLER =  {
         [CAP]    = "00ffff",
         [EMBLEM] = "00ff00",
     },{
-        name = "John Nimbus",
+        name = "Nimbus",
         [PANTS]  = "0000ff",
         [SHIRT]  = "000000",
         [GLOVES] = "00ff00",
@@ -125,6 +155,26 @@ local PALETTES_JUMBLER =  {
         [SKIN]   = "ffff00",
         [CAP]    = "ffffff",
         [EMBLEM] = "ffff00",
+    },{
+        name = "Forest",
+        [PANTS]  = "b49320",
+        [SHIRT]  = "004400",
+        [GLOVES] = "ffff88",
+        [SHOES]  = "4f240e",
+        [HAIR]   = "730600",
+        [SKIN]   = "fec179",
+        [CAP]    = "004400",
+        [EMBLEM] = "b49320",
+    },{
+        name = "Atlantic",
+        [PANTS]  = "21203b",
+        [SHIRT]  = "09c1ff",
+        [GLOVES] = "21203b",
+        [SHOES]  = "721c0e",
+        [HAIR]   = "730600",
+        [SKIN]   = "fec179",
+        [CAP]    = "09c1ff",
+        [EMBLEM] = "0044ff",
     }
 }
 

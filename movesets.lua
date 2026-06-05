@@ -101,8 +101,8 @@ local function spawn_fumbler_particles(m)
             end)
 end
 
-local function do_fumbler_combo()
-    local e = gExtraStates[0]
+local function do_fumbler_combo(m)
+    local e = gExtraStates[m.playerIndex]
     e.combo = e.combo + 1
     e.comboTimer = 40
     e.opacity = 255
@@ -434,7 +434,7 @@ local function act_fumbler_trick(m)
     if m.actionTimer == 0 then
         play_character_sound(m, CHAR_SOUND_HAHA)
         m.particleFlags = m.particleFlags | PARTICLE_VERTICAL_STAR
-        do_fumbler_combo()
+        do_fumbler_combo(m)
     end
 
     local stepResult = common_air_action_step(m, ACT_BUTT_SLIDE, CHAR_ANIM_BREAKDANCE, AIR_STEP_NONE)
@@ -669,7 +669,7 @@ local function fumbler_update(m)
                 m.particleFlags = m.particleFlags | PARTICLE_SPARKLES
                 if m.marioObj.header.gfx.animInfo.animFrame == -1 then
                     e.gfxY = 0 - 0x11000
-                    do_fumbler_combo()
+                    do_fumbler_combo(m)
                 end
             end
             e.gfxY = e.gfxY * 0.85
@@ -679,7 +679,7 @@ local function fumbler_update(m)
         if m.action == ACT_LEDGE_GRAB then
             if e.perfectTimer < 1 and m.input & INPUT_A_PRESSED ~= 0 then
                 set_mario_action(m, ACT_FORWARD_ROLLOUT, 0)
-                do_fumbler_combo()
+                do_fumbler_combo(m)
                 m.particleFlags = m.particleFlags | PARTICLE_VERTICAL_STAR
                 m.forwardVel = 30
             end
@@ -696,7 +696,7 @@ local function fumbler_update(m)
                 m.marioObj.header.gfx.angle.y = m.faceAngle.y + e.gfxY
             end
             if e.gfxY == 0x15000 * 0.8 * 0.8 then
-                do_fumbler_combo()
+                do_fumbler_combo(m)
             end
         end
     -- slide kick
@@ -768,7 +768,7 @@ local function fumbler_set_action(m)
     -- zooted speed kick
         if m.action == ACT_JUMP_KICK and m.forwardVel > 40 then
             play_sound(SOUND_GENERAL_COIN_SPURT, m.marioObj.header.gfx.cameraToObject)
-            do_fumbler_combo()
+            do_fumbler_combo(m)
             m.particleFlags = m.particleFlags | PARTICLE_VERTICAL_STAR
             m.forwardVel = m.forwardVel + 10
         elseif m.action == ACT_DIVE and m.input & INPUT_A_DOWN ~= 0 and m.input & INPUT_B_PRESSED ~= 0 and m.pos.y == m.floorHeight and m.intendedMag < 32 then
@@ -810,7 +810,7 @@ local function fumbler_set_action(m)
                 m.vel.y = 20
                 e.gfxX = -0x10000
                 e.gfxY = 100
-                do_fumbler_combo()
+                do_fumbler_combo(m)
             else
                 e.extActionArg = 0
             end

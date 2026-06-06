@@ -129,7 +129,7 @@ local function do_fumbler_combo(m)
     mod_storage_save_number("bank", e.bank) -- remove later if I want fumbling to lose the combo's coins
 end
 
-local function do_fumble()
+local function do_fumble(m)
     local m = gMarioStates[0]
     local e = gExtraStates[0]
     e.combo = -1
@@ -140,7 +140,7 @@ local function do_fumble()
     play_sound(SOUND_MENU_CAMERA_BUZZ, m.marioObj.header.gfx.cameraToObject)
 end
 
-local function do_jumble()
+local function do_jumble(m)
     local m = gMarioStates[0]
     local e = gExtraStates[0]
 
@@ -337,6 +337,7 @@ local function act_gp_jump(m)
 
     if m.actionTimer == 0 then
         m.vel.y = 60
+        m.faceAngle.y = m.intendedYaw
         play_character_sound(m, CHAR_SOUND_YAHOO_WAHA_YIPPEE)
         e.gfxY = 0 - 0x11000
     else
@@ -393,24 +394,33 @@ local function act_fumbler_spin(m)
     m.marioBodyState.handState = MARIO_HAND_OPEN
 
     if m.actionTimer == 0 then
+        if m.actionArg == 1 then
+            m.faceAngle.y = m.intendedYaw
+            m.vel.y = 48
+        else
+            m.vel.y = 10
+        end
         play_character_sound(m, CHAR_SOUND_YAHOO_WAHA_YIPPEE)
-        m.vel.y = 10
         e.gfxY = 0
         e.gfxZ = 0.5
     end
 
-    m.vel.y = m.vel.y + 2.5
+    if m.actionArg == 0 then
+        m.vel.y = m.vel.y + 2.5
+    else
+        m.vel.y = m.vel.y + 1.5
+    end
     --m.faceAngle.y = m.intendedYaw - approach_s32(convert_s16(m.intendedYaw - m.faceAngle.y), 0, 0x100, 0x100)
 
     local stepResult = common_air_action_step(m, ACT_FREEFALL_LAND, CHAR_ANIM_TWIRL, AIR_STEP_CHECK_LEDGE_GRAB)
     if m.input & INPUT_Z_PRESSED ~= 0 then
         set_mario_action(m, ACT_GROUND_POUND, 0)
-    elseif e.canGPCancel and m.input & INPUT_B_PRESSED ~= 0 then
+    elseif e.canGPCancel and m.input & INPUT_B_PRESSED ~= 0 and m.actionArg == 0 then
         set_mario_action(m, ACT_DIVE, 0)
         m.faceAngle.y = m.intendedYaw
         m.forwardVel = 20
         e.canGPCancel = false
-    elseif m.actionTimer >= 30 then
+    elseif m.actionTimer >= 30 and m.actionArg == 0 then
         set_mario_action(m, ACT_FREEFALL, 0)
     end
 
@@ -619,7 +629,7 @@ local function fumbler_update(m)
                 spawn_mist_particles_variable(5, 0, 8)
                 m.vel.y = 15
                 set_mario_action(m, ACT_FORWARD_AIR_KB, 0)
-                do_fumble()
+                do_fumble(m)
             end
         end
     -- GP jump
@@ -773,7 +783,7 @@ local function fumbler_set_action(m)
             m.forwardVel = m.forwardVel + 10
         elseif m.action == ACT_DIVE and m.input & INPUT_A_DOWN ~= 0 and m.input & INPUT_B_PRESSED ~= 0 and m.pos.y == m.floorHeight and m.intendedMag < 32 then
             set_mario_action(m, ACT_FORWARD_GROUND_KB, 0)
-            do_fumble()
+            do_fumble(m)
         end
     -- zooted lava boost
         if m.action == ACT_LAVA_BOOST and m.prevAction == ACT_GROUND_POUND_LAND then
@@ -814,6 +824,12 @@ local function fumbler_set_action(m)
             else
                 e.extActionArg = 0
             end
+        end
+    -- spin jump
+        if (m.action == ACT_JUMP or m.action == ACT_SIDE_FLIP) and e.spinInput ~= 0 then
+            set_mario_action(m, ACT_FUMBLER_SPIN, 1)
+            m.pos.y = m.pos.y + 25
+            e.canTwirl = false
         end
 end
 
@@ -969,7 +985,7 @@ local function jumbler_update(m)
     -- hud calcs
         if e.jumbleTimer >= 50 then
             if (e.jumbleTimer % 3 ) == 0 then
-                do_jumble()
+                do_jumble(m)
             end
         elseif e.jumbleTimer == 49 then
             --if m.playerIndex == 0 then play_sound(SOUND_GENERAL_RED_COIN, m.marioObj.header.gfx.cameraToObject) end

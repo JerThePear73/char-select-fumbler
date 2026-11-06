@@ -501,7 +501,7 @@ function act_jumbler_rocket_charge(m)
 	set_anim_to_frame(m, 2)
 
     if m.input & INPUT_NONZERO_ANALOG ~= 0 then
-        e.gfxY = m.intendedYaw - approach_s32(convert_s16(m.intendedYaw - e.gfxY), 0, 0x400, 0x400)
+        e.gfxY = approach_s16_symmetric(e.gfxY, m.intendedYaw, 0x400)
     end
 
     m.marioObj.header.gfx.angle.y = e.gfxY

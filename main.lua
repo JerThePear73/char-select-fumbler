@@ -20,6 +20,80 @@ local TEX_FUMBLER = get_texture_info("fumbler_icon")
 local TEX_JUMBLER = get_texture_info("jumbler_icon")
 local TEX_HUMBLER = get_texture_info("humbler_icon")
 
+local VOICETABLE_FUMBLER = {
+    [CHAR_SOUND_OKEY_DOKEY]         = {"fumbler_open_salami.ogg", "fumbler_here_we_go.ogg"}, -- start level
+	[CHAR_SOUND_LETS_A_GO]          = "fumbler_open_salami.ogg", -- starting level
+	[CHAR_SOUND_PUNCH_YAH]          = "fumbler_punch1.ogg", -- punch 1
+	[CHAR_SOUND_PUNCH_WAH]          = "fumbler_punch2.ogg", -- punch 2
+	[CHAR_SOUND_PUNCH_HOO]          = "fumbler_punch3.ogg", -- kick
+    [CHAR_SOUND_WAH2]               = "fumbler_throw.ogg", -- throw
+	[CHAR_SOUND_GROUND_POUND_WAH]   = "fumbler_throw.ogg", -- ground pound
+	[CHAR_SOUND_YAH_WAH_HOO]        = {
+                                        "fumbler_jump1.ogg",
+                                        "fumbler_jump2.ogg",
+                                        "fumbler_jump3.ogg",
+                                        "fumbler_jump4.ogg",
+                                        "fumbler_jump5.ogg",
+                                        "fumbler_jump6.ogg",
+                                    }, -- single jump/dive
+	[CHAR_SOUND_HOOHOO]             = {
+                                        "fumbler_double_jump1.ogg",
+                                        "fumbler_double_jump2.ogg",
+                                        "fumbler_double_jump3.ogg",
+                                    }, -- double jump/slide kick
+	[CHAR_SOUND_YAHOO_WAHA_YIPPEE]  = {
+                                        "fumbler_big_jump1.ogg",
+                                        "fumbler_big_jump2.ogg",
+                                        "fumbler_big_jump3.ogg",
+                                        "fumbler_big_jump4.ogg",
+                                        "fumbler_big_jump5.ogg",
+                                    }, -- triple jump
+	[CHAR_SOUND_UH]                 = {"fumbler_uh1.ogg", "fumbler_uh2.ogg"}, -- wall bonk
+	[CHAR_SOUND_UH2]                = nil, -- landing long jump
+	[CHAR_SOUND_UH2_2]              = nil, -- same as uh2 maybe??
+	[CHAR_SOUND_HAHA]               = {
+                                        "fumbler_haha1.ogg",
+                                        "fumbler_haha2.ogg",
+                                        "fumbler_haha3.ogg",
+                                    }, -- landing triple jump/backflip
+	[CHAR_SOUND_YAHOO]              = {
+                                        "fumbler_long_jump1.ogg",
+                                        "fumbler_long_jump2.ogg",
+                                        "fumbler_long_jump3.ogg",
+                                    }, -- longjump
+	[CHAR_SOUND_DOH]                = {"fumbler_doh1.ogg", "fumbler_doh2.ogg"}, -- long jump bump
+	[CHAR_SOUND_WHOA]               = {"fumbler_ledge_grab1.ogg", "fumbler_ledge_grab2.ogg"},
+	[CHAR_SOUND_EEUH]               = "fumbler_climb_slow.ogg", -- climbing ledge slowly
+	[CHAR_SOUND_WAAAOOOW]           = {
+                                        "fumbler_falling1.ogg",
+                                        "fumbler_falling2.ogg",
+                                        "fumbler_falling3.ogg",
+                                    },
+	[CHAR_SOUND_TWIRL_BOUNCE]       = "fumbler_long_jump1.ogg", -- spindrift/flyguy bounce
+	[CHAR_SOUND_HRMM]               = "fumbler_lift.ogg", -- lifting
+	[CHAR_SOUND_HERE_WE_GO]         = "fumbler_long_jump1.ogg", -- getting star/power up
+	[CHAR_SOUND_SO_LONGA_BOWSER]    = "fumbler_byebye.ogg", -- so long gay bowser!!!
+ 	[CHAR_SOUND_OOOF]               = "fumbler_watch_it.ogg", -- bumped by bully
+ 	[CHAR_SOUND_OOOF2]              = {"fumbler_doh1.ogg", "fumbler_doh2.ogg"}, -- thrown out of painting
+	[CHAR_SOUND_ATTACKED]           = {
+                                        "fumbler_hurt1.ogg",
+                                        "fumbler_hurt2.ogg",
+                                        "fumbler_hurt3.ogg",
+                                        "fumbler_hurt4.ogg",
+                                    }, -- owies
+	[CHAR_SOUND_PANTING]            = {}, -- low health
+    [CHAR_SOUND_PANTING_COLD]       = "fumbler_cold.ogg", -- winter levels
+	[CHAR_SOUND_ON_FIRE]            = {"fumbler_burn1.ogg", "fumbler_burn2.ogg"}, -- oooaauauaauuuggghhhh
+	[CHAR_SOUND_SNORING1]           = {},
+	[CHAR_SOUND_SNORING2]           = {},
+	[CHAR_SOUND_COUGHING1]          = {},
+	[CHAR_SOUND_COUGHING2]          = {},
+	[CHAR_SOUND_COUGHING3]          = {},
+	[CHAR_SOUND_DYING]              = "fumbler_arent_i_done_yet.ogg", -- health is 0 death
+	[CHAR_SOUND_DROWNING]           = "fumbler_zapped.ogg",
+	[CHAR_SOUND_MAMA_MIA]           = {"fumbler_theres_more.ogg", "fumbler_the_horror.ogg"}, -- get up after thrown out of painting
+}
+
 local VOICETABLE_HUMBLER = {
     [CHAR_SOUND_OKEY_DOKEY] = 'humbler_herewego.ogg',
 	[CHAR_SOUND_LETS_A_GO] = 'humbler_herewego.ogg',
@@ -322,7 +396,7 @@ local function on_character_select_load()
         _G.charSelect.character_add_palette_preset(E_MODEL_FUMBLER, PALETTES_FUMBLER[i], PALETTES_FUMBLER[i].name)
 	end
     _G.charSelect.character_add_animations(E_MODEL_FUMBLER, ANIMTABLE_FUMBLER, EYES_FUMBLER, HANDS_FUMBLER)
-    --_G.charSelect.character_add_voice(E_MODEL_FUMBLER, VOICETABLE_FUMBLER)
+    _G.charSelect.character_add_voice(E_MODEL_FUMBLER, VOICETABLE_FUMBLER)
     --_G.charSelect.character_add_caps(E_MODEL_FUMBLER, CAP_FUMBLER)
     _G.charSelect.character_add_health_meter(CT_FUMBLER, HEALTH_METER_MARIO)
 
@@ -333,7 +407,7 @@ local function on_character_select_load()
     _G.charSelect.character_add_health_meter(CT_JUMBLER, HEALTH_METER_LUIGI)
 
     if CT_J_WARIO ~= nil then
-        
+
     local ANIMTABLE_HUMBLER = {
         [CHAR_ANIM_RUNNING] = "humbler_run",
         [CHAR_ANIM_SINGLE_JUMP] = "JWAR_SINGLE_JUMP",
@@ -357,13 +431,13 @@ end
 
 local function on_character_sound(m, sound)
     if not CSloaded then return end
-    --if _G.charSelect.character_get_voice(m) == VOICETABLE_FUMBLER then return _G.charSelect.voice.sound(m, sound) end
+    if _G.charSelect.character_get_voice(m) == VOICETABLE_FUMBLER then return _G.charSelect.voice.sound(m, sound) end
     if _G.charSelect.character_get_voice(m) == VOICETABLE_HUMBLER then return _G.charSelect.voice.sound(m, sound) end
 end
 
 local function on_character_snore(m)
     if not CSloaded then return end
-    --if _G.charSelect.character_get_voice(m) == VOICETABLE_FUMBLER then return _G.charSelect.voice.snore(m) end
+    if _G.charSelect.character_get_voice(m) == VOICETABLE_FUMBLER then return _G.charSelect.voice.snore(m) end
     if _G.charSelect.character_get_voice(m) == VOICETABLE_HUMBLER then return _G.charSelect.voice.snore(m) end
 end
 

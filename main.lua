@@ -22,7 +22,7 @@ local TEX_HUMBLER = get_texture_info("humbler_icon")
 
 local VOICETABLE_FUMBLER = {
     [CHAR_SOUND_OKEY_DOKEY]         = {"fumbler_open_salami.ogg", "fumbler_here_we_go.ogg"}, -- start level
-	[CHAR_SOUND_LETS_A_GO]          = "fumbler_open_salami.ogg", -- starting level
+	[CHAR_SOUND_LETS_A_GO]          = {"fumbler_open_salami.ogg", "fumbler_here_we_go.ogg"}, -- start lobby/CS select
 	[CHAR_SOUND_PUNCH_YAH]          = "fumbler_punch1.ogg", -- punch 1
 	[CHAR_SOUND_PUNCH_WAH]          = "fumbler_punch2.ogg", -- punch 2
 	[CHAR_SOUND_PUNCH_HOO]          = "fumbler_punch3.ogg", -- kick
@@ -49,7 +49,7 @@ local VOICETABLE_FUMBLER = {
                                         "fumbler_big_jump5.ogg",
                                     }, -- triple jump
 	[CHAR_SOUND_UH]                 = {"fumbler_uh1.ogg", "fumbler_uh2.ogg"}, -- wall bonk
-	[CHAR_SOUND_UH2]                = nil, -- landing long jump
+	[CHAR_SOUND_UH2]                = "fumbler_throw.ogg", -- landing long jump
 	[CHAR_SOUND_UH2_2]              = nil, -- same as uh2 maybe??
 	[CHAR_SOUND_HAHA]               = {
                                         "fumbler_haha1.ogg",
@@ -61,7 +61,7 @@ local VOICETABLE_FUMBLER = {
                                         "fumbler_long_jump2.ogg",
                                         "fumbler_long_jump3.ogg",
                                     }, -- longjump
-	[CHAR_SOUND_DOH]                = {"fumbler_doh1.ogg", "fumbler_doh2.ogg"}, -- long jump bump
+	[CHAR_SOUND_DOH]                = "fumbler_doh.ogg", -- long jump bump
 	[CHAR_SOUND_WHOA]               = {"fumbler_ledge_grab1.ogg", "fumbler_ledge_grab2.ogg"},
 	[CHAR_SOUND_EEUH]               = "fumbler_climb_slow.ogg", -- climbing ledge slowly
 	[CHAR_SOUND_WAAAOOOW]           = {
@@ -74,7 +74,7 @@ local VOICETABLE_FUMBLER = {
 	[CHAR_SOUND_HERE_WE_GO]         = "fumbler_long_jump1.ogg", -- getting star/power up
 	[CHAR_SOUND_SO_LONGA_BOWSER]    = "fumbler_byebye.ogg", -- so long gay bowser!!!
  	[CHAR_SOUND_OOOF]               = "fumbler_watch_it.ogg", -- bumped by bully
- 	[CHAR_SOUND_OOOF2]              = {"fumbler_doh1.ogg", "fumbler_doh2.ogg"}, -- thrown out of painting
+ 	[CHAR_SOUND_OOOF2]              = "fumbler_watch_it.ogg", -- thrown out of painting
 	[CHAR_SOUND_ATTACKED]           = {
                                         "fumbler_hurt1.ogg",
                                         "fumbler_hurt2.ogg",
@@ -373,10 +373,23 @@ local ANIMTABLE_FUMBLER = {
     [CHAR_ANIM_TRIPLE_JUMP_GROUND_POUND]    = "fumbler_gp_start",
     [CHAR_ANIM_START_GROUND_POUND]          = "fumbler_gp_start",
     [CHAR_ANIM_GROUND_POUND]                = "fumbler_gp",
+    [CHAR_ANIM_RUNNING]                     = function(m, frame)
+                                                if get_global_timer() % 5 == 0 and m.forwardVel > 29 then
+                                                    set_mario_particle_flags(m, PARTICLE_DUST, 0)
+                                                end
+                                            end,
+    [CHAR_ANIM_FAST_LONGJUMP]               = "fumbler_longjump",
+    [CHAR_ANIM_CROUCH_FROM_FAST_LONGJUMP]   = "fumbler_longjump_land",
 }
 local ANIMTABLE_JUMBLER = {
     [_G.charSelect.CS_ANIM_MENU]            = "mario_anim_cs_menu",
     [CHAR_ANIM_SINGLE_JUMP]                 = "jumbler_single_jump",
+    [CHAR_ANIM_RUNNING]                     = function(m, frame)
+                                                if get_global_timer() % 5 == 0 and m.forwardVel > 29 then
+                                                    set_mario_particle_flags(m, PARTICLE_DUST, 0)
+                                                end
+                                                m.marioBodyState.torsoAngle.x = 0
+                                            end,
 }
 local EYES_FUMBLER = {
     [_G.charSelect.CS_ANIM_MENU]            = MARIO_EYES_LOOK_RIGHT,

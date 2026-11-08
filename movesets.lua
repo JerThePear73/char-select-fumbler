@@ -32,7 +32,6 @@ local gExtraStates = {}
 for i = 0, (MAX_PLAYERS - 1) do
     gExtraStates[i] = {
         prevActionTimer = 0,
-        prevVel = 0,
         canGPCancel = false,
         canTwirl = false,
         canUppercut = false,
@@ -296,13 +295,13 @@ hook_mario_action(ACT_FUMBLER_TRICK, act_fumbler_trick)
 
 function act_jumbler_rocket_charge(m)
     local e = gExtraStates[m.playerIndex]
-    local exitType = math.random(0,3)
+    local exitChance = math.random(0, 5)
 
     m.marioBodyState.handState = m.actionTimer < 5 and MARIO_HAND_OPEN or MARIO_HAND_FISTS
     m.marioBodyState.eyeState = MARIO_EYES_LOOK_RIGHT
 
     if m.actionState == 0 then
-        e.prevVel = m.forwardVel
+        e.rocketCharge = 0
         m.vel.y = 0
         m.actionState = 1
     end
@@ -312,21 +311,16 @@ function act_jumbler_rocket_charge(m)
 
 	if (m.actionTimer - 10) % 10 == 0 and m.actionTimer <= 50 and m.actionTimer > 0 then
 	    set_mario_particle_flags(m, PARTICLE_MIST_CIRCLE, 0)
-	    --play_sound_with_freq_scale(SOUND_OBJ_FLAME_BLOWN, m.marioObj.header.gfx.cameraToObject, ((m.actionTimer + 15)/40))
         if m.pos.y > m.floorHeight then
             m.vel.y = 15
         end
+        --set_anim_to_frame(m, 10)
 	end
 
-    if m.actionTimer > 10 and m.actionTimer <= 50 then
+    if m.actionTimer > 10 and m.actionTimer < 50 then
         play_sound_with_freq_scale(SOUND_AIR_BOWSER_SPIT_FIRE, m.marioObj.header.gfx.cameraToObject, (m.actionTimer + 10)/50)
     end
 
-	-- if m.forwardVel > 2 then
-	--     mario_set_forward_vel(m, m.forwardVel - 0.05 * (m.actionTimer / 2))
-	-- else
-	--     mario_set_forward_vel(m, 2)
-	-- end
     if m.pos.y == m.floorHeight then
         m.vel.x = 0
         m.vel.y = 0
@@ -335,46 +329,54 @@ function act_jumbler_rocket_charge(m)
     else
         mario_set_forward_vel(m, math.clamp(m.forwardVel * 0.98, 0, 120))
         if m.actionTimer < 10 then
-        m.vel.y = m.vel.y + 2
+            m.vel.y = m.vel.y + 2
         end
     end
 
 	local stepResult = perform_air_step(m, 0)
-    --if stepResult == AIR_STEP_LANDED then
-    --    m.faceAngle.y = e.gfxY
-    --    set_mario_action(m, ACT_FREEFALL_LAND, 0)
-    --else
     if stepResult == AIR_STEP_HIT_WALL then
         set_mario_action(m, ACT_AIR_HIT_WALL, 0)
     end
 
     if m.input & INPUT_A_DOWN == 0 then
         m.faceAngle.y = e.gfxY
-	    set_mario_action(m, ACT_JUMBLER_ROCKET, exitType)
+	    set_mario_action(m, ACT_JUMBLER_ROCKET, exitChance >= 4 and 50 or exitChance == 0 and 0 or (m.actionTimer < 10 and 0 or m.actionTimer)) --math.clamp(2 - math.floor(exitType/(e.rocketCharges * 2)), 0, 2))
 	end
 
 	set_mario_animation(m, MARIO_ANIM_RUNNING_UNUSED)
     smlua_anim_util_set_animation(m.marioObj, "jumbler_rocket_charge")
-	--set_anim_to_frame(m, 2)
 
     if m.input & INPUT_NONZERO_ANALOG ~= 0 then
         e.gfxY = approach_s16_symmetric(e.gfxY, m.intendedYaw, 0x400)
     end
 
     m.marioObj.header.gfx.angle.y = e.gfxY
-    if m.actionTimer < 75 then m.actionTimer = m.actionTimer + 1 end
+    if m.actionTimer < 51 then m.actionTimer = m.actionTimer + 1 end
 	return 0
 end
 hook_mario_action(ACT_JUMBLER_ROCKET_CHARGE, act_jumbler_rocket_charge)
 
 local function act_jumbler_rocket(m)
     local e = gExtraStates[0]
-    local rocketArgs = {
-        [0] = {sound = CHAR_SOUND_DOH,              vel = 20,   particle = PARTICLE_MIST_CIRCLE},
-        [1] = {sound = CHAR_SOUND_YAHOO,            vel = 60,   particle = PARTICLE_MIST_CIRCLE},
-        [2] = {sound = CHAR_SOUND_YAHOO,            vel = 60,   particle = PARTICLE_MIST_CIRCLE},
-        [3] = {sound = CHAR_SOUND_SO_LONGA_BOWSER,  vel = 120,  particle = PARTICLE_MIST_CIRCLE},
-    }
+    local sound = CHAR_SOUND_DOH
+    local shake = nil
+    local pitch = degrees_to_sm64(m.vel.y * -1)
+    --local rocketArgs = {
+    --    [0] = {sound = CHAR_SOUND_DOH,              vel = 20,   shake = nil},
+    --    [1] = {sound = CHAR_SOUND_YAHOO,            vel = 60,   shake = SHAKE_GROUND_POUND},
+    --    [2] = {sound = CHAR_SOUND_SO_LONGA_BOWSER,  vel = 120,  shake = SHAKE_ENV_BOWSER_JUMP},
+    --}
+    if m.actionArg >= 50 then
+        sound = CHAR_SOUND_WAAAOOOW
+        shake = SHAKE_ENV_BOWSER_JUMP
+        if m.actionTimer > 1 and m.actionTimer < 15 and m.actionTimer % 4 == 0 then
+            set_mario_particle_flags(m, PARTICLE_VERTICAL_STAR, 0)
+        end
+        m.peakHeight = m.pos.y
+    elseif m.actionArg > 0 then
+        sound = CHAR_SOUND_YAHOO
+        shake = SHAKE_POS_LARGE
+    end
 
     m.marioBodyState.handState = MARIO_HAND_OPEN
 
@@ -384,12 +386,15 @@ local function act_jumbler_rocket(m)
     end
 
     if m.actionTimer == 1 then
-        play_character_sound(m, rocketArgs[m.actionArg].sound)
+        play_character_sound(m, sound)
         stop_sound(SOUND_OBJ_FLAME_BLOWN, m.marioObj.header.gfx.cameraToObject)
         play_sound(SOUND_OBJ_CANNON4, m.marioObj.header.gfx.cameraToObject)
-        set_mario_particle_flags(m, rocketArgs[m.actionArg].particle, 0)
-        m.forwardVel = rocketArgs[m.actionArg].vel
-        m.vel.y = 30
+        set_mario_particle_flags(m, PARTICLE_VERTICAL_STAR, 0)
+        if shake ~= nil then
+            set_camera_shake_from_hit(shake)
+        end
+        m.forwardVel = 20 + (m.actionArg * 1)
+        m.vel.y = 40
     elseif m.actionTimer > 2 then
         if m.actionArg == 3 then
             set_mario_particle_flags(m, PARTICLE_FIRE, 0)
@@ -406,10 +411,12 @@ local function act_jumbler_rocket(m)
         set_mario_action(m, ACT_BACKWARD_AIR_KB, 0)
         set_mario_particle_flags(m, PARTICLE_VERTICAL_STAR, 0)
     end
+    m.vel.y = m.vel.y + 1
 
     --set_anim_to_frame(m, 0)
     smlua_anim_util_set_animation(m.marioObj, "jumbler_rocket")
-    e.gfxZ = e.gfxZ + (m.actionArg * 0x1000)
+    e.gfxZ = e.gfxZ + (m.actionArg * 0x100)
+    m.marioObj.header.gfx.angle.x = m.actionArg == 0 and pitch or 0
     m.marioObj.header.gfx.angle.z = e.gfxZ - 0x4000
     m.actionTimer = m.actionTimer + 1
     return 0
@@ -581,7 +588,8 @@ local function fumbler_update(m)
     -- sounds
     if m.marioObj.header.gfx.animInfo.animFrame == -1 then
         if (m.action == ACT_LEDGE_GRAB and e.perfectTimer < 1)
-        --or (m.action == ACT_JUMP_KICK and m.forwardVel > 40)
+        or (m.action == ACT_JUMP_KICK and m.forwardVel > 40)
+        or (m.action == ACT_FORWARD_ROLLOUT and m.prevAction == ACT_LEDGE_GRAB and m.marioObj.header.gfx.animInfo.animID == MARIO_ANIM_FORWARD_SPINNING)
         then
             play_character_sound(m, CHAR_SOUND_HAHA)
         end

@@ -314,7 +314,7 @@ function act_jumbler_rocket_charge(m)
         if m.pos.y > m.floorHeight then
             m.vel.y = 15
         end
-        --set_anim_to_frame(m, 10)
+        set_anim_to_frame(m, 10)
 	end
 
     if m.actionTimer > 10 and m.actionTimer < 50 then

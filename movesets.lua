@@ -1,3 +1,5 @@
+require("libs/impactFrames")
+
 local ACT_MOVING_GP = allocate_mario_action(ACT_GROUP_AIRBORNE | ACT_FLAG_AIR | ACT_FLAG_ATTACKING | ACT_FLAG_ALLOW_VERTICAL_WIND_ACTION)
 local ACT_GP_CANCEL = allocate_mario_action(ACT_GROUP_AIRBORNE | ACT_FLAG_AIR | ACT_FLAG_ALLOW_VERTICAL_WIND_ACTION)
 local ACT_FUMBLER_UPPERCUT = allocate_mario_action(ACT_GROUP_AIRBORNE | ACT_FLAG_AIR | ACT_FLAG_ATTACKING | ACT_FLAG_ALLOW_VERTICAL_WIND_ACTION)
@@ -87,6 +89,7 @@ local function spawn_fumbler_particles(m)
 end
 
 local function do_fumbler_combo(m)
+    if m.playerIndex ~= 0 then return end
     local e = gExtraStates[m.playerIndex]
     e.combo = e.combo + 1
     e.comboTimer = 40
@@ -105,6 +108,7 @@ local function do_fumbler_combo(m)
         end
         audio_stream_set_frequency(SOUND_FUMBLER_COMBO, pitch)
     end
+    --doImpactFrame(m, 5)
 end
 
 local function do_fumble(m)
@@ -261,6 +265,10 @@ local function act_fumbler_uppercut(m)
 
     if m.actionState == 1 then
         local stepResult = common_air_action_step(m, ACT_BUTT_SLIDE_AIR, MARIO_ANIM_RUNNING_UNUSED, AIR_STEP_NONE)
+        if stepResult == AIR_STEP_LANDED then
+            play_mario_landing_sound(m, SOUND_ACTION_TERRAIN_LANDING)
+            m.vel.y = 30
+        end
 
         m.forwardVel = m.forwardVel * 0.97
     end
@@ -585,6 +593,20 @@ local function fumbler_update(m)
         if specialJumpMoves[m.action] and m.controller.buttonDown & L_TRIG ~= 0 and m.input & INPUT_A_PRESSED ~= 0 and m.vel.y < 10 and m.prevAction ~= ACT_LEDGE_GRAB and e.canUppercut then
             set_mario_action(m, ACT_FUMBLER_UPPERCUT, 0)
         end
+    -- frame perfect gp jump
+    if m.action == ACT_JUMP and m.actionArg == 1337 then
+        if m.marioObj.header.gfx.animInfo.animFrame == -1 and m.forwardVel > 10 then
+            do_fumbler_combo(m)
+        end
+        if m.forwardVel > 40 then
+            if m.marioObj.header.gfx.animInfo.animFrame < 10 then
+                m.marioBodyState.punchState = 4
+            end
+            if m.vel.y > 15 then
+                spawn_fumbler_particles(m)
+            end
+        end
+    end
     -- sounds
     if m.marioObj.header.gfx.animInfo.animFrame == -1 then
         if (m.action == ACT_LEDGE_GRAB and e.perfectTimer < 1)
